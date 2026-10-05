@@ -376,7 +376,7 @@ export default function ProductDetailClient({
               <span>{language === "ar" ? " < " : " > "}</span>
             </>
           )}
-          <span style={{ color: "#f10182", fontWeight: "500" }}>{productTitle || product.name}</span>
+          <span style={{ color: "#cc0070", fontWeight: "500" }}>{productTitle || product.name}</span>
         </div>
     </div>
     

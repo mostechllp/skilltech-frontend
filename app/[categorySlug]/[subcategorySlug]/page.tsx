@@ -124,7 +124,7 @@ export default async function SubCategoryPage({ params, searchParams }: Props) {
             {locale === "ar" && subCategory.category?.name_ar ? subCategory.category.name_ar : (subCategory.category?.name || formatSlug(categorySlug))}
           </Link>
           <span>{locale === "ar" ? " < " : " > "}</span>
-          <span style={{ color: "#f10182", fontWeight: "500" }}>{(locale === "ar" && subCategory.name_ar ? subCategory.name_ar : subCategory.name) || formatSlug(subcategorySlug)}</span>
+          <span style={{ color: "#cc0070", fontWeight: "500" }}>{(locale === "ar" && subCategory.name_ar ? subCategory.name_ar : subCategory.name) || formatSlug(subcategorySlug)}</span>
         </div>
       </div>
       <div id="product-section" className="container product-section">

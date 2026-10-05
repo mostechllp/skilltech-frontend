@@ -161,7 +161,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         <div className="container" style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "5px" }}>
           <Link href="/" className="breadcrumb-link">{t("Home")}</Link>
           <span>{locale === "ar" ? " < " : " > "}</span>
-          <span style={{ color: "#f10182", fontWeight: "500" }}>{nameTrans || formatSlug(categorySlug)}</span>
+          <span style={{ color: "#cc0070", fontWeight: "500" }}>{nameTrans || formatSlug(categorySlug)}</span>
         </div>
       </div>
       <section className="hero">
@@ -191,7 +191,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
               <Link key={sub.id} href={`/${categorySlug}/${sub.slug}`} className="col-lg-3 col-md-6 col-6">
                 <div className="category-card">
                   <Image src={`${sub.image??"/images/default.png"}`} alt={locale === "ar" && sub.name_ar ? sub.name_ar : sub.name} width={400} height={300} sizes="(max-width: 575px) 50vw, (max-width: 991px) 33vw, 25vw" style={{ objectFit: "cover" }} />
-                  <h5>{locale === "ar" && sub.name_ar ? sub.name_ar : sub.name}</h5>
+                  <h3>{locale === "ar" && sub.name_ar ? sub.name_ar : sub.name}</h3>
                   <p>{sub.products_count || 0}{t(" Products")}</p>
                 </div>
               </Link>
