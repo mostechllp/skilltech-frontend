@@ -91,7 +91,9 @@ export default async function RootLayout({
         <PWARegistration />
         <LanguageProvider initialLanguage={locale}>
           <Header />
-          {children}
+          <main id="main-content">
+            {children}
+          </main>
           <Footer categories={footerCategories} />
         </LanguageProvider>
         

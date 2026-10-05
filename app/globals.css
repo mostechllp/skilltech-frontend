@@ -3824,7 +3824,8 @@ button i {
   flex-shrink: 0;
 }
 
-.choose-top h5 {
+.choose-top h5,
+.choose-top h3 {
   color: #3351a3;
   font-size: 16px;
   font-weight: 600;
@@ -3887,7 +3888,8 @@ button i {
   color: #fff;
 }
 
-.story-content h4 {
+.story-content h4,
+.story-content h3 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
@@ -3908,7 +3910,8 @@ button i {
   /* height: 150px; */
 }
 
-.mv-card h4 {
+.mv-card h4,
+.mv-card h3 {
   color: #3351a3;
   font-size: 20px;
   margin-bottom: 10px;
@@ -3956,7 +3959,8 @@ button i {
     padding: 20px;
   }
 
-  .story-content h4 {
+  .story-content h4,
+  .story-content h3 {
     color: #3351a3;
   }
 
@@ -4185,7 +4189,8 @@ button i {
   border-radius: 20px;
 }
 
-.v-content h4 {
+.v-content h4,
+.v-content h3 {
   font-size: 18px;
   font-weight: 600;
   color: #3351a3;
@@ -4241,7 +4246,8 @@ button i {
   }
 
   /* Text size adjustments */
-  .v-content h4 {
+  .v-content h4,
+  .v-content h3 {
     font-size: 16px;
     margin-left: 15px;
   }
