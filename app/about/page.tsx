@@ -10,32 +10,34 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO("about");
-  if (!seo) return {};
+  const canonical = locale === "ar" ? "https://skilltechonline.com/ar/about" : "https://skilltechonline.com/about";
+  const title = locale === "ar" 
+    ? "من نحن | About Skill Tech | TV Mounting Experts Since 2011 UAE" 
+    : "About Skill Tech | TV Mounting Experts Since 2011 UAE";
+  const description = "Discover Skill Tech's story - UAE's trusted TV mounting experts since 2011, delivering professional AV installation services with quality and reliability.";
 
-  const imageUrl = seo.meta_image
+  const imageUrl = seo?.meta_image
     ? seo.meta_image.startsWith("http")
       ? seo.meta_image
       : `${MEDIA_BASE_URL}${seo.meta_image}`
     : null;
 
-  const canonical = locale === "ar" ? "https://skilltechonline.com/ar/about" : "https://skilltechonline.com/about";
-
   return {
-    title: locale === "ar" ? `من نحن | ${seo.meta_title || "Skill Tech"}` : seo.meta_title,
-    description: seo.meta_description,
-    keywords: seo.meta_keywords,
+    title,
+    description,
+    keywords: seo?.meta_keywords,
     alternates: {
-      canonical: canonical,
+      canonical,
     },
     openGraph: {
-      title: seo.meta_title,
-      description: seo.meta_description,
+      title,
+      description,
       images: imageUrl ? [imageUrl] : [],
     },
     twitter: {
       card: "summary_large_image",
-      title: seo.meta_title,
-      description: seo.meta_description,
+      title,
+      description,
       images: imageUrl ? [imageUrl] : [],
     },
   };
@@ -50,8 +52,31 @@ const About = async () => {
     return langDict[key] || key;
   };
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://skilltechonline.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About",
+        "item": "https://skilltechonline.com/about"
+      }
+    ]
+  };
+
   return (
     <div className="about-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="vector-section">
         <div className="container">
           <div className="row g-4 align-items-center">
@@ -63,7 +88,7 @@ const About = async () => {
                 </span>{" "}
                 {t("About Our Company")}
               </button>
-              <h2>{t("We're Changing The Way People Think About")}</h2>
+              <h1>{t("We're Changing The Way People Think About")}</h1>
               <p>
                 {t("Welcome to Skill Tech, a leading provider of premium TV wall mounts, mounting solutions, LED display systems, AV accessories, cables, wires, and professional installation services. Since our establishment in 2011, we have been committed to delivering innovative, reliable, and high-quality solutions that enhance residential, commercial, hospitality, retail, education, and corporate environments across the UAE and international markets.")}
                 <br />

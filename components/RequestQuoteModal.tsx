@@ -219,7 +219,7 @@ export default function RequestQuoteModal({ isOpen, onClose }: RequestQuoteModal
         ) : (
           <>
             {/* Modal Title */}
-            <h3 className="quote-modal-title">{t("Request A Quote")}</h3>
+            <h3 className="quote-modal-title">{t("Request a Quote")}</h3>
 
             {errorMessage && (
               <div className="alert alert-danger py-2 px-3 mb-3 text-start" style={{ fontSize: "14px" }}>

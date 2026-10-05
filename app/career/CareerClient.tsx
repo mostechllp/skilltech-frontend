@@ -132,9 +132,9 @@ export default function CareerClient() {
               </span>
               {t("Careers")}
             </button>
-            <h2 className="section-title">
+            <h1 className="section-title">
               {t("Exciting Careers Await")}
-            </h2>
+            </h1>
             <p className="section-subtitle">
               {t("We're expanding our team and looking for talented people who are driven, creative, and ready to take on new challenges. At our company, you'll find opportunities to learn, grow, and build a meaningful career")}
             </p>

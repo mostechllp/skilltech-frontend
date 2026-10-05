@@ -342,7 +342,7 @@ export default function ServiceClient() {
               </span>{" "}
               {t("Install Services")}
             </button>
-            <h2>{t("TV Installation Service")}</h2>
+            <h1>{t("TV Installation Service")}</h1>
             <p>
               {t("Looking for reliable TV installation services? Our expert team provides professional wall mounted and stand mounted TV setups for all sizes and brands. From precise mounting to clean cable management, we ensure a flawless finish every time. We handle LED, OLED, 4K, and curved TVs with expert care serving both residential and commercial spaces. Enjoy same day service, competitive pricing, and guaranteed satisfaction. Book your installation today schedule online or call us for quick assistance.")}
             </p>
@@ -611,6 +611,7 @@ export default function ServiceClient() {
             <button
               onClick={() => setShowBookingModal(false)}
               className="booking-modal-close"
+              aria-label={t("Close")}
             >
               &times;
             </button>

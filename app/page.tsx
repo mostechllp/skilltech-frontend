@@ -8,7 +8,14 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await fetchSEO('home');
-  if (!seo) return {};
+  const canonical = seo?.canonical_url || 'https://skilltechonline.com/';
+  if (!seo) {
+    return {
+      alternates: {
+        canonical,
+      },
+    };
+  }
 
   const imageUrl = seo.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
 
@@ -33,6 +40,35 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+const websiteSchema = {
+  "@context": "https://schema.org/",
+  "@type": "WebSite",
+  "name": "Skill Tech",
+  "url": "https://skilltechonline.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Skill Tech",
+  "image": "https://skilltechonline.com/images/logo.svg",
+  "@id": "",
+  "url": "https://skilltechonline.com/",
+  "telephone": "+971 4 234 7770",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Office# F03 & F04, Al Awadhi Building, Opp. New California Hotel",
+    "addressLocality": "Dubai",
+    "postalCode": "381108",
+    "addressCountry": "AE"
+  }
+};
+
 export default async function Home() {
   const categories = await fetchCategories(true);
   const exploreCategories = await fetchCategories(undefined, true);
@@ -45,7 +81,14 @@ export default async function Home() {
 
   return (
     <>
-    
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
       <HomeClient 
         categories={categories} 
         exploreCategories={exploreCategories}
@@ -59,4 +102,5 @@ export default async function Home() {
     </>
   );
 }
+
 

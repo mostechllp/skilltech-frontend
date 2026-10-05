@@ -727,6 +727,7 @@ const rightCategories = categories ? categories.slice(8) : [];
             <button
               onClick={() => setShowBookingModal(false)}
               className="booking-modal-close"
+              aria-label={t("Close")}
             >
               &times;
             </button>

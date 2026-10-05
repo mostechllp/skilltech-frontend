@@ -211,6 +211,9 @@ useEffect(() => {
 
   return (
     <>
+      <h1 className="visually-hidden">
+        {t("Skill Tech - Professional TV Mounts & Audio Visual Solutions")}
+      </h1>
       <section className="hero hero-home">
         <Swiper
           key={language}
@@ -267,10 +270,10 @@ useEffect(() => {
 
         {/* Navigation Arrows */}
         <div className="hero-nav">
-          <button className="hero-prev">
+          <button className="hero-prev" aria-label="Previous slide">
             <i className="fa fa-chevron-left"></i>
           </button>
-          <button className="hero-next">
+          <button className="hero-next" aria-label="Next slide">
             <i className="fa fa-chevron-right"></i>
           </button>
         </div>
@@ -293,10 +296,10 @@ useEffect(() => {
                 <h2 className="section-title">{t("Browse by Category")}</h2>
               </div>
               <div className="right">
-                <button className="arrow left-arrow">
+                <button className="arrow left-arrow" aria-label="Previous category">
                   <i className="fa fa-arrow-left"></i>
                 </button>
-                <button className="arrow right-arrow">
+                <button className="arrow right-arrow" aria-label="Next category">
                   <i className="fa fa-arrow-right"></i>
                 </button>
               </div>
@@ -658,6 +661,7 @@ useEffect(() => {
             <button
               ref={prevRef}
               className="prod-left-arrow"
+              aria-label="Previous products"
               style={{
                 display:
                   !loading && filterProducts.length > 0 ? "flex" : "none",
@@ -668,6 +672,7 @@ useEffect(() => {
             <button
               ref={nextRef}
               className="prod-right-arrow"
+              aria-label="Next products"
               style={{
                 display:
                   !loading && filterProducts.length > 0 ? "flex" : "none",
@@ -825,10 +830,10 @@ useEffect(() => {
             <div className="row align-items-center">
               <div className="project-header">
                 <div className="left-controls">
-                  <button className="customPrev">
+                  <button className="customPrev" aria-label="Previous project">
                     <i className="fa fa-arrow-left"></i>
                   </button>
-                  <button className="customNext">
+                  <button className="customNext" aria-label="Next project">
                     <i className="fa fa-arrow-right"></i>
                   </button>
                 </div>

@@ -917,6 +917,7 @@ export default function ProductDetailClient({
             <button
               onClick={() => setShowEnquiryModal(false)}
               className="enquiry-modal-close"
+              aria-label={t("Close")}
             >
               &times;
             </button>

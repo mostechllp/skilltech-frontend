@@ -102,7 +102,7 @@ export default function ContactClient() {
                   </span>
                   {t("Contact Us")}
                 </button>
-                <h3>{t("Get in Touch")}</h3>
+                <h1>{t("Get in Touch")}</h1>
                 <p>
                   {t("Interested to do Business with Us? To Become our Dealer, please send your experience details.")}
                 </p>

@@ -53,6 +53,17 @@ export default function SupportClient() {
     <>
       <section className="tabs-section ">
         <div className="container">
+          <div className="section-header mb-4">
+            <div className="left">
+              <button className="explore-btn-nocursor">
+                <span className="arrow-circle">
+                  <i className="fas fa-play"></i>
+                </span>
+                {t("Support")}
+              </button>
+              <h1 className="section-title">{t("Support")}</h1>
+            </div>
+          </div>
           {/* Tabs */}
           <div className="tabs-header">
             <button

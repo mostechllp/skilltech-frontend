@@ -8,33 +8,59 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO('support');
-  if (!seo) return {};
-
-  const imageUrl = seo.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
-
   const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/support' : 'https://skilltechonline.com/support';
+  const title = locale === "ar"
+    ? "الدعم | Skill Tech Support | Expert AV Technical Assistance"
+    : "Skill Tech Support | Expert AV Technical Assistance";
+  const description = "Get expert AV technical support from Skill Tech. Our team provides reliable troubleshooting and assistance for all your TV mounting and installation needs.";
+
+  const imageUrl = seo?.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
 
   return {
-    title: locale === "ar" ? `الدعم | ${seo.meta_title || "Skill Tech"}` : seo.meta_title,
-    description: seo.meta_description,
-    keywords: seo.meta_keywords,
+    title,
+    description,
+    keywords: seo?.meta_keywords,
     alternates: {
-      canonical: canonical,
+      canonical,
     },
     openGraph: {
-      title: seo.meta_title,
-      description: seo.meta_description,
+      title,
+      description,
       images: imageUrl ? [imageUrl] : [],
     },
     twitter: {
       card: 'summary_large_image',
-      title: seo.meta_title,
-      description: seo.meta_description,
+      title,
+      description,
       images: imageUrl ? [imageUrl] : [],
     },
   };
 }
 
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://skilltechonline.com/"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Support",
+    "item": "https://skilltechonline.com/support"
+  }]
+};
+
 export default function Support() {
-  return <SupportClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <SupportClient />
+    </>
+  );
 }

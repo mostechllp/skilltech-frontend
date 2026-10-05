@@ -576,18 +576,18 @@ export default function Header() {
                     }
                   }}
                 >
-                  {t("Request A Quote")}
+                  {t("Request a Quote")}
                 </button>
               </li>
             </ul>
 
-            {/* Request A Quote Button */}
+            {/* Request a Quote Button */}
             <button
               type="button"
               className="request-quote-header-btn d-none d-lg-inline-flex"
               onClick={() => setIsQuoteModalOpen(true)}
             >
-              {t("Request A Quote")}
+              {t("Request a Quote")}
             </button>
 
             {/* Desktop Search Box */}

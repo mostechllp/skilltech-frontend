@@ -16,6 +16,17 @@ export default function BlogClient({ posts, banner }: BlogClientProps) {
     <>
       <section className="blog-section">
         <div className="container">
+          <div className="section-header mb-4">
+            <div className="left">
+              <button className="explore-btn-nocursor">
+                <span className="arrow-circle">
+                  <i className="fas fa-play"></i>
+                </span>
+                {t("Blogs")}
+              </button>
+              <h1 className="section-title">{t("Blogs")}</h1>
+            </div>
+          </div>
           <div className="row g-4">
              {posts.map((post) => {
                 const title = language === "ar" && post.title_ar ? post.title_ar : post.title;

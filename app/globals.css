@@ -1449,6 +1449,19 @@ body {
 
 }
 
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.about-text h1,
 .about-text h2 {
   font-size: 24px;
   margin-bottom: 15px;
@@ -1553,6 +1566,7 @@ body {
     padding: 15px;
   }
 
+  .about-text h1,
   .about-text h2 {
     font-size: 22px;
     margin-bottom: 10px;
@@ -4581,6 +4595,7 @@ button i {
 }
 
 /* Form Box */
+.contact-form-box h1,
 .contact-form-box h3 {
   font-size: 24px;
   font-weight: 700;
@@ -4960,6 +4975,7 @@ button i {
     margin-top: 5px;
   }
 
+  .contact-form-box h1,
   .contact-form-box h3 {
     font-size: 20px;
   }

@@ -31,8 +31,37 @@ export async function generateMetadata(
   };
 
   const nameTrans = locale === "ar" && category.name_ar ? category.name_ar : category.name;
-  const title = category.meta_title || nameTrans;
-  const description = category.meta_description || `${t("Explore Our Products")} - ${nameTrans}`;
+
+  const categorySeoData: Record<string, { title: string; description: string }> = {
+    "tv-wall-mount": {
+      title: "TV Wall Mounts UAE | Fixed, Tilt & Full Motion | Skill Tech",
+      description: "Shop fixed, tilt, and full-motion TV wall mounts in the UAE from Skill Tech. Durable, secure options for every screen size and viewing preference today.",
+    },
+    "desktop-mounts": {
+      title: "Monitor & Desktop Mounts | Ergonomic Arms | Skill Tech",
+      description: "Upgrade your workspace with ergonomic monitor and desktop mounting arms from Skill Tech. Adjustable, space-saving solutions for home and office desks.",
+    },
+    "tv-ceiling-mounts": {
+      title: "TV Ceiling Mounts | Sturdy & Space Saving | Skill Tech",
+      description: "Explore sturdy, space-saving TV ceiling mounts from Skill Tech, perfect for UAE homes and businesses seeking a secure, versatile viewing solution today.",
+    },
+    "motorized-mounts": {
+      title: "Motorized TV Mounts & Stands | Skill Tech Electronics",
+      description: "Discover motorized TV mounts and stands from Skill Tech Electronics, offering smooth, automated positioning for a modern, high-tech entertainment setup.",
+    },
+    "projector-screens": {
+      title: "Projector Screens | Wide Range of Sizes | Skill Tech",
+      description: "Browse a wide range of projector screen sizes at Skill Tech, offering quality options for home theaters, offices, and professional presentations in the UAE.",
+    },
+    "laptop-tablet-stands": {
+      title: "Laptop & Tablet Stands | Adjustable Mounts | Skill Tech",
+      description: "Find adjustable laptop and tablet stands at Skill Tech, designed for comfort, portability, and ergonomic support in home, office, or travel setups today.",
+    },
+  };
+
+  const customSeo = categorySeoData[categorySlug];
+  const title = customSeo?.title || category.meta_title || nameTrans;
+  const description = customSeo?.description || category.meta_description || `${t("Explore Our Products")} - ${nameTrans}`;
   const keywords = category.meta_keywords ? category.meta_keywords.split(',').map((tag: string) => tag.trim()) : [];
   
   const imagePath = category.meta_image || category.image;
@@ -79,12 +108,46 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
   const subcategories = await fetchSubCategoriesByCategory(categorySlug);
 
+  const categoryBreadcrumbNames: Record<string, string> = {
+    "tv-wall-mount": "TV Wall Mounts",
+    "desktop-mounts": "Monitor & Desktop Mounts",
+    "tv-ceiling-mounts": "TV Ceiling Mounts",
+    "motorized-mounts": "Motorized Mounts and Stands",
+    "projector-screens": "Projector Screens",
+    "laptop-tablet-stands": "Laptop & Tablet Stands",
+  };
+
+  const breadcrumbName = categoryBreadcrumbNames[categorySlug] || category.name;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://skilltechonline.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": breadcrumbName,
+        "item": `https://skilltechonline.com/${categorySlug}`
+      }
+    ]
+  };
+
   const formatSlug = (slug: string | undefined) => 
     slug ? slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase()) : "";
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div style={{ 
+
           padding: "12px 20px", 
           fontSize: "16px", 
           color: "#555",

@@ -9,6 +9,8 @@ export const translations = {
     "News": "News",
     "Career": "Career",
     "Blog": "Blog",
+    "Blogs": "Blogs",
+    "Skill Tech - Professional TV Mounts & Audio Visual Solutions": "Skill Tech - Professional TV Mounts & Audio Visual Solutions",
     "Contact": "Contact",
     "Search...": "Search...",
     "Search products...": "Search products...",
@@ -19,6 +21,7 @@ export const translations = {
     "Products related to:": "Products related to:",
     "See More >": "See More >",
     "Loading...": "Loading...",
+    "Request a Quote": "Request a Quote",
 
     // Footer
     "Find Your Way to Us": "Find Your Way to Us",
@@ -436,6 +439,8 @@ export const translations = {
     "News": "الأخبار",
     "Career": "الوظائف",
     "Blog": "المدونة",
+    "Blogs": "المدونة",
+    "Skill Tech - Professional TV Mounts & Audio Visual Solutions": "سكيل تك - حلول احترافية لحوامل التلفزيون وحلول الصوت والصورة",
     "Contact": "اتصل بنا",
     "Search...": "بحث...",
     "Search products...": "البحث عن المنتجات...",
@@ -446,6 +451,7 @@ export const translations = {
     "Products related to:": "المنتجات ذات الصلة بـ:",
     "See More >": "عرض المزيد <",
     "Loading...": "جاري التحميل...",
+    "Request a Quote": "طلب عرض سعر",
 
     // Footer
     "Find Your Way to Us": "ابحث عن طريقك إلينا",

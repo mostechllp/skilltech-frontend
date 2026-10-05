@@ -8,38 +8,50 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO('news');
-  if (!seo) return {
-    title: locale === "ar" ? 'الأخبار ووسائل الإعلام | Skilltech' : 'News & Media | Skilltech',
-    description: 'Latest news, press releases, and media updates from Skilltech.',
-    alternates: {
-      canonical: locale === "ar" ? 'https://skilltechonline.com/ar/news-media' : 'https://skilltechonline.com/news-media',
-    },
-  };
-
-  const imageUrl = seo.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
-
   const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/news-media' : 'https://skilltechonline.com/news-media';
+  const title = locale === "ar"
+    ? "الأخبار ووسائل الإعلام | News & Media | Skill Tech Group Updates and Events UAE"
+    : "News & Media | Skill Tech Group Updates and Events UAE";
+  const description = "Stay updated with the latest news, media coverage, and company updates from Skill Tech, the UAE's leading TV mounting and AV installation specialists.";
+
+  const imageUrl = seo?.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
 
   return {
-    title: locale === "ar" ? `الأخبار ووسائل الإعلام | ${seo.meta_title || "Skilltech"}` : seo.meta_title,
-    description: seo.meta_description,
-    keywords: seo.meta_keywords,
+    title,
+    description,
+    keywords: seo?.meta_keywords,
     alternates: {
-      canonical: canonical,
+      canonical,
     },
     openGraph: {
-      title: seo.meta_title,
-      description: seo.meta_description,
+      title,
+      description,
       images: imageUrl ? [imageUrl] : [],
     },
     twitter: {
       card: 'summary_large_image',
-      title: seo.meta_title,
-      description: seo.meta_description,
+      title,
+      description,
       images: imageUrl ? [imageUrl] : [],
     },
   };
 }
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://skilltechonline.com/"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "News and media",
+    "item": "https://skilltechonline.com/news-media"
+  }]
+};
 
 export default async function NewsMediaPage({ searchParams }: { searchParams: Promise<{ page?: string }> }) {
   const { page } = await searchParams;
@@ -62,5 +74,14 @@ export default async function NewsMediaPage({ searchParams }: { searchParams: Pr
     console.error("FAILED TO FETCH NEWS POSTS:", error);
   }
 
-  return <NewsMediaClient newsItems={newsData} totalCount={totalCount} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <NewsMediaClient newsItems={newsData} totalCount={totalCount} />
+    </>
+  );
 }
+

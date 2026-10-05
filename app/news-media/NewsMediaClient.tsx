@@ -99,7 +99,7 @@ export default function NewsMediaClient({ newsItems, totalCount }: NewsMediaClie
               </span>
               {t("News & Media")}
             </button>
-            <h2 className="section-title">{t("Latest Updates")}</h2>
+            <h1 className="section-title">{t("Latest Updates")}</h1>
           </div>
         </div>
 

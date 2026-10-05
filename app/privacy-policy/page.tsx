@@ -11,11 +11,32 @@ export async function generateMetadata(): Promise<Metadata> {
     return langDict[key] || key;
   };
 
+  const canonical = locale === "ar" ? "https://skilltechonline.com/ar/privacy-policy" : "https://skilltechonline.com/privacy-policy";
+
   return {
-    title: t("Privacy Policy - Skill Tech"),
-    description: t("Privacy Policy for Skill Tech Group of Companies."),
+    title: locale === "ar" ? `سياسة الخصوصية | Skill Tech Electronics Trading LLC` : "Privacy Policy | Skill Tech Electronics Trading LLC",
+    description: "Read Skill Tech Electronics Trading LLC's privacy policy to understand how we collect, use, and protect your personal information across our services.",
+    alternates: {
+      canonical,
+    },
   };
 }
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org/",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+    "@type": "ListItem",
+    "position": 1,
+    "name": "Home",
+    "item": "https://skilltechonline.com/"
+  },{
+    "@type": "ListItem",
+    "position": 2,
+    "name": "Privacy Policy",
+    "item": "https://skilltechonline.com/privacy-policy"
+  }]
+};
 
 export default async function PrivacyPolicyPage() {
   const headersList = await headers();
@@ -27,7 +48,12 @@ export default async function PrivacyPolicyPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="container py-5 mt-5">
+
         <h1 className="mb-4">{t("Privacy Policy")}</h1>
         <div className="content-page">
             <p className="text-muted mb-4">{t("Effective Date: July 20, 2026")}</p>
