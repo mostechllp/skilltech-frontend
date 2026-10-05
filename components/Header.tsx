@@ -462,16 +462,28 @@ export default function Header() {
                   if (window.innerWidth > 992) setIsMegamenuOpen(false);
                 }}
               >
-                <a
+                <button
+                  type="button"
                   className={`nav-link no-click ${isProductActive() ? "active" : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     setIsMegamenuOpen(!isMegamenuOpen);
                   }}
-                  style={{ cursor: "pointer" }}
+                  style={{
+                    cursor: "pointer",
+                    background: "none",
+                    border: "none",
+                    font: "inherit",
+                    color: "inherit",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "4px",
+                  }}
+                  aria-expanded={isMegamenuOpen}
+                  aria-haspopup="true"
                 >
                   {t("Products")} <i className="fa fa-caret-down"></i>
-                </a>
+                </button>
 
                 {/* Option 1: New Mega Menu (Currently Active) */}
                 <NewMegaMenu 
