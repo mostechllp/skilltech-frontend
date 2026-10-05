@@ -141,7 +141,7 @@ export default function CareerClient() {
           </div>
 
           <div className="application-form-card">
-            <h3 className="application-form-title">{t("Apply for a Position")}</h3>
+            <h2 className="application-form-title">{t("Apply for a Position")}</h2>
 
             {status.success && (
               <div className="alert alert-success">
