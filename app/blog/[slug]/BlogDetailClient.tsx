@@ -58,10 +58,10 @@ export default function BlogDetailClient({ post, recentPosts }: { post: any, rec
                         {/* SHARE */}
                         <div className="share-box d-flex align-items-center gap-3 py-3 border-top border-bottom">
                             <strong className="text-blue">{t("Share:")}</strong>
-                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" className="social-btn facebook"><i className="fab fa-facebook-f"></i></a>
-                            <a href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${postTitle}`} target="_blank" className="social-btn twitter"><i className="fab fa-x-twitter"></i></a>
-                            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`} target="_blank" className="social-btn linkedin"><i className="fab fa-linkedin-in"></i></a>
-                            <a href={`https://wa.me/?text=${postTitle} ${shareUrl}`} target="_blank" className="social-btn whatsapp"><i className="fab fa-whatsapp"></i></a>
+                            <a href={`https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" className="social-btn facebook"><i className="fab fa-facebook-f"></i></a>
+                            <a href={`https://twitter.com/intent/tweet?url=${shareUrl}&text=${postTitle}`} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter / X" className="social-btn twitter"><i className="fab fa-x-twitter"></i></a>
+                            <a href={`https://www.linkedin.com/shareArticle?mini=true&url=${shareUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" className="social-btn linkedin"><i className="fab fa-linkedin-in"></i></a>
+                            <a href={`https://wa.me/?text=${postTitle} ${shareUrl}`} target="_blank" rel="noopener noreferrer" aria-label="Share on WhatsApp" className="social-btn whatsapp"><i className="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 </div>

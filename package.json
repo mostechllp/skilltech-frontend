@@ -13,6 +13,7 @@
     "next": "16.0.7",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "sharp": "^0.35.5",
     "swiper": "^12.0.3"
   },
   "devDependencies": {
@@ -27,8 +28,8 @@
     "typescript": "^5"
   },
   "overrides": {
-  "react-server-dom-webpack": "19.2.4",
-  "react-server-dom-turbopack": "19.2.4",
-  "react-server-dom-parcel": "19.2.4"
-}
+    "react-server-dom-webpack": "19.2.4",
+    "react-server-dom-turbopack": "19.2.4",
+    "react-server-dom-parcel": "19.2.4"
+  }
 }

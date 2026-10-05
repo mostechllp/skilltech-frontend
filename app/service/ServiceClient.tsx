@@ -138,13 +138,15 @@ export default function ServiceClient() {
     }
   };
 
-  const renderBookingForm = () => (
+  const renderBookingForm = (idPrefix = "service") => (
     <form className="book-slot-form" onSubmit={handleSubmit}>
       {/* Row 1: Full Name & Email Address */}
       <div className="row">
         <div className="col-md-6 form-div">
-          <label className="form-label">{t("Full Name *")}</label>
+          <label htmlFor={`${idPrefix}-name`} className="form-label">{t("Full Name *")}</label>
           <input
+            id={`${idPrefix}-name`}
+            aria-label={t("Full Name")}
             type="text"
             className="form-control"
             name="name"
@@ -155,8 +157,10 @@ export default function ServiceClient() {
           />
         </div>
         <div className="col-md-6 form-div">
-          <label className="form-label">{t("Email Address *")}</label>
+          <label htmlFor={`${idPrefix}-email`} className="form-label">{t("Email Address *")}</label>
           <input
+            id={`${idPrefix}-email`}
+            aria-label={t("Email Address")}
             type="email"
             className="form-control"
             name="email"
@@ -171,8 +175,10 @@ export default function ServiceClient() {
       {/* Row 2: Mobile Number & Location */}
       <div className="row">
         <div className="col-md-6 form-div col-mobile-12">
-          <label className="form-label">{t("Mobile Number *")}</label>
+          <label htmlFor={`${idPrefix}-phone`} className="form-label">{t("Mobile Number *")}</label>
           <PhoneInput
+            id={`${idPrefix}-phone`}
+            aria-label={t("Mobile Number")}
             name="phone"
             placeholder={t("Mobile Number")}
             required
@@ -181,8 +187,10 @@ export default function ServiceClient() {
           />
         </div>
         <div className="col-md-6 form-div col-mobile-12">
-          <label className="form-label">{t("Location *")}</label>
+          <label htmlFor={`${idPrefix}-location`} className="form-label">{t("Location *")}</label>
           <input
+            id={`${idPrefix}-location`}
+            aria-label={t("Location")}
             type="text"
             className="form-control"
             name="location"
@@ -197,8 +205,12 @@ export default function ServiceClient() {
       {/* Row 3: Installation Type & Screen Size */}
       <div className="row">
         <div className="col-md-6 form-div">
-          <label className="form-label">{t("Installation Type *")}</label>
+          <label id={`${idPrefix}-label-installation-type`} htmlFor={`${idPrefix}-installation-type`} className="form-label">{t("Installation Type *")}</label>
           <select
+            id={`${idPrefix}-installation-type`}
+            aria-labelledby={`${idPrefix}-label-installation-type`}
+            aria-label={t("Installation Type")}
+            title={t("Installation Type")}
             className="form-select"
             name="installation_type"
             required
@@ -212,8 +224,12 @@ export default function ServiceClient() {
           </select>
         </div>
         <div className="col-md-6 form-div">
-          <label className="form-label">{t("Screen Size *")}</label>
+          <label id={`${idPrefix}-label-tv-size`} htmlFor={`${idPrefix}-tv-size`} className="form-label">{t("Screen Size *")}</label>
           <select
+            id={`${idPrefix}-tv-size`}
+            aria-labelledby={`${idPrefix}-label-tv-size`}
+            aria-label={t("Screen Size")}
+            title={t("Screen Size")}
             className="form-select"
             name="tv_size"
             required
@@ -231,8 +247,10 @@ export default function ServiceClient() {
       {formData.installation_type === "Video wall / Others" && (
         <div className="row">
           <div className="col-12 form-div">
-            <label className="form-label">{t("Please specify *")}</label>
+            <label htmlFor={`${idPrefix}-other-type`} className="form-label">{t("Please specify *")}</label>
             <input
+              id={`${idPrefix}-other-type`}
+              aria-label={t("Please specify")}
               type="text"
               className="form-control"
               placeholder={t("e.g. Custom stand, ceiling mount, etc.")}
@@ -247,8 +265,10 @@ export default function ServiceClient() {
       {/* Row 4: Preferred Installation Date & Preferred Time Slot */}
       <div className="row">
         <div className="col-md-6 form-div col-mobile-12">
-          <label className="form-label">{t("Preferred Installation Date *")}</label>
+          <label htmlFor={`${idPrefix}-date`} className="form-label">{t("Preferred Installation Date *")}</label>
           <input
+            id={`${idPrefix}-date`}
+            aria-label={t("Preferred Installation Date")}
             type="date"
             className="form-control"
             name="date"
@@ -258,8 +278,12 @@ export default function ServiceClient() {
           />
         </div>
         <div className="col-md-6 form-div col-mobile-12">
-          <label className="form-label booking-form-label-time">{t("Preferred Time Slot *")}</label>
+          <label id={`${idPrefix}-label-time`} htmlFor={`${idPrefix}-time`} className="form-label booking-form-label-time">{t("Preferred Time Slot *")}</label>
           <select
+            id={`${idPrefix}-time`}
+            aria-labelledby={`${idPrefix}-label-time`}
+            aria-label={t("Preferred Time Slot")}
+            title={t("Preferred Time Slot")}
             className="form-select"
             name="time"
             required
@@ -283,8 +307,10 @@ export default function ServiceClient() {
         <div className="col-12 form-div">
           <label className="form-label d-block">{t("Do you require a TV Wall Mount?")}</label>
           <div className="pt-2">
-            <label className="form-check form-check-inline">
+            <label className="form-check form-check-inline" htmlFor={`${idPrefix}-bracket-yes`}>
               <input
+                id={`${idPrefix}-bracket-yes`}
+                aria-label={t("Yes, I need one")}
                 className="form-check-input"
                 type="radio"
                 name="bracket"
@@ -296,8 +322,10 @@ export default function ServiceClient() {
               <span className="form-check-label">{t("Yes, I need one")}</span>
             </label>
 
-            <label className="form-check form-check-inline">
+            <label className="form-check form-check-inline" htmlFor={`${idPrefix}-bracket-no`}>
               <input
+                id={`${idPrefix}-bracket-no`}
+                aria-label={t("No, I already have one")}
                 className="form-check-input"
                 type="radio"
                 name="bracket"
@@ -442,7 +470,7 @@ export default function ServiceClient() {
                 <span className="f-icon">
                   <Image src="/images/features/mounted-wall-sign.png" alt="" width={20} height={20}  />
                 </span>
-                <h4>{t("Premium TV Mounting")}</h4>
+                <h3>{t("Premium TV Mounting")}</h3>
                 <p>
                   {t("Get flawlessly aligned installations with precision-designed brackets that ensure stability and support for any screen size.")}
                 </p>
@@ -452,7 +480,7 @@ export default function ServiceClient() {
                 <span className="f-icon">
                   <Image src="/images/features/tools.png" alt="" width={20} height={20}  />
                 </span>
-                <h4>{t("Professional Installation")}</h4>
+                <h3>{t("Professional Installation")}</h3>
                 <p>
                   {t("Certified technicians handle everything end-to-end, ensuring safe, clean, and perfectly positioned installations every time.")}
                 </p>
@@ -476,7 +504,7 @@ export default function ServiceClient() {
                 <span className="f-icon">
                  <Image src="/images/features/shield.png" alt="" width={20} height={20}  />
                 </span>
-                <h4>{t("Secure & Durable Mounts")}</h4>
+                <h3>{t("Secure & Durable Mounts")}</h3>
                 <p>
                   {t("Our mounts are crafted from high-strength materials, tested for load capacity, and designed for long-term performance.")}
                 </p>
@@ -486,7 +514,7 @@ export default function ServiceClient() {
                 <span className="f-icon">
                   <Image src="/images/features/cable.png" alt="" width={20} height={20}  />
                 </span>
-                <h4>{t("Wire & Cable Management")}</h4>
+                <h3>{t("Wire & Cable Management")}</h3>
                 <p>
                   {t("Universal design ensures seamless compatibility with LED, LCD, QLED, OLED, and smart TVs of all major brands.")}
                 </p>
@@ -532,7 +560,7 @@ export default function ServiceClient() {
                   <div className="alert alert-danger">{status.error}</div>
                 )}
 
-                {renderBookingForm()}
+                {renderBookingForm("service-page")}
               </div>
             </div>
           </div>
@@ -629,7 +657,7 @@ export default function ServiceClient() {
               <div className="alert alert-danger">{status.error}</div>
             )}
 
-            {renderBookingForm()}
+            {renderBookingForm("service-modal")}
           </div>
         </div>
       )}

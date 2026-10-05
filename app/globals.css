@@ -148,8 +148,9 @@ body {
 }
 
 .selected-country img {
-  width: 20px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .country-list {
@@ -168,8 +169,9 @@ body {
 }
 
 .country-list img {
-  width: 20px;
-  height: 14px;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .country-list ul {
@@ -241,9 +243,9 @@ body {
   }
 
   .selected-country img {
-    width: 22px;
-    height: 14px;
-    border-radius: 2px;
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
   }
 
   .selected-country span {
@@ -728,11 +730,11 @@ body {
 
 
 .booknow-btn {
-  background: #f10182;
+  background: #d8006f;
   border: 1px solid #fff;
   color: #fff;
   padding: 8px 15px 8px 8px;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   border-radius: 30px;
   cursor: pointer;
@@ -756,7 +758,7 @@ body {
 
 .arrow-circlebk {
   background: #fff;
-  color: #f10182;
+  color: #d8006f;
   width: 20px;
   height: 20px;
   display: flex;
@@ -1117,7 +1119,8 @@ body {
   color: #fff;
 }
 
-.arrival-overlay h2 {
+.arrival-overlay h2,
+.arrival-overlay h3 {
   font-size: 24px;
   margin: 0 0 5px 0;
   color: #fff;
@@ -1125,7 +1128,8 @@ body {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.arrival-overlay h4 {
+.arrival-overlay h4,
+.arrival-overlay p.arrival-subtitle {
   font-size: 18px;
   font-weight: 100;
   margin: 0 0 10px 0;
@@ -1201,13 +1205,14 @@ body {
   }
 
   /* Overlay readable on smaller screens */
-  .arrival-overlay h2 {
+  .arrival-overlay h2,
+  .arrival-overlay h3 {
     font-size: 13px;
     text-align: left;
-
   }
 
-  .arrival-overlay h4 {
+  .arrival-overlay h4,
+  .arrival-overlay p.arrival-subtitle {
     font-size: 11px;
     text-align: left;
     margin: 0 0 6px 0;
@@ -1278,12 +1283,14 @@ body {
   }
 
   /* Overlay readable on smaller screens */
-  .arrival-overlay h2 {
+  .arrival-overlay h2,
+  .arrival-overlay h3 {
     font-size: 11px;
     text-align: left;
   }
 
-  .arrival-overlay h4 {
+  .arrival-overlay h4,
+  .arrival-overlay p.arrival-subtitle {
     font-size: 9px;
     text-align: left;
     margin: 0 0 4px 0;
@@ -1889,7 +1896,7 @@ body {
   border-radius: 30px;
   border: 1px solid #ddd;
   background: #fff;
-  color: #777;
+  color: #555;
   font-size: 11px;
   font-weight: 500;
   cursor: pointer;
@@ -3127,11 +3134,12 @@ html[dir="rtl"] .card-info {
   letter-spacing: 0.5px;
 }
 
-.connect-left p {
+.connect-left p,
+.connect-left a {
   font-size: 14px;
   line-height: 1.7;
   margin-bottom: 20px;
-  color: #999;
+  color: #2b2b2b;
 }
 
 .connect-right {
@@ -3160,7 +3168,7 @@ html[dir="rtl"] .card-info {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgb(241, 1, 130);
+  background: #b8005e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3174,18 +3182,21 @@ html[dir="rtl"] .card-info {
 }
 
 /* Text block */
-.contact-text h5 {
+.contact-text h5,
+.contact-text h4 {
   margin: 0;
   font-size: 15px;
   font-weight: 600;
   color: #222;
 }
 
-.contact-text p {
+.contact-text p,
+.contact-text a,
+.contact-text span {
   margin: 2px 0 0;
   font-size: 12px;
   line-height: 1.6;
-  color: #999;
+  color: #2b2b2b;
 }
 
 .social-icons {
@@ -3382,6 +3393,7 @@ textarea {
   .connect-left p {
     text-align: center;
     font-size: 12px;
+    color: #2b2b2b;
   }
 
   .contact-item {
@@ -3513,11 +3525,12 @@ button[type="submit"] {
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  background: #f10182;
+  background: #b8005e;
   color: #fff;
   border: none;
   border-radius: 30px;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   overflow: hidden;
   height: 35px;
@@ -3574,7 +3587,7 @@ button i {
 }
 
 .info-text h3 {
-  color: #f10182;
+  color: #c90066;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 12px;
@@ -3818,7 +3831,8 @@ button i {
   flex-shrink: 0;
 }
 
-.choose-top h5 {
+.choose-top h5,
+.choose-top h3 {
   color: #3351a3;
   font-size: 16px;
   font-weight: 600;
@@ -3881,7 +3895,8 @@ button i {
   color: #fff;
 }
 
-.story-content h4 {
+.story-content h4,
+.story-content h3 {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
@@ -3902,7 +3917,8 @@ button i {
   /* height: 150px; */
 }
 
-.mv-card h4 {
+.mv-card h4,
+.mv-card h3 {
   color: #3351a3;
   font-size: 20px;
   margin-bottom: 10px;
@@ -3950,7 +3966,8 @@ button i {
     padding: 20px;
   }
 
-  .story-content h4 {
+  .story-content h4,
+  .story-content h3 {
     color: #3351a3;
   }
 
@@ -4049,6 +4066,7 @@ button i {
   margin-bottom: 10px;
 }
 
+.f-item h3,
 .f-item h4 {
   font-size: 18px;
   margin-bottom: 5px;
@@ -4087,6 +4105,7 @@ button i {
     text-align: center;
   }
 
+  .f-item h3,
   .f-item h4 {
     font-size: 16px;
     text-align: left;
@@ -4179,7 +4198,8 @@ button i {
   border-radius: 20px;
 }
 
-.v-content h4 {
+.v-content h4,
+.v-content h3 {
   font-size: 18px;
   font-weight: 600;
   color: #3351a3;
@@ -4235,7 +4255,8 @@ button i {
   }
 
   /* Text size adjustments */
-  .v-content h4 {
+  .v-content h4,
+  .v-content h3 {
     font-size: 16px;
     margin-left: 15px;
   }
@@ -4716,7 +4737,7 @@ button i {
   width: 22px;
   height: 22px;
   background: #fff;
-  color: #f10182;
+  color: #b8005e;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -4733,11 +4754,11 @@ button i {
 }
 
 .btn-cta {
-  background: #f10182;
+  background: #b8005e;
   color: #fff;
   padding: 8px 18px;
   border-radius: 25px;
-  border: 1px solid #f10182;
+  border: 1px solid #b8005e;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -4750,8 +4771,9 @@ button i {
 }
 
 .btn-cta:hover {
-  background: #fff;
-  color: #f10182;
+  background: #96004c;
+  border-color: #96004c;
+  color: #fff;
 }
 
 .btn-cta i {
@@ -4848,16 +4870,18 @@ button i {
 }
 
 
-.read-more-btn {
+.read-more-btn,
+button[type="submit"].read-more-btn {
   position: relative;
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  background: #f10182;
-  color: #fff;
+  background: #b8005e !important;
+  color: #fff !important;
   border: none;
   border-radius: 30px;
   font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
   overflow: hidden;
   height: 35px;
@@ -4867,12 +4891,15 @@ button i {
   transition: all 0.3s ease;
 }
 
-.read-more-btn:hover {
+.read-more-btn:hover,
+button[type="submit"].read-more-btn:hover {
+  background: #96004c !important;
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 45, 141, 0.4);
+  box-shadow: 0 8px 20px rgba(184, 0, 94, 0.4);
 }
 
-.read-more-btn:active {
+.read-more-btn:active,
+button[type="submit"].read-more-btn:active {
   transform: scale(0.95);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -5440,7 +5467,10 @@ button i {
   display: block;
 }
 
+.contact-card h2,
+.contact-card h3,
 .contact-card h5 {
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 8px;
 }
@@ -5534,6 +5564,7 @@ button i {
   }
 }
 
+.location-info h3,
 .location-info h4 {
   font-weight: 700;
   color: #3351a3;
@@ -5966,7 +5997,7 @@ button i {
 }
 
 .tab-btn.active {
-  color: #f10182;
+  color: #b8005e;
 }
 
 .tab-btn.active::after {
@@ -5976,7 +6007,7 @@ button i {
   left: 0;
   width: 100%;
   height: 3px;
-  background: #f10182;
+  background: #b8005e;
 }
 
 /* TAB CONTENT */
@@ -6484,6 +6515,7 @@ button i {
 }
 
 /* Title */
+.category-card h3,
 .category-card h5 {
   color: #3351a3;
   font-size: 18px;
@@ -6495,7 +6527,7 @@ button i {
 
 /* Subtitle */
 .category-card p {
-  color: #f10182;
+  color: #cc0070;
   font-size: 15px;
   margin-bottom: 15px;
 }
@@ -6522,6 +6554,7 @@ button i {
     height: 180px;
   }
 
+  .category-card h3,
   .category-card h5 {
     font-size: 16px;
   }
@@ -6533,6 +6566,7 @@ button i {
     height: 160px;
   }
 
+  .category-card h3,
   .category-card h5 {
     font-size: 13px;
   }
@@ -6548,6 +6582,7 @@ button i {
     height: 260px;
   }
 
+  .category-card h3,
   .category-card h5 {
     font-size: 20px;
   }
@@ -6587,7 +6622,7 @@ button i {
 
 /* product code */
 .product-code {
-  color: #f10182;
+  color: #cc0070;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 5px;
@@ -7338,6 +7373,7 @@ button i {
   line-height: 1.6;
 }
 
+.content-page h2,
 .content-page h3 {
   color: #3351a3;
   font-size: 20px;
@@ -7628,6 +7664,8 @@ button i {
 .career-submit-btn {
   gap: 10px;
   padding: 0 10px;
+  background: #b8005e !important;
+  color: #fff !important;
 }
 
 .career-submit-btn .white-circle {
@@ -7641,9 +7679,9 @@ button i {
 }
 
 .career-submit-btn:hover {
-  background: #f10182 !important;
+  background: #96004c !important;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(241, 1, 130, 0.2);
+  box-shadow: 0 5px 15px rgba(184, 0, 94, 0.2);
 }
 
 .career-submit-btn:hover .white-circle {
@@ -7651,7 +7689,7 @@ button i {
 }
 
 .career-submit-btn:hover .white-circle i {
-  color: #f10182 !important;
+  color: #96004c !important;
 }
 
 @media(max-width:576px) {
@@ -7909,45 +7947,47 @@ button i {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 25px;
   padding: 4px 12px;
   height: 30px;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
 }
 
 .lang-switcher:hover {
   border-color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.35);
 }
 
 .lang-switcher button {
   background: none;
   border: none;
-  color: #fff;
+  color: #ffffff;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 2px 6px;
+  border-radius: 12px;
   transition: all 0.2s ease;
-  opacity: 0.7;
+  opacity: 1;
   line-height: 1;
 }
 
 .lang-switcher button:hover {
   opacity: 1;
-  color: #f10182;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .lang-switcher button.active {
   opacity: 1;
-  color: #f10182;
+  color: #ffffff;
+  background: #b8005e;
   font-weight: 700;
 }
 
 .lang-separator {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 12px;
   line-height: 1;
 }

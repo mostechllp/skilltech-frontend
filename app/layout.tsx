@@ -73,6 +73,7 @@ export default async function RootLayout({
             height="0"
             width="0"
             style={{ display: "none", visibility: "hidden" }}
+            title="Google Tag Manager"
           />
         </noscript>
         <Script
@@ -91,7 +92,9 @@ export default async function RootLayout({
         <PWARegistration />
         <LanguageProvider initialLanguage={locale}>
           <Header />
-          {children}
+          <main id="main-content" role="main">
+            {children}
+          </main>
           <Footer categories={footerCategories} />
         </LanguageProvider>
         

@@ -376,7 +376,7 @@ export default function ProductDetailClient({
               <span>{language === "ar" ? " < " : " > "}</span>
             </>
           )}
-          <span style={{ color: "#f10182", fontWeight: "500" }}>{productTitle || product.name}</span>
+          <span style={{ color: "#cc0070", fontWeight: "500" }}>{productTitle || product.name}</span>
         </div>
     </div>
     
@@ -798,6 +798,7 @@ export default function ProductDetailClient({
                         referrerPolicy="strict-origin-when-cross-origin"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
+                        title={t("Installation Video")}
                       ></iframe>
                     </div>
                   </div>
@@ -814,6 +815,7 @@ export default function ProductDetailClient({
                         referrerPolicy="strict-origin-when-cross-origin"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowFullScreen
+                        title={t("Product Video")}
                       ></iframe>
                     </div>
                   </div>

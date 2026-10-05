@@ -83,6 +83,7 @@ const COUNTRIES: Country[] = [
 ];
 
 interface PhoneInputProps {
+  id?: string;
   value: string;
   onChange: (e: { target: { name: string; value: string } }) => void;
   placeholder?: string;
@@ -90,9 +91,11 @@ interface PhoneInputProps {
   name?: string;
   className?: string;
   disabled?: boolean;
+  "aria-label"?: string;
 }
 
 export default function PhoneInput({
+  id,
   value,
   onChange,
   placeholder,
@@ -100,6 +103,7 @@ export default function PhoneInput({
   name = "phone",
   className = "",
   disabled = false,
+  "aria-label": ariaLabel,
 }: PhoneInputProps) {
   const { language, dir } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
@@ -186,6 +190,7 @@ export default function PhoneInput({
         <button
           type="button"
           className="country-select-btn"
+          aria-label={language === "ar" ? "اختر رمز الدولة" : "Select country code"}
           onClick={() => !disabled && setIsOpen(!isOpen)}
           disabled={disabled}
         >
@@ -196,6 +201,7 @@ export default function PhoneInput({
 
         {/* Local phone number input */}
         <input
+          id={id}
           type="text"
           name={name}
           value={localNumber}
@@ -204,6 +210,7 @@ export default function PhoneInput({
           required={required}
           disabled={disabled}
           className="phone-number-field"
+          aria-label={ariaLabel || placeholder || (language === "ar" ? "رقم الهاتف" : "Phone number")}
         />
       </div>
 
@@ -214,6 +221,7 @@ export default function PhoneInput({
             <i className="fa fa-search search-icon"></i>
             <input
               type="text"
+              aria-label={language === "ar" ? "ابحث عن دولة" : "Search country"}
               placeholder={language === "ar" ? "ابحث عن دولة..." : "Search country..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -224,6 +232,7 @@ export default function PhoneInput({
               <button 
                 type="button" 
                 className="clear-search-btn" 
+                aria-label={language === "ar" ? "مسح البحث" : "Clear search"}
                 onClick={() => setSearchQuery("")}
               >
                 &times;

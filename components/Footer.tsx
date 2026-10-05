@@ -267,7 +267,7 @@ const rightCategories = categories ? categories.slice(8) : [];
             {/* Links Section */}
             <div className="footer-links-container">
               <div className="footer-links-column">
-                <h4 className="footer-heading">{t("Quick Links")}</h4>
+                <h3 className="footer-heading">{t("Quick Links")}</h3>
                 <ul className="footer-links-list">
                   <li className="footer-links-item">
                     <Link href="/" className="footer-links-link">
@@ -361,7 +361,7 @@ const rightCategories = categories ? categories.slice(8) : [];
               </div>
               {leftCategories?.length > 0 && (
                 <div className="footer-links-column">
-                  <h4 className="footer-heading">{t("Products")}</h4>
+                  <h3 className="footer-heading">{t("Products")}</h3>
                   <ul className="footer-links-list">
                     {leftCategories &&
                       leftCategories.map((cat: any) => (
@@ -419,13 +419,13 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-map-marker"></i>
                   </div>
                   <div className="contact-text">
-                    <h5>
+                    <h4 className="contact-title">
                       {language === "ar" && settings?.address_heading_ar
                         ? settings.address_heading_ar
                         : settings?.address_heading
                         ? t(settings.address_heading)
                         : t("Head Office")}
-                    </h5>
+                    </h4>
                     {(language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address) && !settings?.google_map_link && (
                       <p style={{ whiteSpace: "pre-line" }}>
                         {language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address}
@@ -451,7 +451,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-envelope"></i>
                   </div>
                   <div className="contact-text">
-                    <h5>{t("Email")}</h5>
+                    <h4 className="contact-title">{t("Email")}</h4>
                     {settings?.email && (
                       <Link
                         style={{ color: "inherit", textDecoration: "none" }}
@@ -468,7 +468,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-phone"></i>
                   </div>
                   <div className="contact-text">
-                    <h5>{t("Phone")}</h5>
+                    <h4 className="contact-title">{t("Phone")}</h4>
                     {settings?.phone && (
                       <p>
                         <Link
@@ -498,33 +498,63 @@ const rightCategories = categories ? categories.slice(8) : [];
 
                 <div className="social-icons">
                   {settings?.facebook && (
-                    <a href={settings.facebook} target="_blank">
+                    <a
+                      href={settings.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Facebook"
+                    >
                       <i className="fa-brands fa-facebook-f"></i>
                     </a>
                   )}
                   {settings?.instagram && (
-                    <a href={settings.instagram} target="_blank">
+                    <a
+                      href={settings.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                    >
                       <i className="fa-brands fa-instagram"></i>
                     </a>
                   )}
                    {settings?.x && (
-                    <a href={settings.x} target="_blank">
+                    <a
+                      href={settings.x}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="X (Twitter)"
+                    >
                       <i className="fa-brands fa-x-twitter"></i>
                     </a>
                   )}
                   {settings?.linkedin && (
-                    <a href={settings.linkedin} target="_blank">
+                    <a
+                      href={settings.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                    >
                       <i className="fa-brands fa-linkedin-in"></i>
                     </a>
                   )}
                   {settings?.youtube && (
-                    <a href={settings.youtube} target="_blank">
+                    <a
+                      href={settings.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="YouTube"
+                    >
                       <i className="fa-brands fa-youtube"></i>
                     </a>
                   )}
                  
                   {settings?.whatsapp_channel && (
-                    <a href={settings.whatsapp_channel} target="_blank">
+                    <a
+                      href={settings.whatsapp_channel}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="WhatsApp Channel"
+                    >
                       <i className="fa-brands fa-whatsapp"></i>
                     </a>
                   )}
@@ -552,6 +582,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                 <form className="contact-form" onSubmit={handleSubmit}>
                   <div className="form-group">
                     <input
+                      id="footer-contact-name"
+                      aria-label={t("Name")}
                       type="text"
                       placeholder={t("Name *")}
                       name="name"
@@ -560,6 +592,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                       required
                     />
                     <input
+                      id="footer-contact-company"
+                      aria-label={t("Company")}
                       type="text"
                       placeholder={t("Company *")}
                       name="company"
@@ -569,6 +603,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                     />
                   </div>
                   <PhoneInput
+                    id="footer-contact-phone"
+                    aria-label={t("Phone")}
                     placeholder={t("Phone *")}
                     name="phone"
                     value={formData.phone}
@@ -576,6 +612,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                     required
                   />
                   <input
+                    id="footer-contact-email"
+                    aria-label={t("Email")}
                     type="email"
                     placeholder={t("Email *")}
                     name="email"
@@ -584,6 +622,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                     required
                   />
                   <input
+                    id="footer-contact-subject"
+                    aria-label={t("Subject")}
                     type="text"
                     placeholder={t("Subject")}
                     name="subject"
@@ -591,6 +631,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                     onChange={handleChange}
                   />
                   <textarea
+                    id="footer-contact-message"
+                    aria-label={t("Message")}
                     placeholder={t("Message *")}
                     name="message"
                     value={formData.message}
@@ -631,7 +673,9 @@ const rightCategories = categories ? categories.slice(8) : [];
             <a
               href={`https://wa.me/${waNumberClean}`}
               target="_blank"
+              rel="noopener noreferrer"
               className="icon-btn green"
+              aria-label="Chat on WhatsApp"
             >
               <i className="fab fa-whatsapp"></i>
             </a>
@@ -642,6 +686,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                   setShowBookingModal(true);
                 }}
                 className="icon-btn green"
+                aria-label="Book Installation Service"
               >
                 {/* <i className="fa fa-wrench"></i> */}
                 <img src="/images/service_icon.png" alt="service" style={{ width: "100%" }} />
@@ -653,11 +698,17 @@ const rightCategories = categories ? categories.slice(8) : [];
             <a
               href={`https://wa.me/${waNumberClean}`}
               target="_blank"
+              rel="noopener noreferrer"
               className="icon-btn green"
+              aria-label="Chat on WhatsApp"
             >
               <i className="fab fa-whatsapp"></i>
             </a>
-            <a href={`tel:${phoneNumber}`} className="icon-btn blue">
+            <a
+              href={`tel:${phoneNumber}`}
+              className="icon-btn blue"
+              aria-label="Call Us"
+            >
               <i className="fa fa-phone"></i>
             </a>
             <a
@@ -667,6 +718,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                   setShowBookingModal(true);
                 }}
                 className="icon-btn green"
+                aria-label="Book Installation Service"
               >
                 {/* <i className="fa fa-wrench"></i> */}
                 <img src="/images/service_icon.png" alt="service" style={{ width: "100%" }} />
@@ -678,6 +730,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                 target={settings?.google_map_link ? "_blank" : "_self"}
                 rel={settings?.google_map_link ? "noopener noreferrer" : undefined}
                 className="icon-btn"
+                aria-label="Location Map"
               >
                 <i className="fa fa-location-dot"></i>
               </a>
@@ -689,15 +742,24 @@ const rightCategories = categories ? categories.slice(8) : [];
                   setShowBookingModal(true);
                 }}
                 className="icon-btn"
+                aria-label="Book Installation Service"
               >
                 {/* <i className="fa fa-wrench"></i> */}
                 <img src="/images/service_icon.png" alt="service" style={{ width: "100%" }} />
               </a>
 
-              <a href={`tel:${settings?.phone}`} className="icon-btn">
+              <a
+                href={`tel:${settings?.phone}`}
+                className="icon-btn"
+                aria-label="Call Us"
+              >
                 <i className="fa fa-phone"></i>
               </a>
-              <a href={`mailto:${settings?.email}`} className="icon-btn">
+              <a
+                href={`mailto:${settings?.email}`}
+                className="icon-btn"
+                aria-label="Send Email"
+              >
                 <i className="fa fa-envelope"></i>
               </a>
             </div>
@@ -705,6 +767,7 @@ const rightCategories = categories ? categories.slice(8) : [];
               href="#"
               onClick={toggleMenu}
               className="icon-btn pink trigger-btn"
+              aria-label={isMenuOpen ? "Close contact menu" : "Open contact menu"}
             >
               <i
                 className={`fa ${isMenuOpen ? "fa-times" : "fa-comment-dots"}`}
@@ -748,8 +811,10 @@ const rightCategories = categories ? categories.slice(8) : [];
             <form className="book-slot-form" onSubmit={handleBookingSubmit}>
               <div className="row">
                 <div className="col-md-6 form-div">
-                  <label className="form-label">{t("Full Name *")}</label>
+                  <label htmlFor="footer-booking-name" className="form-label">{t("Full Name *")}</label>
                   <input
+                    id="footer-booking-name"
+                    aria-label={t("Full Name")}
                     type="text"
                     className="form-control"
                     name="name"
@@ -760,8 +825,10 @@ const rightCategories = categories ? categories.slice(8) : [];
                   />
                 </div>
                 <div className="col-md-6 form-div">
-                  <label className="form-label">{t("Email *")}</label>
+                  <label htmlFor="footer-booking-email" className="form-label">{t("Email *")}</label>
                   <input
+                    id="footer-booking-email"
+                    aria-label={t("Email")}
                     type="email"
                     className="form-control"
                     name="email"
@@ -775,8 +842,10 @@ const rightCategories = categories ? categories.slice(8) : [];
 
               <div className="row">
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label">{t("Phone *")}</label>
+                  <label htmlFor="footer-booking-phone" className="form-label">{t("Phone *")}</label>
                   <PhoneInput
+                    id="footer-booking-phone"
+                    aria-label={t("Phone")}
                     name="phone"
                     placeholder={t("Phone")}
                     required
@@ -785,8 +854,12 @@ const rightCategories = categories ? categories.slice(8) : [];
                   />
                 </div>
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label">{t("Type of Installation *")}</label>
+                  <label id="footer-booking-label-installation-type" htmlFor="footer-booking-installation-type" className="form-label">{t("Type of Installation *")}</label>
                   <select
+                    id="footer-booking-installation-type"
+                    aria-labelledby="footer-booking-label-installation-type"
+                    aria-label={t("Type of Installation")}
+                    title={t("Type of Installation")}
                     className="form-select"
                     name="installation_type"
                     required
@@ -807,8 +880,12 @@ const rightCategories = categories ? categories.slice(8) : [];
 
               <div className="row">
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label">{t("TV Size *")}</label>
+                  <label id="footer-booking-label-tv-size" htmlFor="footer-booking-tv-size" className="form-label">{t("TV Size *")}</label>
                   <select
+                    id="footer-booking-tv-size"
+                    aria-labelledby="footer-booking-label-tv-size"
+                    aria-label={t("TV Size")}
+                    title={t("TV Size")}
                     className="form-select"
                     name="tv_size"
                     required
@@ -826,8 +903,10 @@ const rightCategories = categories ? categories.slice(8) : [];
                   </select>
                 </div>
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label">{t("Choose Date *")}</label>
+                  <label htmlFor="footer-booking-date" className="form-label">{t("Choose Date *")}</label>
                   <input
+                    id="footer-booking-date"
+                    aria-label={t("Choose Date")}
                     type="date"
                     className="form-control"
                     name="date"
@@ -840,8 +919,12 @@ const rightCategories = categories ? categories.slice(8) : [];
 
               <div className="row">
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label booking-form-label-time">{t("Your Available Time *")}</label>
+                  <label id="footer-booking-label-time" htmlFor="footer-booking-time" className="form-label booking-form-label-time">{t("Your Available Time *")}</label>
                   <select
+                    id="footer-booking-time"
+                    aria-labelledby="footer-booking-label-time"
+                    aria-label={t("Your Available Time")}
+                    title={t("Your Available Time")}
                     className="form-select"
                     name="time"
                     required
@@ -859,10 +942,12 @@ const rightCategories = categories ? categories.slice(8) : [];
                   </select>
                 </div>
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label d-block">{t("Do you need a bracket? *")}</label>
+                  <label className="form-label d-block">{t("Do you require a bracket? *")}</label>
                   <div className="pt-2">
-                    <label className="form-check form-check-inline">
+                    <label className="form-check form-check-inline" htmlFor="footer-booking-bracket-yes">
                       <input
+                        id="footer-booking-bracket-yes"
+                        aria-label={t("Yes")}
                         className="form-check-input"
                         type="radio"
                         name="bracket"
@@ -874,8 +959,10 @@ const rightCategories = categories ? categories.slice(8) : [];
                       <span className="form-check-label">{t("Yes")}</span>
                     </label>
 
-                    <label className="form-check form-check-inline">
+                    <label className="form-check form-check-inline" htmlFor="footer-booking-bracket-no">
                       <input
+                        id="footer-booking-bracket-no"
+                        aria-label={t("No")}
                         className="form-check-input"
                         type="radio"
                         name="bracket"

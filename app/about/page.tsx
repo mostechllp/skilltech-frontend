@@ -258,7 +258,7 @@ const About = async () => {
                         <div className="icon-circles">
                           <i className="fas fa-tools"></i>
                         </div>
-                        <h5>{t("Wide Range of Solutions")}</h5>
+                        <h3>{t("Wide Range of Solutions")}</h3>
                       </div>
                       <p>
                         {t("We offer a comprehensive range of TV wall mounts, monitor mounts, ceiling mounts, LED display solutions, AV accessories, and installation services designed to enhance modern homes, offices, retail spaces, hospitality venues, and commercial environments.")}
@@ -273,7 +273,7 @@ const About = async () => {
                         <div className="icon-circles">
                           <i className="fas fa-handshake"></i>
                         </div>
-                        <h5>{t("Long Lasting Relationships")}</h5>
+                        <h3>{t("Long Lasting Relationships")}</h3>
                       </div>
                       <p>
                         {t("We believe lasting business relationships are built on trust, transparency, and exceptional customer support. Our dedicated after-sales service ensures every customer receives reliable assistance long after the project is completed.")}
@@ -288,7 +288,7 @@ const About = async () => {
                         <div className="icon-circles">
                           <i className="fas fa-users"></i>
                         </div>
-                        <h5>{t("Expert Team")}</h5>
+                        <h3>{t("Expert Team")}</h3>
                       </div>
                       <p>
                         {t("Our experienced professionals combine technical knowledge with industry expertise to deliver precise, efficient, and high-quality solutions that meet the highest standards of safety, functionality, and performance.")}
@@ -303,7 +303,7 @@ const About = async () => {
                         <div className="icon-circles">
                           <i className="fas fa-check-circle"></i>
                         </div>
-                        <h5>{t("Trusted Partner")}</h5>
+                        <h3>{t("Trusted Partner")}</h3>
                       </div>
                       <p>
                         {t("Skill Mount Electronics Trading LLC is a trusted partner for businesses, contractors, retailers, distributors, and homeowners seeking reliable products, expert guidance, and dependable installation services.")}
@@ -367,7 +367,7 @@ const About = async () => {
                   style={{ objectFit: "cover" }}
                 />
                 <div className="story-content">
-                  <h4>{t("Our Story")}</h4>
+                  <h3>{t("Our Story")}</h3>
                   <p>
                     {t("Skill Tech began with a vision to deliver smarter, safer, and more practical mounting solutions that improve everyday spaces. Since 2011, we have continuously evolved by embracing innovation, expanding our product portfolio, and building lasting relationships with customers and partners. Today, we continue to provide high-quality products and professional services that help create more organized, efficient, and visually appealing environments for homes and businesses alike.")}
                   </p>
@@ -378,14 +378,14 @@ const About = async () => {
             {/* MISSION & VISION */}
             <div className="col-lg-6">
               <div className="mv-card vision-card mb-4">
-                <h4>{t("Our Mission")}</h4>
+                <h3>{t("Our Mission")}</h3>
                 <p>
                   {t("Our mission is to deliver innovative, safe, and high-quality mounting and AV solutions that enhance the way people live and work. Through continuous improvement, customer-focused service, and dependable products, we strive to create smarter spaces while exceeding customer expectations.")}
                 </p>
               </div>
 
               <div className="mv-card">
-                <h4>{t("Our Vision")}</h4>
+                <h3>{t("Our Vision")}</h3>
                 <p>
                   {t("Our vision is to become a globally recognized leader in mounting solutions and Audio Visual technologies by continuously driving innovation, maintaining exceptional quality standards, and delivering outstanding customer experiences that inspire confidence and long-term partnerships.")}
                 </p>
@@ -428,7 +428,7 @@ const About = async () => {
                     <span>01</span>
                   </div>
                   <div className="v-content">
-                    <h4>{t("Choose a Service")}</h4>
+                    <h3>{t("Choose a Service")}</h3>
                     <p>{t("Select the service that best meets your requirements and share your project details with our team.")}</p>
                   </div>
                 </div>
@@ -440,7 +440,7 @@ const About = async () => {
                     <span>02</span>
                   </div>
                   <div className="v-content">
-                    <h4>{t("Share Requirements")}</h4>
+                    <h3>{t("Share Requirements")}</h3>
                     <p>{t("Tell us about your installation or project needs. Our experts carefully evaluate your requirements to recommend the most suitable solution.")}</p>
                   </div>
                 </div>
@@ -452,7 +452,7 @@ const About = async () => {
                     <span>03</span>
                   </div>
                   <div className="v-content">
-                    <h4>{t("Meeting & Support")}</h4>
+                    <h3>{t("Meeting & Support")}</h3>
                     <p>{t("Our specialists coordinate with you to discuss project requirements, finalize the scope, and ensure a smooth planning and implementation process.")}</p>
                   </div>
                 </div>
@@ -464,7 +464,7 @@ const About = async () => {
                     <span>04</span>
                   </div>
                   <div className="v-content">
-                    <h4>{t("Final Delivery")}</h4>
+                    <h3>{t("Final Delivery")}</h3>
                     <p>{t("We complete every project with precision, quality assurance, and professional support, ensuring complete customer satisfaction from start to finish.")}</p>
                   </div>
                 </div>

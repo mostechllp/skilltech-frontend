@@ -44,7 +44,7 @@ export default function BlogClient({ posts, banner }: BlogClientProps) {
                               )}
                            </div>
                            <div className="blog-content">
-                                <h5 className="blog-title">{title}</h5>
+                                <h2 className="blog-title">{title}</h2>
                                 <p className="blog-text" title={shortDesc}>{shortDesc}</p>
                                 <button className="read-more-btn mt-auto mb-0">
                                    <span className="white-circle"><i className="fas fa-play"></i></span>

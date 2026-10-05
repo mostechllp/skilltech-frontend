@@ -141,7 +141,7 @@ export default function CareerClient() {
           </div>
 
           <div className="application-form-card">
-            <h3 className="application-form-title">{t("Apply for a Position")}</h3>
+            <h2 className="application-form-title">{t("Apply for a Position")}</h2>
 
             {status.success && (
               <div className="alert alert-success">
@@ -155,10 +155,12 @@ export default function CareerClient() {
             <form onSubmit={handleSubmit} className="career-form">
               <div className="row">
                 <div className="col-md-6 mb-3">
-                  <label className="form-label career-form-label">
+                  <label htmlFor="career-name" className="form-label career-form-label">
                     {t("Full Name *")}
                   </label>
                   <input
+                    id="career-name"
+                    aria-label={t("Full Name")}
                     type="text"
                     className="form-control career-form-control"
                     name="name"
@@ -170,10 +172,12 @@ export default function CareerClient() {
                 </div>
 
                 <div className="col-md-6 mb-3">
-                  <label className="form-label career-form-label">
+                  <label htmlFor="career-email" className="form-label career-form-label">
                     {t("Email Address *")}
                   </label>
                   <input
+                    id="career-email"
+                    aria-label={t("Email Address")}
                     type="email"
                     className="form-control career-form-control"
                     name="email"
@@ -187,10 +191,12 @@ export default function CareerClient() {
 
               <div className="row">
                 <div className="col-md-6 mb-3">
-                  <label className="form-label career-form-label">
+                  <label htmlFor="career-phone" className="form-label career-form-label">
                     {t("Phone Number *")}
                   </label>
                   <PhoneInput
+                    id="career-phone"
+                    aria-label={t("Phone Number")}
                     name="phone"
                     required
                     value={formData.phone}
@@ -199,11 +205,14 @@ export default function CareerClient() {
                   />
                 </div>
                 <div className="col-md-6 mb-3">
-                  <label className="form-label career-form-label">
+                  <label htmlFor="career-position" className="form-label career-form-label">
                     {t("Applying Position")}
                   </label>
                   {positions && positions.length > 0 ? (
                     <select
+                      id="career-position"
+                      aria-label={t("Applying Position")}
+                      title={t("Applying Position")}
                       className="form-select career-form-control"
                       name="position"
                       value={formData.position}
@@ -218,6 +227,8 @@ export default function CareerClient() {
                     </select>
                   ) : (
                     <input
+                      id="career-position"
+                      aria-label={t("Applying Position")}
                       type="text"
                       className="form-control career-form-control"
                       name="position"
@@ -231,10 +242,12 @@ export default function CareerClient() {
 
               <div className="row">
                 <div className="col-md-6 mb-3">
-                  <label className="form-label career-form-label">
+                  <label htmlFor="career-location" className="form-label career-form-label">
                     {t("Location *")}
                   </label>
                   <input
+                    id="career-location"
+                    aria-label={t("Location")}
                     type="text"
                     className="form-control career-form-control"
                     name="location"
@@ -245,10 +258,12 @@ export default function CareerClient() {
                   />
                 </div>
                 <div className="col-md-6 mb-3">
-                  <label className="form-label career-form-label">
+                  <label htmlFor="career-cv" className="form-label career-form-label">
                     {t("Upload CV (PDF/Doc) *")}
                   </label>
                   <input
+                    id="career-cv"
+                    aria-label={t("Upload CV (PDF/Doc)")}
                     type="file"
                     className="form-control career-form-control"
                     accept=".pdf,.doc,.docx"
@@ -259,10 +274,12 @@ export default function CareerClient() {
               </div>
 
               <div className="mb-4">
-                <label className="form-label career-form-label">
+                <label htmlFor="career-cover-letter" className="form-label career-form-label">
                   {t("Cover Letter (Optional)")}
                 </label>
                 <textarea
+                  id="career-cover-letter"
+                  aria-label={t("Cover Letter (Optional)")}
                   className="form-control career-form-control"
                   rows={4}
                   name="cover_letter"

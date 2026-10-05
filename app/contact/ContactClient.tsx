@@ -202,18 +202,20 @@ export default function ContactClient() {
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.925180959023!2d55.3063243!3d25.2731022!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f434c000c7b25%3A0xb8e31f115675e985!2sSkill%20Mount%20Electronics%20Trading%20LLC%20-%20Skill%20Tech!5e0!3m2!1sen!2sae!4v1710000000000"
                   allowFullScreen={true}
                   loading="lazy"
+                  title={t("Skill Tech Location Map")}
                 ></iframe>
               </div>
             </div>
           </div>
 
           {/* CONTACT CARDS BELOW */}
+          <h2 className="visually-hidden">{t("Our Branch Locations")}</h2>
           <div className="row contact-cards mt-4">
             {branchLocations.map((loc) => (
               <div key={loc.id} className="col-md-4 mb-4">
                 <div className="contact-card h-100">
                   <i className={`fa fa-${loc.icon || "store"}`}></i>
-                  <h5>{language === "ar" && loc.title_ar ? loc.title_ar : loc.title}</h5>
+                  <h2>{language === "ar" && loc.title_ar ? loc.title_ar : loc.title}</h2>
                   <p style={{ whiteSpace: "pre-line" }}>
                     {language === "ar" && loc.address_ar ? loc.address_ar : loc.address}
                   </p>
@@ -275,7 +277,7 @@ export default function ContactClient() {
                 <div key={loc.id} className="col-lg-3 col-md-6 col-6">
                   <div className="location-card h-100">
                     <div className="location-info">
-                      <h4>{language === "ar" && loc.country_ar ? loc.country_ar : loc.country}</h4>
+                      <h3>{language === "ar" && loc.country_ar ? loc.country_ar : loc.country}</h3>
                       <p className="location-address" title={language === "ar" && loc.address_ar ? loc.address_ar : loc.address}>
                         {language === "ar" && loc.address_ar ? loc.address_ar : loc.address}
                       </p>

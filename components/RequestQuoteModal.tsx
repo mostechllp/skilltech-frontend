@@ -289,7 +289,7 @@ export default function RequestQuoteModal({ isOpen, onClose }: RequestQuoteModal
 
               {/* Row 3: Attachment Upload */}
               <div className="quote-form-group">
-                <label className="quote-form-label">
+                <label htmlFor="quote-attachment" className="quote-form-label">
                   {t("Attachment")}{" "}
                   <span className="quote-form-hint">
                     ({t("Optional, max 10MB - PDF, DOC, Images")})
@@ -302,6 +302,8 @@ export default function RequestQuoteModal({ isOpen, onClose }: RequestQuoteModal
                     onClick={() => fileInputRef.current?.click()}
                   >
                     <input
+                      id="quote-attachment"
+                      aria-label={t("Attachment")}
                       type="file"
                       ref={fileInputRef}
                       onChange={handleFileChange}
