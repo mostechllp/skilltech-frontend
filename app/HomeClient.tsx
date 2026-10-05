@@ -364,8 +364,8 @@ useEffect(() => {
                     style={{ objectFit: "cover", width: "100%" }}
                   />
                   <div className="arrival-overlay">
-                    <h4>{language === "ar" && offers[0].subtitle_ar ? offers[0].subtitle_ar : offers[0].subtitle}</h4>
-                    <h2>{language === "ar" && offers[0].title_ar ? offers[0].title_ar : offers[0].title}</h2>
+                    <p className="arrival-subtitle">{language === "ar" && offers[0].subtitle_ar ? offers[0].subtitle_ar : offers[0].subtitle}</p>
+                    <h3>{language === "ar" && offers[0].title_ar ? offers[0].title_ar : offers[0].title}</h3>
                     {!isMobile && (
                       <div>
                         <button className="explore-btn">
@@ -397,8 +397,8 @@ useEffect(() => {
                         style={{ objectFit: "cover", width: "100%" }}
                       />
                       <div className="arrival-overlay">
-                        <h4>{language === "ar" && offers[1].subtitle_ar ? offers[1].subtitle_ar : offers[1].subtitle}</h4>
-                        <h2>{language === "ar" && offers[1].title_ar ? offers[1].title_ar : offers[1].title}</h2>
+                        <p className="arrival-subtitle">{language === "ar" && offers[1].subtitle_ar ? offers[1].subtitle_ar : offers[1].subtitle}</p>
+                        <h3>{language === "ar" && offers[1].title_ar ? offers[1].title_ar : offers[1].title}</h3>
                         {!isMobile && (
                           <div>
                             <button className="explore-btn">
@@ -426,8 +426,8 @@ useEffect(() => {
                         style={{ objectFit: "cover", width: "100%" }}
                       />
                       <div className="arrival-overlay">
-                        <h4>{language === "ar" && offers[2].subtitle_ar ? offers[2].subtitle_ar : offers[2].subtitle}</h4>
-                        <h2>{language === "ar" && offers[2].title_ar ? offers[2].title_ar : offers[2].title}</h2>
+                        <p className="arrival-subtitle">{language === "ar" && offers[2].subtitle_ar ? offers[2].subtitle_ar : offers[2].subtitle}</p>
+                        <h3>{language === "ar" && offers[2].title_ar ? offers[2].title_ar : offers[2].title}</h3>
                         {!isMobile && (
                           <div>
                             <button className="explore-btn">
@@ -456,8 +456,8 @@ useEffect(() => {
                         style={{ objectFit: "cover", width: "100%" }}
                       />
                       <div className="arrival-overlay">
-                        <h4>{language === "ar" && offers[3].subtitle_ar ? offers[3].subtitle_ar : offers[3].subtitle}</h4>
-                        <h2>{language === "ar" && offers[3].title_ar ? offers[3].title_ar : offers[3].title}</h2>
+                        <p className="arrival-subtitle">{language === "ar" && offers[3].subtitle_ar ? offers[3].subtitle_ar : offers[3].subtitle}</p>
+                        <h3>{language === "ar" && offers[3].title_ar ? offers[3].title_ar : offers[3].title}</h3>
                         {!isMobile && (
                           <div>
                             <button className="explore-btn">

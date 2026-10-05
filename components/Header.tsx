@@ -251,37 +251,67 @@ export default function Header() {
           {/* Left: Social Icons */}
           <div className="left-icons">
             {settings?.facebook && (
-              <a href={settings.facebook} target="_blank">
+              <a
+                href={settings.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
                 <i className="fab fa-facebook-f"></i>
               </a>
             )}
             {settings?.instagram && (
-              <a href={settings.instagram} target="_blank">
+              <a
+                href={settings.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
             )}
              {settings?.x && (
-              <a href={settings.x} target="_blank">
+              <a
+                href={settings.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+              >
                 <i className="fab fa-x-twitter"></i>
               </a>
             )}
             {settings?.linkedin && (
-              <a href={settings.linkedin} target="_blank">
+              <a
+                href={settings.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
                 <i className="fab fa-linkedin-in"></i>
               </a>
             )}
             {settings?.youtube && (
-              <a href={settings.youtube} target="_blank">
+              <a
+                href={settings.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
                 <i className="fab fa-youtube"></i>
               </a>
             )}
            
             {settings?.whatsapp_channel && (
-              <a href={settings.whatsapp_channel} target="_blank">
+              <a
+                href={settings.whatsapp_channel}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp Channel"
+              >
                 <i className="fab fa-whatsapp"></i>
               </a>
             )}
-            {/* {settings?.whatsapp && <a href={`https://wa.me/${settings.whatsapp}`} target="_blank"><i className="fab fa-whatsapp"></i></a>} */}
+            {/* {settings?.whatsapp && <a href={`https://wa.me/${settings.whatsapp}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i className="fab fa-whatsapp"></i></a>} */}
           </div>
 
           {/* Center: Contact Info */}
@@ -462,28 +492,17 @@ export default function Header() {
                   if (window.innerWidth > 992) setIsMegamenuOpen(false);
                 }}
               >
-                <button
-                  type="button"
+                <a
+                  href="/tv-wall-mount"
                   className={`nav-link no-click ${isProductActive() ? "active" : ""}`}
                   onClick={(e) => {
                     e.preventDefault();
                     setIsMegamenuOpen(!isMegamenuOpen);
                   }}
-                  style={{
-                    cursor: "pointer",
-                    background: "none",
-                    border: "none",
-                    font: "inherit",
-                    color: "inherit",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "4px",
-                  }}
-                  aria-expanded={isMegamenuOpen}
-                  aria-haspopup="true"
+                  style={{ cursor: "pointer" }}
                 >
                   {t("Products")} <i className="fa fa-caret-down"></i>
-                </button>
+                </a>
 
                 {/* Option 1: New Mega Menu (Currently Active) */}
                 <NewMegaMenu 

@@ -728,11 +728,11 @@ body {
 
 
 .booknow-btn {
-  background: #f10182;
+  background: #d8006f;
   border: 1px solid #fff;
   color: #fff;
   padding: 8px 15px 8px 8px;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   border-radius: 30px;
   cursor: pointer;
@@ -756,7 +756,7 @@ body {
 
 .arrow-circlebk {
   background: #fff;
-  color: #f10182;
+  color: #d8006f;
   width: 20px;
   height: 20px;
   display: flex;
@@ -1117,7 +1117,8 @@ body {
   color: #fff;
 }
 
-.arrival-overlay h2 {
+.arrival-overlay h2,
+.arrival-overlay h3 {
   font-size: 24px;
   margin: 0 0 5px 0;
   color: #fff;
@@ -1125,7 +1126,8 @@ body {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.arrival-overlay h4 {
+.arrival-overlay h4,
+.arrival-overlay p.arrival-subtitle {
   font-size: 18px;
   font-weight: 100;
   margin: 0 0 10px 0;
@@ -1201,13 +1203,14 @@ body {
   }
 
   /* Overlay readable on smaller screens */
-  .arrival-overlay h2 {
+  .arrival-overlay h2,
+  .arrival-overlay h3 {
     font-size: 13px;
     text-align: left;
-
   }
 
-  .arrival-overlay h4 {
+  .arrival-overlay h4,
+  .arrival-overlay p.arrival-subtitle {
     font-size: 11px;
     text-align: left;
     margin: 0 0 6px 0;
@@ -1278,12 +1281,14 @@ body {
   }
 
   /* Overlay readable on smaller screens */
-  .arrival-overlay h2 {
+  .arrival-overlay h2,
+  .arrival-overlay h3 {
     font-size: 11px;
     text-align: left;
   }
 
-  .arrival-overlay h4 {
+  .arrival-overlay h4,
+  .arrival-overlay p.arrival-subtitle {
     font-size: 9px;
     text-align: left;
     margin: 0 0 4px 0;
@@ -1889,7 +1894,7 @@ body {
   border-radius: 30px;
   border: 1px solid #ddd;
   background: #fff;
-  color: #777;
+  color: #555;
   font-size: 11px;
   font-weight: 500;
   cursor: pointer;
@@ -3131,7 +3136,7 @@ html[dir="rtl"] .card-info {
   font-size: 14px;
   line-height: 1.7;
   margin-bottom: 20px;
-  color: #999;
+  color: #555;
 }
 
 .connect-right {
@@ -3174,7 +3179,8 @@ html[dir="rtl"] .card-info {
 }
 
 /* Text block */
-.contact-text h5 {
+.contact-text h5,
+.contact-text h4 {
   margin: 0;
   font-size: 15px;
   font-weight: 600;
@@ -3185,7 +3191,7 @@ html[dir="rtl"] .card-info {
   margin: 2px 0 0;
   font-size: 12px;
   line-height: 1.6;
-  color: #999;
+  color: #555;
 }
 
 .social-icons {
@@ -3574,7 +3580,7 @@ button i {
 }
 
 .info-text h3 {
-  color: #f10182;
+  color: #c90066;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 12px;
@@ -4853,11 +4859,12 @@ button i {
   display: flex;
   align-items: center;
   /* justify-content: center; */
-  background: #f10182;
+  background: #d8006f;
   color: #fff;
   border: none;
   border-radius: 30px;
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   overflow: hidden;
   height: 35px;
@@ -7929,25 +7936,27 @@ button i {
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
-  padding: 0 4px;
+  padding: 2px 6px;
+  border-radius: 12px;
   transition: all 0.2s ease;
-  opacity: 0.7;
+  opacity: 0.95;
   line-height: 1;
 }
 
 .lang-switcher button:hover {
   opacity: 1;
-  color: #f10182;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .lang-switcher button.active {
   opacity: 1;
-  color: #f10182;
+  color: #fff;
+  background: #d8006f;
   font-weight: 700;
 }
 
 .lang-separator {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
   line-height: 1;
 }

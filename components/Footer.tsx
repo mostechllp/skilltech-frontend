@@ -267,7 +267,7 @@ const rightCategories = categories ? categories.slice(8) : [];
             {/* Links Section */}
             <div className="footer-links-container">
               <div className="footer-links-column">
-                <h4 className="footer-heading">{t("Quick Links")}</h4>
+                <h3 className="footer-heading">{t("Quick Links")}</h3>
                 <ul className="footer-links-list">
                   <li className="footer-links-item">
                     <Link href="/" className="footer-links-link">
@@ -361,7 +361,7 @@ const rightCategories = categories ? categories.slice(8) : [];
               </div>
               {leftCategories?.length > 0 && (
                 <div className="footer-links-column">
-                  <h4 className="footer-heading">{t("Products")}</h4>
+                  <h3 className="footer-heading">{t("Products")}</h3>
                   <ul className="footer-links-list">
                     {leftCategories &&
                       leftCategories.map((cat: any) => (
@@ -419,13 +419,13 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-map-marker"></i>
                   </div>
                   <div className="contact-text">
-                    <h5>
+                    <h4 className="contact-title">
                       {language === "ar" && settings?.address_heading_ar
                         ? settings.address_heading_ar
                         : settings?.address_heading
                         ? t(settings.address_heading)
                         : t("Head Office")}
-                    </h5>
+                    </h4>
                     {(language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address) && !settings?.google_map_link && (
                       <p style={{ whiteSpace: "pre-line" }}>
                         {language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address}
@@ -451,7 +451,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-envelope"></i>
                   </div>
                   <div className="contact-text">
-                    <h5>{t("Email")}</h5>
+                    <h4 className="contact-title">{t("Email")}</h4>
                     {settings?.email && (
                       <Link
                         style={{ color: "inherit", textDecoration: "none" }}
@@ -468,7 +468,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-phone"></i>
                   </div>
                   <div className="contact-text">
-                    <h5>{t("Phone")}</h5>
+                    <h4 className="contact-title">{t("Phone")}</h4>
                     {settings?.phone && (
                       <p>
                         <Link
@@ -498,33 +498,63 @@ const rightCategories = categories ? categories.slice(8) : [];
 
                 <div className="social-icons">
                   {settings?.facebook && (
-                    <a href={settings.facebook} target="_blank">
+                    <a
+                      href={settings.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Facebook"
+                    >
                       <i className="fa-brands fa-facebook-f"></i>
                     </a>
                   )}
                   {settings?.instagram && (
-                    <a href={settings.instagram} target="_blank">
+                    <a
+                      href={settings.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                    >
                       <i className="fa-brands fa-instagram"></i>
                     </a>
                   )}
                    {settings?.x && (
-                    <a href={settings.x} target="_blank">
+                    <a
+                      href={settings.x}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="X (Twitter)"
+                    >
                       <i className="fa-brands fa-x-twitter"></i>
                     </a>
                   )}
                   {settings?.linkedin && (
-                    <a href={settings.linkedin} target="_blank">
+                    <a
+                      href={settings.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                    >
                       <i className="fa-brands fa-linkedin-in"></i>
                     </a>
                   )}
                   {settings?.youtube && (
-                    <a href={settings.youtube} target="_blank">
+                    <a
+                      href={settings.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="YouTube"
+                    >
                       <i className="fa-brands fa-youtube"></i>
                     </a>
                   )}
                  
                   {settings?.whatsapp_channel && (
-                    <a href={settings.whatsapp_channel} target="_blank">
+                    <a
+                      href={settings.whatsapp_channel}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="WhatsApp Channel"
+                    >
                       <i className="fa-brands fa-whatsapp"></i>
                     </a>
                   )}
@@ -631,7 +661,9 @@ const rightCategories = categories ? categories.slice(8) : [];
             <a
               href={`https://wa.me/${waNumberClean}`}
               target="_blank"
+              rel="noopener noreferrer"
               className="icon-btn green"
+              aria-label="Chat on WhatsApp"
             >
               <i className="fab fa-whatsapp"></i>
             </a>
@@ -642,6 +674,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                   setShowBookingModal(true);
                 }}
                 className="icon-btn green"
+                aria-label="Book Installation Service"
               >
                 {/* <i className="fa fa-wrench"></i> */}
                 <img src="/images/service_icon.png" alt="service" style={{ width: "100%" }} />
@@ -653,11 +686,17 @@ const rightCategories = categories ? categories.slice(8) : [];
             <a
               href={`https://wa.me/${waNumberClean}`}
               target="_blank"
+              rel="noopener noreferrer"
               className="icon-btn green"
+              aria-label="Chat on WhatsApp"
             >
               <i className="fab fa-whatsapp"></i>
             </a>
-            <a href={`tel:${phoneNumber}`} className="icon-btn blue">
+            <a
+              href={`tel:${phoneNumber}`}
+              className="icon-btn blue"
+              aria-label="Call Us"
+            >
               <i className="fa fa-phone"></i>
             </a>
             <a
@@ -667,6 +706,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                   setShowBookingModal(true);
                 }}
                 className="icon-btn green"
+                aria-label="Book Installation Service"
               >
                 {/* <i className="fa fa-wrench"></i> */}
                 <img src="/images/service_icon.png" alt="service" style={{ width: "100%" }} />
@@ -678,6 +718,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                 target={settings?.google_map_link ? "_blank" : "_self"}
                 rel={settings?.google_map_link ? "noopener noreferrer" : undefined}
                 className="icon-btn"
+                aria-label="Location Map"
               >
                 <i className="fa fa-location-dot"></i>
               </a>
@@ -689,15 +730,24 @@ const rightCategories = categories ? categories.slice(8) : [];
                   setShowBookingModal(true);
                 }}
                 className="icon-btn"
+                aria-label="Book Installation Service"
               >
                 {/* <i className="fa fa-wrench"></i> */}
                 <img src="/images/service_icon.png" alt="service" style={{ width: "100%" }} />
               </a>
 
-              <a href={`tel:${settings?.phone}`} className="icon-btn">
+              <a
+                href={`tel:${settings?.phone}`}
+                className="icon-btn"
+                aria-label="Call Us"
+              >
                 <i className="fa fa-phone"></i>
               </a>
-              <a href={`mailto:${settings?.email}`} className="icon-btn">
+              <a
+                href={`mailto:${settings?.email}`}
+                className="icon-btn"
+                aria-label="Send Email"
+              >
                 <i className="fa fa-envelope"></i>
               </a>
             </div>
@@ -705,6 +755,7 @@ const rightCategories = categories ? categories.slice(8) : [];
               href="#"
               onClick={toggleMenu}
               className="icon-btn pink trigger-btn"
+              aria-label={isMenuOpen ? "Close contact menu" : "Open contact menu"}
             >
               <i
                 className={`fa ${isMenuOpen ? "fa-times" : "fa-comment-dots"}`}
