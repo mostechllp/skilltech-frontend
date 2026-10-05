@@ -352,8 +352,9 @@ export default function Header() {
                 <Image
                   src={selectedCountry.flag}
                   alt={`${selectedCountry.name} Flag`}
-                  width={20}
-                  height={14}
+                  width={18}
+                  height={18}
+                  style={{ objectFit: "contain" }}
                 />
                 <span>{t(selectedCountry.name)}</span>
               </div>
@@ -376,8 +377,9 @@ export default function Header() {
                     <Image
                       src={country.flag}
                       alt={`${country.name} Flag`}
-                      width={20}
-                      height={14}
+                      width={18}
+                      height={18}
+                      style={{ objectFit: "contain" }}
                     />{" "}
                     {t(country.name)}
                   </li>
@@ -492,17 +494,18 @@ export default function Header() {
                   if (window.innerWidth > 992) setIsMegamenuOpen(false);
                 }}
               >
-                <a
+                <Link
                   href="/tv-wall-mount"
                   className={`nav-link no-click ${isProductActive() ? "active" : ""}`}
                   onClick={(e) => {
-                    e.preventDefault();
-                    setIsMegamenuOpen(!isMegamenuOpen);
+                    if (window.innerWidth <= 992) {
+                      e.preventDefault();
+                      setIsMegamenuOpen(!isMegamenuOpen);
+                    }
                   }}
-                  style={{ cursor: "pointer" }}
                 >
                   {t("Products")} <i className="fa fa-caret-down"></i>
-                </a>
+                </Link>
 
                 {/* Option 1: New Mega Menu (Currently Active) */}
                 <NewMegaMenu 

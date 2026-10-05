@@ -582,6 +582,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                 <form className="contact-form" onSubmit={handleSubmit}>
                   <div className="form-group">
                     <input
+                      id="footer-contact-name"
+                      aria-label={t("Name")}
                       type="text"
                       placeholder={t("Name *")}
                       name="name"
@@ -590,6 +592,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                       required
                     />
                     <input
+                      id="footer-contact-company"
+                      aria-label={t("Company")}
                       type="text"
                       placeholder={t("Company *")}
                       name="company"
@@ -599,6 +603,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                     />
                   </div>
                   <PhoneInput
+                    id="footer-contact-phone"
+                    aria-label={t("Phone")}
                     placeholder={t("Phone *")}
                     name="phone"
                     value={formData.phone}
@@ -606,6 +612,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                     required
                   />
                   <input
+                    id="footer-contact-email"
+                    aria-label={t("Email")}
                     type="email"
                     placeholder={t("Email *")}
                     name="email"
@@ -614,6 +622,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                     required
                   />
                   <input
+                    id="footer-contact-subject"
+                    aria-label={t("Subject")}
                     type="text"
                     placeholder={t("Subject")}
                     name="subject"
@@ -621,6 +631,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                     onChange={handleChange}
                   />
                   <textarea
+                    id="footer-contact-message"
+                    aria-label={t("Message")}
                     placeholder={t("Message *")}
                     name="message"
                     value={formData.message}
@@ -799,8 +811,10 @@ const rightCategories = categories ? categories.slice(8) : [];
             <form className="book-slot-form" onSubmit={handleBookingSubmit}>
               <div className="row">
                 <div className="col-md-6 form-div">
-                  <label className="form-label">{t("Full Name *")}</label>
+                  <label htmlFor="footer-booking-name" className="form-label">{t("Full Name *")}</label>
                   <input
+                    id="footer-booking-name"
+                    aria-label={t("Full Name")}
                     type="text"
                     className="form-control"
                     name="name"
@@ -811,8 +825,10 @@ const rightCategories = categories ? categories.slice(8) : [];
                   />
                 </div>
                 <div className="col-md-6 form-div">
-                  <label className="form-label">{t("Email *")}</label>
+                  <label htmlFor="footer-booking-email" className="form-label">{t("Email *")}</label>
                   <input
+                    id="footer-booking-email"
+                    aria-label={t("Email")}
                     type="email"
                     className="form-control"
                     name="email"
@@ -826,8 +842,10 @@ const rightCategories = categories ? categories.slice(8) : [];
 
               <div className="row">
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label">{t("Phone *")}</label>
+                  <label htmlFor="footer-booking-phone" className="form-label">{t("Phone *")}</label>
                   <PhoneInput
+                    id="footer-booking-phone"
+                    aria-label={t("Phone")}
                     name="phone"
                     placeholder={t("Phone")}
                     required
@@ -836,8 +854,12 @@ const rightCategories = categories ? categories.slice(8) : [];
                   />
                 </div>
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label">{t("Type of Installation *")}</label>
+                  <label id="footer-booking-label-installation-type" htmlFor="footer-booking-installation-type" className="form-label">{t("Type of Installation *")}</label>
                   <select
+                    id="footer-booking-installation-type"
+                    aria-labelledby="footer-booking-label-installation-type"
+                    aria-label={t("Type of Installation")}
+                    title={t("Type of Installation")}
                     className="form-select"
                     name="installation_type"
                     required
@@ -858,8 +880,12 @@ const rightCategories = categories ? categories.slice(8) : [];
 
               <div className="row">
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label">{t("TV Size *")}</label>
+                  <label id="footer-booking-label-tv-size" htmlFor="footer-booking-tv-size" className="form-label">{t("TV Size *")}</label>
                   <select
+                    id="footer-booking-tv-size"
+                    aria-labelledby="footer-booking-label-tv-size"
+                    aria-label={t("TV Size")}
+                    title={t("TV Size")}
                     className="form-select"
                     name="tv_size"
                     required
@@ -877,8 +903,10 @@ const rightCategories = categories ? categories.slice(8) : [];
                   </select>
                 </div>
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label">{t("Choose Date *")}</label>
+                  <label htmlFor="footer-booking-date" className="form-label">{t("Choose Date *")}</label>
                   <input
+                    id="footer-booking-date"
+                    aria-label={t("Choose Date")}
                     type="date"
                     className="form-control"
                     name="date"
@@ -891,8 +919,12 @@ const rightCategories = categories ? categories.slice(8) : [];
 
               <div className="row">
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label booking-form-label-time">{t("Your Available Time *")}</label>
+                  <label id="footer-booking-label-time" htmlFor="footer-booking-time" className="form-label booking-form-label-time">{t("Your Available Time *")}</label>
                   <select
+                    id="footer-booking-time"
+                    aria-labelledby="footer-booking-label-time"
+                    aria-label={t("Your Available Time")}
+                    title={t("Your Available Time")}
                     className="form-select"
                     name="time"
                     required
@@ -910,10 +942,12 @@ const rightCategories = categories ? categories.slice(8) : [];
                   </select>
                 </div>
                 <div className="col-md-6 form-div col-mobile-12">
-                  <label className="form-label d-block">{t("Do you need a bracket? *")}</label>
+                  <label className="form-label d-block">{t("Do you require a bracket? *")}</label>
                   <div className="pt-2">
-                    <label className="form-check form-check-inline">
+                    <label className="form-check form-check-inline" htmlFor="footer-booking-bracket-yes">
                       <input
+                        id="footer-booking-bracket-yes"
+                        aria-label={t("Yes")}
                         className="form-check-input"
                         type="radio"
                         name="bracket"
@@ -925,8 +959,10 @@ const rightCategories = categories ? categories.slice(8) : [];
                       <span className="form-check-label">{t("Yes")}</span>
                     </label>
 
-                    <label className="form-check form-check-inline">
+                    <label className="form-check form-check-inline" htmlFor="footer-booking-bracket-no">
                       <input
+                        id="footer-booking-bracket-no"
+                        aria-label={t("No")}
                         className="form-check-input"
                         type="radio"
                         name="bracket"

@@ -213,7 +213,7 @@ export default function ContactClient() {
               <div key={loc.id} className="col-md-4 mb-4">
                 <div className="contact-card h-100">
                   <i className={`fa fa-${loc.icon || "store"}`}></i>
-                  <h5>{language === "ar" && loc.title_ar ? loc.title_ar : loc.title}</h5>
+                  <h2>{language === "ar" && loc.title_ar ? loc.title_ar : loc.title}</h2>
                   <p style={{ whiteSpace: "pre-line" }}>
                     {language === "ar" && loc.address_ar ? loc.address_ar : loc.address}
                   </p>

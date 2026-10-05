@@ -58,7 +58,7 @@ export default function NewMegaMenu({
         <div className="row py-2">
           {mainCategories.map((main) => (
             <div key={main.id} className="col-lg-3 col-md-6 mb-lg-0">
-              <h5 className="megamenu-title">{language === "ar" && main.name_ar ? main.name_ar : main.name}</h5>
+              <div className="megamenu-title">{language === "ar" && main.name_ar ? main.name_ar : main.name}</div>
               <ul className="list-unstyled">
                 {main.categories?.map((cat) =>
                   cat.flatten_in_menu ? (
