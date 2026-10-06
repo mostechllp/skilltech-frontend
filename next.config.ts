@@ -21,6 +21,25 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/tv-wall-mount/full-motion-double-arm-mount",
+        destination: "/tv-wall-mount/full-motion-double-arm-mounts",
+        permanent: true,
+      },
+      {
+        source: "/blog/how-to-choose-the-right-tv-mount-for-y",
+        destination: "/blog/how-to-choose-the-right-tv-mount-for-your-space",
+        permanent: true,
+      },
+      {
+        source: "/blog/top-5-av-solutions-for-modern-workspa",
+        destination: "/blog/top-5-av-solutions-for-modern-workspaces",
+        permanent: true,
+      },
+    ];
+  },
   // async headers() {
   //   return [
   //     {

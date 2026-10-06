@@ -57,11 +57,39 @@ export async function generateMetadata(
       title: "Laptop & Tablet Stands | Adjustable Mounts | Skill Tech",
       description: "Find adjustable laptop and tablet stands at Skill Tech, designed for comfort, portability, and ergonomic support in home, office, or travel setups today.",
     },
+    "pos-mounts": {
+      title: "Heavy-Duty POS Mounts & Terminal Stands - Skill Tech",
+      description: "Shop heavy-duty POS mounts and terminal stands from Skill Tech. Sturdy, adjustable and easy to install for retail counters, cafes and billing desks. Buy online.",
+    },
+    "video-wall-mounts": {
+      title: "Video Wall Mounts & Digital Signage Stands - Skill Tech",
+      description: "Explore video wall mounts and digital signage stands from Skill Tech. Strong, precise-fit solutions for malls, offices and showrooms. Order online today.",
+    },
+    "ac-brackets": {
+      title: "Wide Range of AC Brackets & Outdoor Unit Mounts - Skill Tech",
+      description: "Find a wide range of AC brackets and outdoor unit mounts at Skill Tech. Rust-resistant, load-tested stands for split ACs of all sizes. Shop online today.",
+    },
+    "dvd-receiver-mounts": {
+      title: "Durable Mounts for DVD, CPU & AV Receiver Set - Skill Tech",
+      description: "Buy durable mounts for DVD players, CPUs and AV receivers from Skill Tech. Save space, tidy your setup and keep devices secure. Shop online at great prices.",
+    },
+    "cctv-camera-brackets": {
+      title: "Durable CCTV Camera Brackets & Wall Mounts - Skill Tech",
+      description: "Shop durable CCTV camera brackets and wall mounts from Skill Tech. Weather-resistant, sturdy and easy to fit for homes, shops and offices. Order online today.",
+    },
+    "other-mounts-accessories": {
+      title: "Universal Mounting Brackets & Accessories - Skill Tech",
+      description: "Discover universal mounting brackets and accessories from Skill Tech. Versatile, strong and easy-to-install solutions for home and business. Shop online today.",
+    },
+    "tv": {
+      title: "Smart & Standard 4K Skill Tech LED TVs and Displays",
+      description: "Shop smart and standard 4K Skill Tech LED TVs and displays. Sharp picture, vibrant colours and great value for home and business. Explore sizes and buy online.",
+    },
   };
 
   const customSeo = categorySeoData[categorySlug];
-  const title = customSeo?.title || category.meta_title || nameTrans;
-  const description = customSeo?.description || category.meta_description || `${t("Explore Our Products")} - ${nameTrans}`;
+  const title = locale === "ar" ? (category.meta_title || nameTrans) : (customSeo?.title || category.meta_title || nameTrans);
+  const description = locale === "ar" ? (category.meta_description || `${t("Explore Our Products")} - ${nameTrans}`) : (customSeo?.description || category.meta_description || `${t("Explore Our Products")} - ${nameTrans}`);
   const keywords = category.meta_keywords ? category.meta_keywords.split(',').map((tag: string) => tag.trim()) : [];
   
   const imagePath = category.meta_image || category.image;
@@ -100,7 +128,16 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
   const headersList = await headers();
   const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
-  const nameTrans = locale === "ar" && category.name_ar ? category.name_ar : category.name;
+  const categoryH1Names: Record<string, string> = {
+    "pos-mounts": "POS Mounts",
+    "video-wall-mounts": "Video Wall Mounts",
+    "ac-brackets": "AC Brackets",
+    "dvd-receiver-mounts": "DVD / Receiver & CPU Mounts",
+    "cctv-camera-brackets": "CCTV Camera Brackets",
+    "other-mounts-accessories": "Other Mounts & Accessories",
+    "tv": "LED TV",
+  };
+  const nameTrans = locale === "ar" && category.name_ar ? category.name_ar : (categoryH1Names[categorySlug] || category.name);
   const t = (key: string) => {
     const langDict = (translations[locale] as Record<string, string>) || {};
     return langDict[key] || key;
@@ -115,6 +152,13 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     "motorized-mounts": "Motorized Mounts and Stands",
     "projector-screens": "Projector Screens",
     "laptop-tablet-stands": "Laptop & Tablet Stands",
+    "pos-mounts": "POS Mounts",
+    "video-wall-mounts": "Video Wall Mounts",
+    "ac-brackets": "AC Brackets",
+    "dvd-receiver-mounts": "DVD / Receiver & CPU Mounts",
+    "cctv-camera-brackets": "CCTV Camera Brackets",
+    "other-mounts-accessories": "Other Mounts & Accessories",
+    "tv": "LED TV",
   };
 
   const breadcrumbName = categoryBreadcrumbNames[categorySlug] || category.name;

@@ -42,8 +42,33 @@ export async function generateMetadata(
   };
 
   const nameTrans = locale === "ar" && subCategory.name_ar ? subCategory.name_ar : subCategory.name;
-  const title = subCategory.meta_title || nameTrans;
-  const description = subCategory.meta_description || `${t("Explore Our Products")} - ${nameTrans}`;
+
+  const subcategorySeoData: Record<string, { title: string; description: string }> = {
+    "fixed-flat-wall-mounts": {
+      title: "Durable Slim Fixed Flat TV Wall Mounts - Skill Tech",
+      description: "Buy durable slim fixed flat TV wall mounts from Skill Tech. Ultra-low profile, strong and easy to install for a sleek, space-saving look. Order online today.",
+    },
+    "full-motion-single-arm": {
+      title: "Full Motion Single Arm TV Wall Mounts - Skill Tech",
+      description: "Shop full motion single arm TV wall mounts from Skill Tech. Swivel, tilt and extend for perfect viewing angles in any room. Strong, durable and easy to install.",
+    },
+    "tilt-wall-mounts": {
+      title: "Adjustable Tilt TV Wall Mount Brackets - Skill Tech",
+      description: "Explore adjustable tilt TV wall mount brackets from Skill Tech. Reduce glare, get the perfect viewing angle and enjoy a secure fit. Shop online at best prices.",
+    },
+    "full-motion-double-arm-mounts": {
+      title: "Full Motion Double Arm TV Mounts - Skill Tech Online",
+      description: "Shop full motion double arm TV mounts from Skill Tech Online. Heavy-duty, flexible and smooth to adjust for larger screens. Easy to install and durable.",
+    },
+    "articulating-monitor-arm": {
+      title: "Articulating Quad Monitor Arms & Desk Mounts - Skill Tech",
+      description: "Shop articulating quad monitor arms and desk mounts from Skill Tech. Build a clean multi-screen setup with adjustable, sturdy and ergonomic stands. Buy now.",
+    },
+  };
+
+  const customSeo = subcategorySeoData[subcategorySlug];
+  const title = locale === "ar" ? (subCategory.meta_title || nameTrans) : (customSeo?.title || subCategory.meta_title || nameTrans);
+  const description = locale === "ar" ? (subCategory.meta_description || `${t("Explore Our Products")} - ${nameTrans}`) : (customSeo?.description || subCategory.meta_description || `${t("Explore Our Products")} - ${nameTrans}`);
   const keywords = subCategory.meta_keywords ? subCategory.meta_keywords.split(',').map((tag: string) => tag.trim()) : [];
   
   const imagePath = subCategory.meta_image || subCategory.image;
@@ -104,8 +129,42 @@ export default async function SubCategoryPage({ params, searchParams }: Props) {
   const formatSlug = (slug: string | undefined) => 
     slug ? slug.replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase()) : "";
 
+  const subcategoryH1Names: Record<string, string> = {
+    "fixed-flat-wall-mounts": "Fixed / Flat Wall Mounts",
+    "full-motion-single-arm": "Full Motion Single Arm",
+    "tilt-wall-mounts": "Tilt Wall Mounts",
+    "full-motion-double-arm-mounts": "Full Motion Double Arm Mounts",
+    "full-motion-double-arm-mount": "Full Motion Double Arm Mounts",
+    "articulating-monitor-arm": "Articulating Monitor Arm",
+  };
+
+  const breadcrumbName = subcategoryH1Names[subcategorySlug] || (locale === "ar" && subCategory.name_ar ? subCategory.name_ar : subCategory.name);
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://skilltechonline.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": breadcrumbName,
+        "item": `https://skilltechonline.com/${categorySlug}/${subcategorySlug}`
+      }
+    ]
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <div style={{ 
           padding: "12px 20px", 
           fontSize: "16px", 
@@ -124,13 +183,13 @@ export default async function SubCategoryPage({ params, searchParams }: Props) {
             {locale === "ar" && subCategory.category?.name_ar ? subCategory.category.name_ar : (subCategory.category?.name || formatSlug(categorySlug))}
           </Link>
           <span>{locale === "ar" ? " < " : " > "}</span>
-          <span style={{ color: "#cc0070", fontWeight: "500" }}>{(locale === "ar" && subCategory.name_ar ? subCategory.name_ar : subCategory.name) || formatSlug(subcategorySlug)}</span>
+          <span style={{ color: "#cc0070", fontWeight: "500" }}>{(locale === "ar" && subCategory.name_ar ? subCategory.name_ar : (subcategoryH1Names[subcategorySlug] || subCategory.name)) || formatSlug(subcategorySlug)}</span>
         </div>
       </div>
       <div id="product-section" className="container product-section">
 
         <div className="" style={{marginBottom:"20px"}}>
-            <h1 className="pb-0"  style={{fontSize:"32px"}} >{locale === "ar" && subCategory.name_ar ? subCategory.name_ar : subCategory.name}</h1>
+            <h1 className="pb-0"  style={{fontSize:"32px"}} >{locale === "ar" && subCategory.name_ar ? subCategory.name_ar : (subcategoryH1Names[subcategorySlug] || subCategory.name)}</h1>
         </div>
 
         {/* heading & category tabs */}
