@@ -267,7 +267,7 @@ const rightCategories = categories ? categories.slice(8) : [];
             {/* Links Section */}
             <div className="footer-links-container">
               <div className="footer-links-column">
-                <h3 className="footer-heading">{t("Quick Links")}</h3>
+                <h2 className="footer-heading">{t("Quick Links")}</h2>
                 <ul className="footer-links-list">
                   <li className="footer-links-item">
                     <Link href="/" className="footer-links-link">
@@ -361,7 +361,7 @@ const rightCategories = categories ? categories.slice(8) : [];
               </div>
               {leftCategories?.length > 0 && (
                 <div className="footer-links-column">
-                  <h3 className="footer-heading">{t("Products")}</h3>
+                  <h2 className="footer-heading">{t("Products")}</h2>
                   <ul className="footer-links-list">
                     {leftCategories &&
                       leftCategories.map((cat: any) => (
@@ -409,7 +409,7 @@ const rightCategories = categories ? categories.slice(8) : [];
             <div className="connect-box">
               {/* Left contact info */}
               <div className="connect-left">
-                <h3>{t("Let’s Connect")}</h3>
+                <h2>{t("Let’s Connect")}</h2>
                 <p>
                   {t("We welcome partnership opportunities. To apply as a dealer, please provide your experience details for our review.")}
                 </p>
@@ -419,13 +419,13 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-map-marker"></i>
                   </div>
                   <div className="contact-text">
-                    <h4 className="contact-title">
+                    <h3 className="contact-title">
                       {language === "ar" && settings?.address_heading_ar
                         ? settings.address_heading_ar
                         : settings?.address_heading
                         ? t(settings.address_heading)
                         : t("Head Office")}
-                    </h4>
+                    </h3>
                     {(language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address) && !settings?.google_map_link && (
                       <p style={{ whiteSpace: "pre-line" }}>
                         {language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address}
@@ -451,7 +451,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-envelope"></i>
                   </div>
                   <div className="contact-text">
-                    <h4 className="contact-title">{t("Email")}</h4>
+                    <h3 className="contact-title">{t("Email")}</h3>
                     {settings?.email && (
                       <Link
                         style={{ color: "inherit", textDecoration: "none" }}
@@ -468,7 +468,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                     <i className="fa fa-phone"></i>
                   </div>
                   <div className="contact-text">
-                    <h4 className="contact-title">{t("Phone")}</h4>
+                    <h3 className="contact-title">{t("Phone")}</h3>
                     {settings?.phone && (
                       <p>
                         <Link
@@ -569,7 +569,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                   </span>{" "}
                   {t("Those Who Trust Our")}
                 </button>
-                <h3>{t("Send us a message")}</h3>
+                <h2>{t("Send us a message")}</h2>
                 {status.success && (
                   <div className="alert alert-success mt-2">
                     {t("Message sent successfully!")}

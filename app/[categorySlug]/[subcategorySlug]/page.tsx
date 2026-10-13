@@ -194,7 +194,7 @@ export default async function SubCategoryPage({ params, searchParams }: Props) {
 
         {/* heading & category tabs */}
         <div className="d-flex justify-content-between align-items-center">
-          <h3 className="section-title">{t("Explore Our Products")}</h3>
+          <h2 className="section-title">{t("Explore Our Products")}</h2>
         </div>
 
         {/* product cards */}

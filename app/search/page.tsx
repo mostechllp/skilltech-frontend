@@ -51,9 +51,9 @@ export default async function SearchPage({
       <div id="product-section" className="container product-section">
 
         <div className="d-flex justify-content-between align-items-center">
-          <h3 className="section-title">
+          <h1 className="section-title">
             {t("Found ")}{displayedCount}{t(" Products")} {query && <>{t("of search results for ")} "<strong>{query}</strong>"</>}
-          </h3>
+          </h1>
         </div>
 
         <div className="row g-4">

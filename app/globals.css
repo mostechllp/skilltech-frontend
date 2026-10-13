@@ -1603,7 +1603,7 @@ body {
     #readMoreBtn {
       background: none;
       border: none;
-      color: #f10182;
+      color: #cc0070;
       font-size: 12px;
       cursor: pointer;
       padding: 0;
@@ -2174,7 +2174,7 @@ body {
 .product-name {
   font-weight: 700;
   margin-top: 6px;
-  color: #f10182;
+  color: #cc0070;
   font-size: 14px;
 }
 
@@ -2281,7 +2281,7 @@ body {
 }
 
 .spec-label {
-  color: #f10182;
+  color: #cc0070;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.2px;
@@ -3126,6 +3126,7 @@ html[dir="rtl"] .card-info {
   border-radius: 15px 0 0 15px;
 }
 
+.connect-left h2,
 .connect-left h3 {
   font-size: 20px;
   font-weight: 700;
@@ -3147,6 +3148,7 @@ html[dir="rtl"] .card-info {
   padding: 30px;
 }
 
+.connect-right h2,
 .connect-right h3 {
   font-size: 20px;
   font-weight: 700;
@@ -3182,6 +3184,7 @@ html[dir="rtl"] .card-info {
 }
 
 /* Text block */
+.contact-text h3,
 .contact-text h5,
 .contact-text h4 {
   margin: 0;
@@ -3384,7 +3387,9 @@ textarea {
     padding: 20px;
   }
 
+  .connect-left h2,
   .connect-left h3,
+  .connect-right h2,
   .connect-right h3 {
     font-size: 18px;
     text-align: left;
@@ -5073,6 +5078,7 @@ button[type="submit"].read-more-btn:active {
   margin-bottom: 15px;
 }
 
+.tab-card h2,
 .tab-card h4 {
   font-size: 16px;
   color: #3351a3;
@@ -5110,6 +5116,7 @@ button[type="submit"].read-more-btn:active {
 }
 
 @media(max-width:576px) {
+  .tab-card h2,
   .tab-card h4 {
     font-size: 12px;
   }
@@ -5599,7 +5606,7 @@ button[type="submit"].read-more-btn:active {
 }
 
 .map-link {
-  color: #f10182;
+  color: #cc0070;
   font-weight: 600;
   text-decoration: none;
   font-size: 14px;
@@ -6105,6 +6112,7 @@ button[type="submit"].read-more-btn:active {
 }
 
 /* DESCRIPTION */
+.tab-content h2,
 .tab-content h3 {
   font-size: 22px;
   margin-bottom: 10px;
@@ -6198,6 +6206,7 @@ button[type="submit"].read-more-btn:active {
 
   }
 
+  .tab-content h2,
   .tab-content h3 {
     font-size: 20px;
 
