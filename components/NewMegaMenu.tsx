@@ -146,7 +146,7 @@ export default function NewMegaMenu({
                                               "articulating-monitor-arm")) && (
                                           <li key={index} className="mb-1">
                                             <Link
-                                              href={`/${cat.slug}/${sub.slug}?arm=${arm?.slug}`}
+                                              href={`/${cat.slug}/${sub.slug}/${arm?.slug}`}
                                               onClick={handleLinkClick}
                                               className="ps-2"
                                               style={{

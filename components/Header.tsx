@@ -766,7 +766,7 @@ function SearchPopup({
                       />
                     </div>
                     <div style={{ textAlign: "left", width: "100%" }}>
-                      <h6
+                      <div
                         style={{
                           margin: "0 0 5px",
                           fontSize: "14px",
@@ -775,7 +775,7 @@ function SearchPopup({
                         }}
                       >
                         {product.name}
-                      </h6>
+                      </div>
                       <p
                         style={{
                           margin: 0,

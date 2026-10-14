@@ -69,7 +69,7 @@ export default function BlogDetailClient({ post, recentPosts }: { post: any, rec
                 {/* RIGHT SIDEBAR */}
                 <div className="col-lg-4">
                     <div className="sidebar blog-sidebar">
-                        <h4 className="mb-4 text-blue fw-bold">{t("Recent Posts")}</h4>
+                        <h2 className="mb-4 text-blue fw-bold h4">{t("Recent Posts")}</h2>
                         <div className="recent-posts">
                             {recentPosts.map((recent) => {
                                 const recentTitle = language === "ar" && recent.title_ar ? recent.title_ar : recent.title;
@@ -83,7 +83,7 @@ export default function BlogDetailClient({ post, recentPosts }: { post: any, rec
                                             )}
                                         </div>
                                         <div className="info">
-                                            <h6 className="recent-post-title">{recentTitle}</h6>
+                                            <h3 className="recent-post-title">{recentTitle}</h3>
                                             <small className="text-muted recent-post-date">
                                               {new Date(recent.created_at).toLocaleDateString(language === "ar" ? "ar-EG" : "en-US", {
                                                 month: "long",

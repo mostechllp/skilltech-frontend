@@ -512,7 +512,7 @@ export default function ProductDetailClient({
 
             {/* RIGHT : CONTENT COLUMN */}
             <div className="info-col">
-              <h1 className="sub-title">{product.name}</h1>
+              <div className="sub-title">{product.name}</div>
               <h1 className="section-title">{productTitle}</h1>
 
               {/* FEATURE GRID - Using Features */}
@@ -637,7 +637,7 @@ export default function ProductDetailClient({
           {/* TAB CONTENT */}
           {product.specifications?.length > 0 && (
             <div className="tab-content" id="overview">
-              <h3>{t("Overview")}</h3>
+              <h2>{t("Overview")}</h2>
               <div className="desktop-view">
                 <div className="overview-grid">
                   <div className="overview-table-wrap">
@@ -728,7 +728,7 @@ export default function ProductDetailClient({
           )}
 
           <div className="tab-content" id="features">
-            <h3>{t("Features")}</h3>
+            <h2>{t("Features")}</h2>
             {product.bullet_features?.length > 0 ? (
               <ul
                 className="features-list-tab"
@@ -778,7 +778,7 @@ export default function ProductDetailClient({
           </div>
 
           <div className="tab-content" id="description">
-            <h3>{t("Description")}</h3>
+            <h2>{t("Description")}</h2>
             <div style={{ whiteSpace: "pre-line" }}>
               <p>{productDescription}</p>
             </div>
@@ -789,7 +789,7 @@ export default function ProductDetailClient({
               <div className={`media-grid ${videoCount === 1 ? "single" : ""}`}>
                 {hasInstallVideo && (
                   <div className="video-block">
-                    <h3 className="video-title">{t("Installation Video")}</h3>
+                    <h2 className="video-title">{t("Installation Video")}</h2>
                     <div className="video-card">
                       <iframe
                         src={getEmbedUrl(product.video_url)}
@@ -806,7 +806,7 @@ export default function ProductDetailClient({
 
                 {hasProductVideo && (
                   <div className="video-block">
-                    <h3 className="video-title">{t("Product Video")}</h3>
+                    <h2 className="video-title">{t("Product Video")}</h2>
                     <div className="video-card">
                       <iframe
                         src={getEmbedUrl(product.product_video_url)}
@@ -825,7 +825,7 @@ export default function ProductDetailClient({
           )}
 
           <div className="tab-content" id="drawing">
-            <h3>{t("Drawing")}</h3>
+            <h2>{t("Drawing")}</h2>
             <div className="media-grid">
               {product.drawing_image ? (
                 <div className="image-card">

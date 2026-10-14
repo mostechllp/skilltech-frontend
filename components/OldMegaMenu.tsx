@@ -164,9 +164,9 @@ export default function OldMegaMenu({
             {activeCat && !activeCat.flatten_in_menu && (
               <div className="sub-grid mt-3">
                 <div className="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2 px-3 px-lg-0">
-                  <h4 className="sub-title mb-0 border-0 pb-0 d-none d-lg-block">
+                  <div className="sub-title mb-0 border-0 pb-0 d-none d-lg-block">
                     {language === "ar" && activeCat.name_ar ? activeCat.name_ar : activeCat.name}
-                  </h4>
+                  </div>
                   <Link
                     href={`/${activeCat.slug}`}
                     onClick={handleLinkClick}
@@ -174,9 +174,9 @@ export default function OldMegaMenu({
                     style={{
                       fontSize: "12px",
                       fontWeight: "600",
-                      color: "#f10182",
+                      color: "#cc0070",
                       textDecoration: "none",
-                      border: "1px solid #f10182",
+                      border: "1px solid #cc0070",
                       padding: "4px 12px",
                       borderRadius: "20px",
                     }}
