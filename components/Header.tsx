@@ -416,9 +416,10 @@ export default function Header() {
             <Image
               src="/images/logo.svg"
               alt="Skill Tech Logo"
-              width={150}
-              height={50}
-              style={{ objectFit: "contain" }}
+              width={80}
+              height={52}
+              style={{ objectFit: "contain", width: "80px", height: "auto", aspectRatio: "599 / 386" }}
+              priority
             />
           </Link>
 

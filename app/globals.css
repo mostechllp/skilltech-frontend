@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Twemoji Country Flags", "Poppins", sans-serif;
+  font-family: "Twemoji Country Flags", var(--font-poppins), "Poppins", sans-serif;
 }
 
 html {
@@ -19,7 +19,7 @@ html {
 body {
   background: #fff;
   color: #3351a3;
-  font-family: "Twemoji Country Flags", "Poppins", sans-serif;
+  font-family: "Twemoji Country Flags", var(--font-poppins), "Poppins", sans-serif;
 }
 
 .container {
@@ -41,7 +41,7 @@ body {
   color: #fff;
   font-size: 14px;
   padding: 8px 0;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
 }
 
 .top-header-inner {
@@ -331,8 +331,9 @@ body {
 }
 
 .logo img {
-  /* height: 50px; */
-  width: 80px
+  width: 80px;
+  height: auto;
+  aspect-ratio: 599 / 386;
 }
 
 @media (min-width: 992px) {
@@ -948,6 +949,24 @@ body {
 }
 
 /* ===== Owl Carousel ===== */
+.category-slider {
+  min-height: 220px;
+}
+
+.category-slider:not(.owl-loaded) {
+  display: flex !important;
+  overflow: hidden;
+  gap: 15px;
+  min-height: 220px;
+  padding: 0;
+}
+
+.category-slider:not(.owl-loaded) .item {
+  flex: 0 0 140px;
+  max-width: 140px;
+  margin: 10px 0;
+}
+
 .category-slider .item {
   background: #ffffff;
   border: 1px solid #ebc6d9;
@@ -1440,7 +1459,7 @@ body {
 
 /* 🔹 Pink Box */
 .pink-box {
-  background-color: #f10182;
+  background-color: #d80073;
   color: #fff;
   border-radius: 15px 90px 15px 15px;
   display: flex;
@@ -1451,9 +1470,9 @@ body {
 }
 
 .pink-box h2 {
+  color: #fff;
   font-size: 32px;
   font-weight: 700;
-
 }
 
 .visually-hidden {
@@ -1617,7 +1636,7 @@ body {
 
   /* Pink box style */
   .pink-box {
-    background-color: #f10182;
+    background-color: #d80073;
     color: #fff;
     border-radius: 15px 65px 15px 15px;
     display: flex;
@@ -1628,7 +1647,8 @@ body {
   }
 
   .pink-box h2 {
-    font-size: 18px;
+    color: #fff;
+    font-size: 20px;
     font-weight: 700;
     margin: 0;
   }
@@ -1671,7 +1691,7 @@ body {
 }
 
 .about-section1 .pink-box {
-  background-color: #f10182;
+  background-color: #d80073;
   color: #fff;
   height: 250px;
   /* width: 250px; */
@@ -1684,6 +1704,7 @@ body {
 }
 
 .about-section1 .pink-box h2 {
+  color: #fff;
   font-size: 32px;
   font-weight: 700;
 }
@@ -1704,7 +1725,7 @@ body {
 /* ✅ Responsive Styles */
 @media (max-width: 578px) {
   .about-section1 .pink-box {
-    background-color: #f10182;
+    background-color: #d80073;
     color: #fff;
     border-radius: 65px 15px 15px 15px;
     display: flex;
@@ -1721,7 +1742,8 @@ body {
   }
 
   .about-section1 .pink-box h2 {
-    font-size: 18px;
+    color: #fff;
+    font-size: 20px;
     font-weight: 700;
     margin: 0;
   }
@@ -2761,6 +2783,22 @@ html[dir="rtl"] .card-info {
 }
 
 /* ===== Owl Carousel (for project slider) ===== */
+.project-carousel {
+  min-height: 380px;
+}
+
+.project-carousel:not(.owl-loaded) {
+  display: flex !important;
+  overflow: hidden;
+  gap: 20px;
+  min-height: 380px;
+}
+
+.project-carousel:not(.owl-loaded) > * {
+  flex: 0 0 320px;
+  max-width: 320px;
+}
+
 .project-carousel .owl-stage {
   display: flex;
   align-items: stretch;
@@ -3053,8 +3091,9 @@ html[dir="rtl"] .card-info {
 }
 
 .footer-logo {
-  /* width: 150px; */
+  width: 150px;
   height: auto;
+  aspect-ratio: 599 / 386;
   margin-bottom: 10px;
   object-fit: contain;
 }
@@ -3341,6 +3380,8 @@ textarea {
 
   .footer-logo {
     width: 120px;
+    height: auto;
+    aspect-ratio: 599 / 386;
     margin-bottom: 8px;
   }
 
