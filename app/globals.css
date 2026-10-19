@@ -8,7 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Twemoji Country Flags", "Poppins", sans-serif;
+  font-family: "Twemoji Country Flags", var(--font-poppins), "Poppins", sans-serif;
 }
 
 html {
@@ -19,7 +19,7 @@ html {
 body {
   background: #fff;
   color: #3351a3;
-  font-family: "Twemoji Country Flags", "Poppins", sans-serif;
+  font-family: "Twemoji Country Flags", var(--font-poppins), "Poppins", sans-serif;
 }
 
 .container {
@@ -41,7 +41,7 @@ body {
   color: #fff;
   font-size: 14px;
   padding: 8px 0;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-poppins), "Poppins", sans-serif;
 }
 
 .top-header-inner {
@@ -97,23 +97,51 @@ body {
 /* Contact Info (Center) */
 .right-info {
   display: flex;
+  align-items: center;
   gap: 15px;
-  /* margin-left: auto; REMOVED to align left with nav */
+  flex-wrap: nowrap;
 }
 
 @media (min-width: 992px) {
   .right-info {
-    /* No specific margin needed if parent aligns left, 
-       just ensure it follows the 200px left-icons */
     padding-left: 20px;
-    /* Optional spacing */
   }
+}
+
+@media (max-width: 991px) {
+  .right-info {
+    display: none !important;
+  }
+}
+
+.right-info a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.right-info a:hover {
+  color: #f10182 !important;
 }
 
 .right-info span {
   white-space: nowrap;
-  color: #f0f0f0;
-  font-weight: 100;
+  color: #ffffff !important;
+  font-weight: 500;
+  line-height: 1;
+  display: inline-block;
+}
+
+.right-info i {
+  color: #ffffff;
+  font-size: 13px;
+  flex-shrink: 0;
 }
 
 /* Country Dropdown (Right) */
@@ -289,18 +317,28 @@ body {
   }
 
   .lang-switcher {
-    padding: 2px 8px !important;
+    padding: 2px 6px !important;
     gap: 4px !important;
     height: 26px !important;
+    background: #1e3264 !important;
   }
 
   .lang-switcher button {
-    font-size: 10px !important;
-    padding: 0 2px !important;
+    font-size: 11px !important;
+    padding: 2px 6px !important;
+    color: #ffffff !important;
+    line-height: 1.2 !important;
+    border-radius: 10px !important;
+  }
+
+  .lang-switcher button.active {
+    background: #b8005e !important;
+    color: #ffffff !important;
   }
 
   .lang-separator {
-    font-size: 10px !important;
+    font-size: 11px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
   }
 }
 
@@ -331,8 +369,9 @@ body {
 }
 
 .logo img {
-  /* height: 50px; */
-  width: 80px
+  width: 80px;
+  height: auto;
+  aspect-ratio: 599 / 386;
 }
 
 @media (min-width: 992px) {
@@ -948,6 +987,24 @@ body {
 }
 
 /* ===== Owl Carousel ===== */
+.category-slider {
+  min-height: 220px;
+}
+
+.category-slider:not(.owl-loaded) {
+  display: flex !important;
+  overflow: hidden;
+  gap: 15px;
+  min-height: 220px;
+  padding: 0;
+}
+
+.category-slider:not(.owl-loaded) .item {
+  flex: 0 0 140px;
+  max-width: 140px;
+  margin: 10px 0;
+}
+
 .category-slider .item {
   background: #ffffff;
   border: 1px solid #ebc6d9;
@@ -1440,7 +1497,7 @@ body {
 
 /* 🔹 Pink Box */
 .pink-box {
-  background-color: #f10182;
+  background-color: #d80073;
   color: #fff;
   border-radius: 15px 90px 15px 15px;
   display: flex;
@@ -1451,9 +1508,9 @@ body {
 }
 
 .pink-box h2 {
+  color: #fff;
   font-size: 32px;
   font-weight: 700;
-
 }
 
 .visually-hidden {
@@ -1617,7 +1674,7 @@ body {
 
   /* Pink box style */
   .pink-box {
-    background-color: #f10182;
+    background-color: #d80073;
     color: #fff;
     border-radius: 15px 65px 15px 15px;
     display: flex;
@@ -1628,7 +1685,8 @@ body {
   }
 
   .pink-box h2 {
-    font-size: 18px;
+    color: #fff;
+    font-size: 20px;
     font-weight: 700;
     margin: 0;
   }
@@ -1671,7 +1729,7 @@ body {
 }
 
 .about-section1 .pink-box {
-  background-color: #f10182;
+  background-color: #d80073;
   color: #fff;
   height: 250px;
   /* width: 250px; */
@@ -1684,6 +1742,7 @@ body {
 }
 
 .about-section1 .pink-box h2 {
+  color: #fff;
   font-size: 32px;
   font-weight: 700;
 }
@@ -1704,7 +1763,7 @@ body {
 /* ✅ Responsive Styles */
 @media (max-width: 578px) {
   .about-section1 .pink-box {
-    background-color: #f10182;
+    background-color: #d80073;
     color: #fff;
     border-radius: 65px 15px 15px 15px;
     display: flex;
@@ -1721,7 +1780,8 @@ body {
   }
 
   .about-section1 .pink-box h2 {
-    font-size: 18px;
+    color: #fff;
+    font-size: 20px;
     font-weight: 700;
     margin: 0;
   }
@@ -2761,6 +2821,22 @@ html[dir="rtl"] .card-info {
 }
 
 /* ===== Owl Carousel (for project slider) ===== */
+.project-carousel {
+  min-height: 380px;
+}
+
+.project-carousel:not(.owl-loaded) {
+  display: flex !important;
+  overflow: hidden;
+  gap: 20px;
+  min-height: 380px;
+}
+
+.project-carousel:not(.owl-loaded) > * {
+  flex: 0 0 320px;
+  max-width: 320px;
+}
+
 .project-carousel .owl-stage {
   display: flex;
   align-items: stretch;
@@ -3053,8 +3129,9 @@ html[dir="rtl"] .card-info {
 }
 
 .footer-logo {
-  /* width: 150px; */
+  width: 150px;
   height: auto;
+  aspect-ratio: 599 / 386;
   margin-bottom: 10px;
   object-fit: contain;
 }
@@ -3341,6 +3418,8 @@ textarea {
 
   .footer-logo {
     width: 120px;
+    height: auto;
+    aspect-ratio: 599 / 386;
     margin-bottom: 8px;
   }
 
@@ -7958,29 +8037,29 @@ button[type="submit"].read-more-btn:active {
   gap: 6px;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 25px;
-  padding: 4px 12px;
+  padding: 3px 10px;
   height: 30px;
-  background: rgba(0, 0, 0, 0.25);
+  background: #1e3264;
   transition: all 0.3s ease;
 }
 
 .lang-switcher:hover {
   border-color: rgba(255, 255, 255, 0.8);
-  background: rgba(0, 0, 0, 0.35);
+  background: #16264c;
 }
 
 .lang-switcher button {
-  background: none;
+  background: transparent;
   border: none;
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 12px;
   transition: all 0.2s ease;
   opacity: 1;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .lang-switcher button:hover {
@@ -7990,8 +8069,8 @@ button[type="submit"].read-more-btn:active {
 
 .lang-switcher button.active {
   opacity: 1;
-  color: #ffffff;
-  background: #b8005e;
+  color: #ffffff !important;
+  background: #b8005e !important;
   font-weight: 700;
 }
 
@@ -8020,7 +8099,7 @@ button[type="submit"].read-more-btn:active {
 
 .mobile-lang-switcher .lang-switcher button:hover,
 .mobile-lang-switcher .lang-switcher button.active {
-  color: #f10182;
+  color: #b8005e;
 }
 
 .mobile-lang-switcher .lang-separator {

@@ -231,8 +231,8 @@ const rightCategories = categories ? categories.slice(8) : [];
                       alt="Skill Tech Logo"
                       className="footer-logo"
                       width={150}
-                      height={50}
-                      style={{ objectFit: "contain" }}
+                      height={97}
+                      style={{ objectFit: "contain", width: "150px", height: "auto", aspectRatio: "599 / 386" }}
                     />
                   </Link>
                   {/* <button className="explore-btn-nocursor">
