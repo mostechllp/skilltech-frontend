@@ -319,7 +319,7 @@ export default function Header() {
             {settings?.email && (
               <Link
                 href={`mailto:${settings?.email}`}
-                style={{ color: "inherit", textDecoration: "none" }}
+                style={{ color: "inherit", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", whiteSpace: "nowrap" }}
               >
                 <i className="fa fa-envelope"></i> {settings.email}
               </Link>
@@ -327,7 +327,7 @@ export default function Header() {
             {settings?.phone && (
               <Link
                 href={`tel:${settings.phone}`}
-                style={{ color: "inherit", textDecoration: "none" }}
+                style={{ color: "inherit", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", whiteSpace: "nowrap" }}
               >
                 <i className="fa fa-phone"></i> <span dir="ltr" style={{ whiteSpace: "nowrap" }}>{settings.phone}</span>
               </Link>
@@ -335,7 +335,7 @@ export default function Header() {
             {settings?.phone_number2 && (
               <Link
                 href={`tel:${settings.phone_number2}`}
-                style={{ color: "inherit", textDecoration: "none" }}
+                style={{ color: "inherit", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", whiteSpace: "nowrap" }}
               >
                 <i className="fa fa-phone"></i> <span dir="ltr" style={{ whiteSpace: "nowrap" }}>{settings.phone_number2}</span>
               </Link>

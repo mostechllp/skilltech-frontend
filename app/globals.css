@@ -97,23 +97,51 @@ body {
 /* Contact Info (Center) */
 .right-info {
   display: flex;
+  align-items: center;
   gap: 15px;
-  /* margin-left: auto; REMOVED to align left with nav */
+  flex-wrap: nowrap;
 }
 
 @media (min-width: 992px) {
   .right-info {
-    /* No specific margin needed if parent aligns left, 
-       just ensure it follows the 200px left-icons */
     padding-left: 20px;
-    /* Optional spacing */
   }
+}
+
+@media (max-width: 991px) {
+  .right-info {
+    display: none !important;
+  }
+}
+
+.right-info a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.right-info a:hover {
+  color: #f10182 !important;
 }
 
 .right-info span {
   white-space: nowrap;
-  color: #f0f0f0;
-  font-weight: 100;
+  color: #ffffff !important;
+  font-weight: 500;
+  line-height: 1;
+  display: inline-block;
+}
+
+.right-info i {
+  color: #ffffff;
+  font-size: 13px;
+  flex-shrink: 0;
 }
 
 /* Country Dropdown (Right) */
@@ -289,18 +317,28 @@ body {
   }
 
   .lang-switcher {
-    padding: 2px 8px !important;
+    padding: 2px 6px !important;
     gap: 4px !important;
     height: 26px !important;
+    background: #1e3264 !important;
   }
 
   .lang-switcher button {
-    font-size: 10px !important;
-    padding: 0 2px !important;
+    font-size: 11px !important;
+    padding: 2px 6px !important;
+    color: #ffffff !important;
+    line-height: 1.2 !important;
+    border-radius: 10px !important;
+  }
+
+  .lang-switcher button.active {
+    background: #b8005e !important;
+    color: #ffffff !important;
   }
 
   .lang-separator {
-    font-size: 10px !important;
+    font-size: 11px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
   }
 }
 
@@ -7999,29 +8037,29 @@ button[type="submit"].read-more-btn:active {
   gap: 6px;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 25px;
-  padding: 4px 12px;
+  padding: 3px 10px;
   height: 30px;
-  background: rgba(0, 0, 0, 0.25);
+  background: #1e3264;
   transition: all 0.3s ease;
 }
 
 .lang-switcher:hover {
   border-color: rgba(255, 255, 255, 0.8);
-  background: rgba(0, 0, 0, 0.35);
+  background: #16264c;
 }
 
 .lang-switcher button {
-  background: none;
+  background: transparent;
   border: none;
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  padding: 2px 6px;
+  padding: 3px 8px;
   border-radius: 12px;
   transition: all 0.2s ease;
   opacity: 1;
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .lang-switcher button:hover {
@@ -8031,8 +8069,8 @@ button[type="submit"].read-more-btn:active {
 
 .lang-switcher button.active {
   opacity: 1;
-  color: #ffffff;
-  background: #b8005e;
+  color: #ffffff !important;
+  background: #b8005e !important;
   font-weight: 700;
 }
 
@@ -8061,7 +8099,7 @@ button[type="submit"].read-more-btn:active {
 
 .mobile-lang-switcher .lang-switcher button:hover,
 .mobile-lang-switcher .lang-switcher button.active {
-  color: #f10182;
+  color: #b8005e;
 }
 
 .mobile-lang-switcher .lang-separator {
