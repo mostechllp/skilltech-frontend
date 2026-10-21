@@ -412,7 +412,7 @@ export default function Header() {
       <header className="navbar navbar-expand-lg">
         <div className="container d-flex align-items-center justify-content-between">
           {/* Logo */}
-          <Link className="logo" href="/">
+          <Link className="logo" href="/" aria-label="Skill Tech Home">
             <Image
               src="/images/logo.svg"
               alt="Skill Tech Logo"

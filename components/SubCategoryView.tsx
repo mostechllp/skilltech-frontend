@@ -14,6 +14,7 @@ import { translations } from "@/lib/translations";
 import { ARM_NAMES } from "@/lib/armConstants";
 
 const subcategoryH1Names: Record<string, string> = {
+  // Existing mappings
   "fixed-flat-wall-mounts": "Fixed / Flat Wall Mounts",
   "full-motion-single-arm": "Full Motion Single Arm",
   "tilt-wall-mounts": "Tilt Wall Mounts",
@@ -25,6 +26,23 @@ const subcategoryH1Names: Record<string, string> = {
   "tv-ceiling-mount": "TV Ceiling Mount",
   "motorized-tv-wall-mounts": "Motorized TV Wall Mounts",
   "motorized-tv-cart-or-trolly": "Motorized TV Cart or Trolley",
+
+  // 15 requested subcategory H1 mappings
+  "motorized-tv-lift": "Motorized TV Lift",
+  "motorized-tv-ceiling-mounts": "Motorized TV Ceiling Mounts",
+  "floor-stands": "Floor Stands",
+  "tv-cart-or-trolley": "TV Cart or Trolley",
+  "projector-ceiling-mounts": "Projector Ceiling Mounts",
+  "projector-floor-stands": "Projector Floor Stands",
+  "motorized-projector-screens": "Motorized Projector Screens",
+  "projector-screen": "Projector Screen",
+  "tripod-projector-screens": "Tripod Projector Screens",
+  "laptop-stands": "Laptop Stands",
+  "tablet-floor-stands": "Tablet Floor Stands",
+  "tablet-wall-mounts": "Tablet Wall Mounts",
+  "pos-stands": "POS Stands",
+  "digital-signage-wall-mounts": "Digital Signage Wall Mounts",
+  "video-wall-floor-stands": "Video Wall Floor Stands",
 };
 
 const ARM_BREADCRUMB_NAMES: Record<
@@ -137,7 +155,8 @@ const armSeoData: Record<
   },
 };
 
-const subcategorySeoData: Record<string, { title: string; description: string }> = {
+const subcategorySeoData: Record<string, { title: string; description: string; canonical?: string }> = {
+  // Existing mappings
   "fixed-flat-wall-mounts": {
     title: "Durable Slim Fixed Flat TV Wall Mounts - Skill Tech",
     description: "Buy durable slim fixed flat TV wall mounts from Skill Tech. Ultra-low profile, strong and easy to install for a sleek, space-saving look. Order online today.",
@@ -178,6 +197,98 @@ const subcategorySeoData: Record<string, { title: string; description: string }>
     title: "Motorized TV Carts & Electric Trolleys | Skill Tech",
     description:
       "Explore motorized TV carts with electric height adjustment, smooth mobility and durable construction for conference rooms, education and commercial AV projects.",
+  },
+
+  // 15 requested subcategory SEO meta titles, descriptions & canonical tags
+  "motorized-tv-lift": {
+    title: "Motorized TV Lift UAE | Smart & Pop-Up Models | Skill Tech",
+    description:
+      "Buy motorized TV lifts in UAE with app and voice control, pop-up or drop-down motion, 360° swivel and support for large TVs in concealed installations.",
+    canonical: "https://skilltechonline.com/motorized-mounts/motorized-tv-lift",
+  },
+  "motorized-tv-ceiling-mounts": {
+    title: "Motorized TV Ceiling Mounts with Remote | SkillTech Online",
+    description:
+      "Shop motorized TV ceiling mounts at SkillTech Online. Remote-controlled, flip-down mounts that save space and suit homes, offices, and commercial spaces.",
+    canonical: "https://skilltechonline.com/motorized-mounts/motorized-tv-ceiling-mounts",
+  },
+  "floor-stands": {
+    title: "TV Floor Stands UAE | Modern Display Stands | Skill Tech",
+    description:
+      "Shop TV floor stands in UAE at Skill Tech. Modern, sturdy display stands for homes, offices, and commercial spaces. Fast delivery across the UAE.",
+    canonical: "https://skilltechonline.com/floor-stands-cart/floor-stands",
+  },
+  "tv-cart-or-trolley": {
+    title: "TV Carts & Trolleys UAE | Mobile Display Stands | Skill Tech",
+    description:
+      "Buy TV carts and trolleys in UAE with adjustable height, heavy-duty support, smooth caster mobility and cable management for offices and commercial displays.",
+    canonical: "https://skilltechonline.com/floor-stands-cart/tv-cart-or-trolley",
+  },
+  "projector-ceiling-mounts": {
+    title: "Projector Ceiling Mounts UAE | Heavy-Duty | Skill Tech",
+    description:
+      "Buy projector ceiling mounts in UAE with heavy-duty support, adjustable tilt, swivel, extension ranges and cable management for home and professional AV setups.",
+    canonical: "https://skilltechonline.com/projector-mounts/projector-ceiling-mounts",
+  },
+  "projector-floor-stands": {
+    title: "Projector Floor Stands UAE | Mobile Trolley | Skill Tech",
+    description:
+      "Buy projector floor stands in UAE with adjustable height, 10kg support, tilting platform and mobile casters for offices, classrooms and presentations.",
+    canonical: "https://skilltechonline.com/projector-mounts/projector-floor-stands",
+  },
+  "motorized-projector-screens": {
+    title: "Motorized Projector Screens UAE | Electric | Skill Tech",
+    description:
+      "Buy motorized projector screens in UAE with remote control, matte white fabric, wide viewing angles and wall or ceiling mounting for professional AV setups.",
+    canonical: "https://skilltechonline.com/projector-screens/motorized-projector-screens",
+  },
+  "projector-screen": {
+    title: "Projector Screens UAE | Motorized & Tripod | Skill Tech",
+    description:
+      "Buy projector screens in UAE, including motorized, manual and tripod options with matte white fabric and wide viewing angles for home and professional use.",
+    canonical: "https://skilltechonline.com/projector-screens/projector-screen",
+  },
+  "tripod-projector-screens": {
+    title: "Tripod Projector Screens UAE | Portable 120in | Skill Tech",
+    description:
+      "Buy tripod projector screens in UAE with a 120-inch 4:3 display, matte white fabric, 160° viewing angle and stable portable stand for presentations.",
+    canonical: "https://skilltechonline.com/projector-screens/tripod-projector-screens",
+  },
+  "laptop-stands": {
+    title: "Laptop Stands UAE | Ergonomic & Adjustable | Skill Tech",
+    description:
+      "Buy laptop stands in UAE with adjustable height, foldable designs, 360° rotation and aluminium builds for ergonomic home, office and mobile workspaces.",
+    canonical: "https://skilltechonline.com/laptop-tablet-stands/laptop-stands",
+  },
+  "tablet-floor-stands": {
+    title: "Adjustable Tablet Floor Stands & Holders | SkillTech Online",
+    description:
+      "Shop adjustable tablet floor stands at SkillTech Online. Sturdy, height-adjustable holders for iPad and tablets, ideal for office, retail, and home use.",
+    canonical: "https://skilltechonline.com/laptop-tablet-stands/tablet-floor-stands",
+  },
+  "tablet-wall-mounts": {
+    title: "Tablet & iPad Stands UAE | Secure Mounts | Skill Tech",
+    description:
+      "Explore secure tablet and iPad stands in the UAE, including desk, floor, wall and kiosk mounts with adjustable viewing for offices and commercial spaces.",
+    canonical: "https://skilltechonline.com/laptop-tablet-stands/tablet-wall-mounts",
+  },
+  "pos-stands": {
+    title: "POS Stands UAE | Adjustable Payment Mounts | Skill Tech",
+    description:
+      "Buy POS stands in UAE with swivel, tilt, rotation and cable management for secure credit card terminals, monitors and organized checkout counters.",
+    canonical: "https://skilltechonline.com/pos-mounts/pos-stands",
+  },
+  "digital-signage-wall-mounts": {
+    title: "Digital Signage Wall Mounts UAE | Video Wall | Skill Tech",
+    description:
+      "Buy digital signage wall mounts in UAE with pop-out and quick-release designs, VESA compatibility and fine adjustment for professional video walls.",
+    canonical: "https://skilltechonline.com/video-wall-mounts/digital-signage-wall-mounts",
+  },
+  "video-wall-floor-stands": {
+    title: "Video Wall Floor Stands for Displays | SkillTech Online",
+    description:
+      "Explore floor standing video wall mounts with durable construction, multi-display support and professional AV installation solutions for commercial projects. Enquire today.",
+    canonical: "https://skilltechonline.com/video-wall-mounts/video-wall-floor-stands",
   },
 };
 
@@ -253,7 +364,7 @@ export async function generateSubCategoryMetadata({
     canonical =
       locale === "ar"
         ? `https://skilltechonline.com/ar/${categorySlug}/${subcategorySlug}`
-        : `https://skilltechonline.com/${categorySlug}/${subcategorySlug}`;
+        : customSeo?.canonical || `https://skilltechonline.com/${categorySlug}/${subcategorySlug}`;
   }
 
   const keywords = subCategory.meta_keywords
@@ -341,6 +452,8 @@ export default async function SubCategoryView({
 
   const pageTitle = armDisplayName || baseSubCategoryName;
 
+  const customSeo = subcategorySeoData[subcategorySlug];
+
   // Schema.org BreadcrumbList exactly as specified for SEO
   const breadcrumbElements: Array<{
     "@type": string;
@@ -361,7 +474,7 @@ export default async function SubCategoryView({
       item:
         locale === "ar"
           ? `https://skilltechonline.com/ar/${categorySlug}/${subcategorySlug}`
-          : `https://skilltechonline.com/${categorySlug}/${subcategorySlug}`,
+          : customSeo?.canonical || `https://skilltechonline.com/${categorySlug}/${subcategorySlug}`,
     },
   ];
 
@@ -386,7 +499,7 @@ export default async function SubCategoryView({
   const canonicalUrl =
     locale === "ar"
       ? `https://skilltechonline.com/ar/${categorySlug}/${subcategorySlug}${armSlug ? `/${armSlug}` : ""}`
-      : `https://skilltechonline.com/${categorySlug}/${subcategorySlug}${armSlug ? `/${armSlug}` : ""}`;
+      : (armSlug ? `https://skilltechonline.com/${categorySlug}/${subcategorySlug}/${armSlug}` : customSeo?.canonical || `https://skilltechonline.com/${categorySlug}/${subcategorySlug}`);
 
   return (
     <>
