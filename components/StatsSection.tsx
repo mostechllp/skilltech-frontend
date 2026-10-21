@@ -104,10 +104,10 @@ export default function StatsSection({ variant = "default", source = "home" }: {
                            <Image src={stat.icon} alt={statLabel} width={40} height={40} style={{objectFit: 'contain'}} />
                         )}
                       </div>
-                      <h2 className="aect-number">
+                      <div className="aect-number">
                         <CountUp end={stat.value} valueAr={stat.value_ar} language={language} />
                         {stat.suffix}
-                      </h2>
+                      </div>
                       <p>{statLabel}</p>
                     </div>
                   </div>
@@ -134,10 +134,10 @@ export default function StatsSection({ variant = "default", source = "home" }: {
                       <Image src={stat.icon} alt={statLabel} width={35} height={35} style={{objectFit: 'contain'}} />
                     </div>
                   )}
-                  <h2>
+                  <div className="stats-number">
                     <CountUp end={stat.value} valueAr={stat.value_ar} language={language} />
                     {stat.suffix}
-                  </h2>
+                  </div>
                   <p>{statLabel}</p>
                 </div>
               );

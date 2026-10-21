@@ -13,6 +13,7 @@ export default function ProductCard({ product }: { product: any }) {
   return (
     <Link 
       href={`/${product.slug_path}`} 
+      aria-label={product.name}
       className="product-card" 
       style={{ textDecoration: 'none', color: 'inherit'}}
     >

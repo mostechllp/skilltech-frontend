@@ -242,6 +242,7 @@ useEffect(() => {
             <SwiperSlide key={banner.id} className="hero-slide">
               <Link
                 href={banner.link}
+                aria-label={banner?.title || banner?.image_alt || "Skill Tech Banner"}
                 style={{ width: "100%", textDecoration: "none" }}
               >
                 <div className="hero-content">
@@ -310,6 +311,7 @@ useEffect(() => {
                 <div key={cat.id} className="item">
                   <Link
                     href={`/${cat.slug}`}
+                    aria-label={language === "ar" && cat.name_ar ? cat.name_ar : cat.name}
                     style={{
                       textDecoration: "none",
                       width: "100%",
@@ -354,7 +356,11 @@ useEffect(() => {
             {/* Left Side (1 Big Image) */}
             <div className="col-lg-6 arrival-big">
               {offers[0] && (
-                <Link href={language === "ar" && offers[0].button_link_ar ? offers[0].button_link_ar : offers[0].button_link} className="arrival-card">
+                <Link
+                  href={language === "ar" && offers[0].button_link_ar ? offers[0].button_link_ar : offers[0].button_link}
+                  aria-label={language === "ar" && offers[0].title_ar ? offers[0].title_ar : (offers[0].title || "Featured Product")}
+                  className="arrival-card"
+                >
                   <Image
                     src={offers[0].image}
                     alt={language === "ar" && offers[0].title_ar ? offers[0].title_ar : offers[0].title}
@@ -387,7 +393,11 @@ useEffect(() => {
                 {/* Top 2 small images */}
                 <div className="col-6 arrival-small">
                   {offers[1] && (
-                    <Link href={language === "ar" && offers[1].button_link_ar ? offers[1].button_link_ar : offers[1].button_link} className="arrival-card">
+                    <Link
+                      href={language === "ar" && offers[1].button_link_ar ? offers[1].button_link_ar : offers[1].button_link}
+                      aria-label={language === "ar" && offers[1].title_ar ? offers[1].title_ar : (offers[1].title || "Featured Product")}
+                      className="arrival-card"
+                    >
                       <Image
                         src={offers[1].image || "/images/new-arrival7.png"}
                         alt={language === "ar" && offers[1].title_ar ? offers[1].title_ar : offers[1].title}
@@ -416,7 +426,11 @@ useEffect(() => {
 
                 <div className="col-6 arrival-small">
                   {offers[2] && (
-                    <Link href={language === "ar" && offers[2].button_link_ar ? offers[2].button_link_ar : offers[2].button_link} className="arrival-card">
+                    <Link
+                      href={language === "ar" && offers[2].button_link_ar ? offers[2].button_link_ar : offers[2].button_link}
+                      aria-label={language === "ar" && offers[2].title_ar ? offers[2].title_ar : (offers[2].title || "Featured Product")}
+                      className="arrival-card"
+                    >
                       <Image
                         src={offers[2].image}
                         alt={language === "ar" && offers[2].title_ar ? offers[2].title_ar : offers[2].title}
@@ -446,7 +460,11 @@ useEffect(() => {
                 {/* Bottom wide image */}
                 <div className="col-12 arrival-wide">
                   {offers[3] && (
-                    <Link href={language === "ar" && offers[3].button_link_ar ? offers[3].button_link_ar : offers[3].button_link} className="arrival-card">
+                    <Link
+                      href={language === "ar" && offers[3].button_link_ar ? offers[3].button_link_ar : offers[3].button_link}
+                      aria-label={language === "ar" && offers[3].title_ar ? offers[3].title_ar : (offers[3].title || "Featured Product")}
+                      className="arrival-card"
+                    >
                       <Image
                         src={offers[3].image}
                         alt={language === "ar" && offers[3].title_ar ? offers[3].title_ar : offers[3].title}
@@ -501,7 +519,7 @@ useEffect(() => {
                 <div className="col-6">
                   <div className="about-img-box pink-box d-flex align-items-center justify-content-center text-center">
                     <div className="pink-box-text">
-                      <h2>{t("About Us")}</h2>
+                      <p className="h2-text">{t("About Us")}</p>
                     </div>
                   </div>
                 </div>
@@ -789,7 +807,7 @@ useEffect(() => {
                 <div className="col-6">
                   <div className="about-img-box pink-box d-flex align-items-center justify-content-center text-center">
                     <div className="pink-box-text">
-                      <h2>{t("Services")}</h2>
+                      <p className="h2-text">{t("Services")}</p>
                     </div>
                   </div>
                 </div>

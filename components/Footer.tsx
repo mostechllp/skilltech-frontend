@@ -225,7 +225,7 @@ const rightCategories = categories ? categories.slice(8) : [];
               {/* Logo + Explore Btn */}
               <div className="col-lg-6 col-md-6 col-12">
                 <div className="footer-btn-logo-wrapper">
-                  <Link href="/">
+                  <Link href="/" aria-label="Skill Tech Home">
                     <Image
                       src="/images/logo.svg"
                       alt="Skill Tech Logo"

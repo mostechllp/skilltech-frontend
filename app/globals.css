@@ -1507,10 +1507,12 @@ body {
   height: 100%;
 }
 
-.pink-box h2 {
+.pink-box h2,
+.pink-box .h2-text {
   color: #fff;
   font-size: 32px;
   font-weight: 700;
+  margin: 0;
 }
 
 .visually-hidden {
@@ -2583,7 +2585,8 @@ body {
 }
 
 /* Items */
-.stats-item h2 {
+.stats-item h2,
+.stats-item .stats-number {
   font-size: 28px;
   font-weight: 600;
   color: #1e3b7a;
@@ -2608,7 +2611,8 @@ body {
     text-align: center;
   }
 
-  .stats-item h2 {
+  .stats-item h2,
+  .stats-item .stats-number {
     font-size: 22px;
   }
 }
