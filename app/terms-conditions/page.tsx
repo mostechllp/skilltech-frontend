@@ -3,7 +3,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms and Conditions - Skill Tech',
-  description: 'Terms and conditions for using Skill Mount Electronics Trading LLC website and services.',
+  description: 'Read the official terms and conditions for using Skill Tech website and purchasing TV mounting brackets and installation services in the UAE.',
+  alternates: {
+    canonical: 'https://skilltechonline.com/terms-conditions',
+  },
 };
 
 export default function TermsConditionsPage() {

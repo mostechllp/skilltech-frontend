@@ -6,6 +6,7 @@ const isLocal = process.env.NODE_ENV !== "production" ||
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
+  htmlLimitedBots: /Googlebot|Bingbot|Slackbot|Twitterbot|facebookexternalhit|Screaming Frog|AhrefsBot|SemrushBot|DotBot/i,
   async rewrites() {
     const destination = isLocal
       ? "http://127.0.0.1:8000/media/catalogue.pdf"
@@ -26,6 +27,26 @@ const nextConfig: NextConfig = {
       {
         source: "/tv-wall-mount/full-motion-double-arm-mount",
         destination: "/tv-wall-mount/full-motion-double-arm-mounts",
+        permanent: true,
+      },
+      {
+        source: "/floor-stands",
+        destination: "/floor-stands-cart",
+        permanent: true,
+      },
+      {
+        source: "/floor-stands/:sub",
+        destination: "/floor-stands-cart/:sub",
+        permanent: true,
+      },
+      {
+        source: "/ar/floor-stands",
+        destination: "/ar/floor-stands-cart",
+        permanent: true,
+      },
+      {
+        source: "/ar/floor-stands/:sub",
+        destination: "/ar/floor-stands-cart/:sub",
         permanent: true,
       },
       {

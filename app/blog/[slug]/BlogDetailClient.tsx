@@ -76,7 +76,12 @@ export default function BlogDetailClient({ post, recentPosts }: { post: any, rec
                                 const recentImage = language === "ar" && recent.image_ar ? recent.image_ar : recent.image;
 
                                 return (
-                                    <Link href={`/blog/${recent.slug}`} key={recent.id} className="recent-post-item d-flex gap-3 mb-3 text-decoration-none">
+                                    <Link
+                                        href={`/blog/${recent.slug}`}
+                                        key={recent.id}
+                                        aria-label={recentTitle}
+                                        className="recent-post-item d-flex gap-3 mb-3 text-decoration-none"
+                                    >
                                         <div className="thumb recent-post-thumb">
                                             {recentImage &&(
                                                 <Image src={recentImage} alt={recentTitle} width={80} height={80} />

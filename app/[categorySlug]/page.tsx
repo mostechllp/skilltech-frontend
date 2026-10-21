@@ -7,6 +7,8 @@ import Image from 'next/image';
 import { headers } from "next/headers";
 import { translations } from "@/lib/translations";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ categorySlug: string }>
 }
@@ -35,55 +37,55 @@ export async function generateMetadata(
   const categorySeoData: Record<string, { title: string; description: string }> = {
     "tv-wall-mount": {
       title: "TV Wall Mounts UAE | Fixed, Tilt & Full Motion | Skill Tech",
-      description: "Shop fixed, tilt, and full-motion TV wall mounts in the UAE from Skill Tech. Durable, secure options for every screen size and viewing preference today.",
+      description: "Shop fixed, tilt, and full-motion TV wall mounts in UAE from Skill Tech. Durable, secure options for every screen size. Fast delivery across UAE.",
     },
     "desktop-mounts": {
       title: "Monitor & Desktop Mounts | Ergonomic Arms | Skill Tech",
-      description: "Upgrade your workspace with ergonomic monitor and desktop mounting arms from Skill Tech. Adjustable, space-saving solutions for home and office desks.",
+      description: "Upgrade your workspace with ergonomic monitor and desktop mounting arms from Skill Tech. Adjustable, space-saving solutions for home and office.",
     },
     "tv-ceiling-mounts": {
       title: "TV Ceiling Mounts | Sturdy & Space Saving | Skill Tech",
-      description: "Explore sturdy, space-saving TV ceiling mounts from Skill Tech, perfect for UAE homes and businesses seeking a secure, versatile viewing solution today.",
+      description: "Explore sturdy, space-saving TV ceiling mounts from Skill Tech. Perfect for UAE homes and offices seeking a secure viewing setup. Buy online today.",
     },
     "motorized-mounts": {
       title: "Motorized TV Mounts & Stands | Skill Tech Electronics",
-      description: "Discover motorized TV mounts and stands from Skill Tech Electronics, offering smooth, automated positioning for a modern, high-tech entertainment setup.",
+      description: "Discover motorized TV mounts and stands from Skill Tech, offering smooth, automated positioning for a modern entertainment setup. Order online.",
     },
     "projector-screens": {
       title: "Projector Screens | Wide Range of Sizes | Skill Tech",
-      description: "Browse a wide range of projector screen sizes at Skill Tech, offering quality options for home theaters, offices, and professional presentations in the UAE.",
+      description: "Browse premium projector screen sizes at Skill Tech. Quality screens for home theaters, corporate offices, and presentations. Order online today.",
     },
     "laptop-tablet-stands": {
       title: "Laptop & Tablet Stands | Adjustable Mounts | Skill Tech",
-      description: "Find adjustable laptop and tablet stands at Skill Tech, designed for comfort, portability, and ergonomic support in home, office, or travel setups today.",
+      description: "Find adjustable laptop and tablet stands at Skill Tech. Designed for comfort, portability, and ergonomic support in home or office. Buy online.",
     },
     "pos-mounts": {
       title: "Heavy-Duty POS Mounts & Terminal Stands - Skill Tech",
-      description: "Shop heavy-duty POS mounts and terminal stands from Skill Tech. Sturdy, adjustable and easy to install for retail counters, cafes and billing desks. Buy online.",
+      description: "Shop heavy-duty POS mounts and terminal stands from Skill Tech. Sturdy, adjustable and easy to install for retail counters. Buy online today.",
     },
     "video-wall-mounts": {
       title: "Video Wall Mounts & Digital Signage Stands - Skill Tech",
-      description: "Explore video wall mounts and digital signage stands from Skill Tech. Strong, precise-fit solutions for malls, offices and showrooms. Order online today.",
+      description: "Explore video wall mounts and digital signage stands from Skill Tech. Strong, precise-fit solutions for malls and showrooms. Order online today.",
     },
     "ac-brackets": {
       title: "Wide Range of AC Brackets & Outdoor Unit Mounts - Skill Tech",
-      description: "Find a wide range of AC brackets and outdoor unit mounts at Skill Tech. Rust-resistant, load-tested stands for split ACs of all sizes. Shop online today.",
+      description: "Find heavy-duty AC brackets and outdoor unit mounts at Skill Tech. Rust-resistant, load-tested stands for split AC units. Shop online today.",
     },
     "dvd-receiver-mounts": {
       title: "Durable Mounts for DVD, CPU & AV Receiver Set - Skill Tech",
-      description: "Buy durable mounts for DVD players, CPUs and AV receivers from Skill Tech. Save space, tidy your setup and keep devices secure. Shop online at great prices.",
+      description: "Buy durable mounts for DVD players, CPUs and AV receivers from Skill Tech. Save space, tidy your setup and keep devices secure. Shop online today.",
     },
     "cctv-camera-brackets": {
       title: "Durable CCTV Camera Brackets & Wall Mounts - Skill Tech",
-      description: "Shop durable CCTV camera brackets and wall mounts from Skill Tech. Weather-resistant, sturdy and easy to fit for homes, shops and offices. Order online today.",
+      description: "Shop durable CCTV camera brackets and wall mounts from Skill Tech. Weather-resistant, sturdy and easy to fit for homes and offices. Order online.",
     },
     "other-mounts-accessories": {
       title: "Universal Mounting Brackets & Accessories - Skill Tech",
-      description: "Discover universal mounting brackets and accessories from Skill Tech. Versatile, strong and easy-to-install solutions for home and business. Shop online today.",
+      description: "Discover universal mounting brackets and accessories from Skill Tech. Versatile, strong and easy to install for homes and businesses. Buy online.",
     },
     "tv": {
       title: "Smart & Standard 4K Skill Tech LED TVs and Displays",
-      description: "Shop smart and standard 4K Skill Tech LED TVs and displays. Sharp picture, vibrant colours and great value for home and business. Explore sizes and buy online.",
+      description: "Shop smart and standard 4K Skill Tech LED TVs and displays. Sharp picture, vibrant colours and great value for home and business. Buy online today.",
     },
   };
 
@@ -234,7 +236,12 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
           <div className="row g-4">
             {subcategories.map((sub: any) => (
-              <Link key={sub.id} href={`/${categorySlug}/${sub.slug}`} className="col-lg-3 col-md-6 col-6">
+              <Link
+                key={sub.id}
+                href={`/${categorySlug}/${sub.slug}`}
+                aria-label={locale === "ar" && sub.name_ar ? sub.name_ar : sub.name}
+                className="col-lg-3 col-md-6 col-6"
+              >
                 <div className="category-card">
                   <Image src={`${sub.image??"/images/default.png"}`} alt={locale === "ar" && sub.name_ar ? sub.name_ar : sub.name} width={400} height={300} sizes="(max-width: 575px) 50vw, (max-width: 991px) 33vw, 25vw" style={{ objectFit: "cover" }} />
                   <h3>{locale === "ar" && sub.name_ar ? sub.name_ar : sub.name}</h3>

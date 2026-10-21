@@ -3,7 +3,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Refund Policy - Skill Tech',
-  description: 'Refund and Return Policy for Skill Mount Electronics Trading LLC.',
+  description: 'Read the official refund and return policy for Skill Tech. Find details on returns, exchanges, warranty and order cancellations across the UAE.',
+  alternates: {
+    canonical: 'https://skilltechonline.com/refund-policy',
+  },
 };
 
 export default function RefundPolicyPage() {

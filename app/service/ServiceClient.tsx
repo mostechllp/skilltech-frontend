@@ -457,7 +457,7 @@ export default function ServiceClient() {
             {t("Features")}
           </button>
           <h2 className="main-title">
-            {t("Experience precision, reliability, and next-level installation technology.")}
+            {t("Experience Precision & Next-Level Installation")}
           </h2>
           <p className="subtitle">
             {t("Discover the advanced features that make SkillTech the trusted choice for mounting and installation solutions.")}

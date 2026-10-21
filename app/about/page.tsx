@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { translations } from "@/lib/translations";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
@@ -14,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = locale === "ar" 
     ? "من نحن | About Skill Tech | TV Mounting Experts Since 2011 UAE" 
     : "About Skill Tech | TV Mounting Experts Since 2011 UAE";
-  const description = "Discover Skill Tech's story - UAE's trusted TV mounting experts since 2011, delivering professional AV installation services with quality and reliability.";
+  const description = "Discover Skill Tech - UAE's trusted TV mounting experts since 2011, delivering professional AV mounting and installation services with reliability.";
 
   const imageUrl = seo?.meta_image
     ? seo.meta_image.startsWith("http")
@@ -136,7 +138,7 @@ const About = async () => {
                 <div className="col-6">
                   <div className="about-img-box pink-box d-flex align-items-center justify-content-center text-center">
                     <div className="pink-box-text">
-                      <h2>{t("About Us")}</h2>
+                      <p className="h2-text">{t("About Us")}</p>
                     </div>
                   </div>
                 </div>

@@ -5,6 +5,8 @@ import type { Metadata } from 'next';
 
 import { headers } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 type Props = {
   params: Promise<{ slug: string }>
 }
@@ -31,15 +33,15 @@ export async function generateMetadata(
   const blogSeoData: Record<string, { title: string; description: string }> = {
     "how-to-choose-the-right-tv-mount-for-your-space": {
       title: "TV Mount Detailed Selection Guide for Any Room - Skill Tech",
-      description: "Use Skill Tech's detailed TV mount selection guide to pick the right fixed, tilt or full motion bracket for any room. Compare sizes, VESA and weight limits.",
+      description: "Use Skill Tech's TV mount selection guide to choose fixed, tilt or full motion brackets for any room. Compare sizes, VESA and weight limits today.",
     },
     "top-5-av-solutions-for-modern-workspaces": {
       title: "Top 5 Workspace AV & Display Solutions - Skill Tech",
-      description: "Discover the top 5 workspace AV and display solutions from Skill Tech. Upgrade meeting rooms and offices with reliable mounts, stands and displays. Shop now.",
+      description: "Discover top workspace AV solutions from Skill Tech. Upgrade meeting rooms and offices with reliable mounts, stands and displays. Shop online today.",
     },
     "ergonomic-mounts-enhance": {
       title: "Ergonomic Monitor and Laptop Mounts - Skill Tech Online",
-      description: "Shop ergonomic monitor and laptop mounts from Skill Tech Online. Improve posture, free up desk space and boost productivity with adjustable, sturdy arms.",
+      description: "Shop ergonomic monitor and laptop mounts from Skill Tech. Improve posture, free up desk space and boost productivity with adjustable, sturdy arms.",
     },
   };
 
@@ -71,8 +73,8 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: title,
-      description: shortDesc || content?.substring(0, 160),
+      title: finalTitle,
+      description: finalDescription,
       images: imageUrl ? [imageUrl] : [],
     },
   };
