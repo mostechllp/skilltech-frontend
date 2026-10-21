@@ -150,6 +150,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     "desktop-mounts": "Monitor & Desktop Mounts",
     "tv-ceiling-mounts": "TV Ceiling Mounts",
     "motorized-mounts": "Motorized Mounts and Stands",
+    "floor-stands-cart": "TV Floor Stands & Cart",
+    "projector-mounts": "Projector Mounts",
     "projector-screens": "Projector Screens",
     "laptop-tablet-stands": "Laptop & Tablet Stands",
     "pos-mounts": "POS Mounts",
