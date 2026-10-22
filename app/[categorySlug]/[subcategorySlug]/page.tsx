@@ -26,6 +26,20 @@ type Props = {
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { categorySlug, subcategorySlug } = await params;
+  const headersList = await headers();
+  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const prefix = locale === "ar" ? "/ar" : "";
+
+  if (categorySlug === "floor-stands") {
+    permanentRedirect(`${prefix}/floor-stands-cart/${subcategorySlug}`);
+  }
+  if (categorySlug === "tv") {
+    permanentRedirect(`${prefix}/led-tv/${subcategorySlug}`);
+  }
+  if (categorySlug === "tv-wall-mount" && subcategorySlug === "full-motion-double-arm-mount") {
+    permanentRedirect(`${prefix}/tv-wall-mount/full-motion-double-arm-mounts`);
+  }
+
   const { arm } = (await searchParams) || {};
   const canonicalArm = arm ? ARM_ALIASES[arm] || arm : undefined;
 
@@ -39,14 +53,24 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 export default async function SubCategoryPage({ params, searchParams }: Props) {
   const { categorySlug, subcategorySlug } = await params;
   const { page, arm } = (await searchParams) || {};
+  const headersList = await headers();
+  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const prefix = locale === "ar" ? "/ar" : "";
+
+  if (categorySlug === "floor-stands") {
+    permanentRedirect(`${prefix}/floor-stands-cart/${subcategorySlug}`);
+  }
+  if (categorySlug === "tv") {
+    permanentRedirect(`${prefix}/led-tv/${subcategorySlug}`);
+  }
+  if (categorySlug === "tv-wall-mount" && subcategorySlug === "full-motion-double-arm-mount") {
+    permanentRedirect(`${prefix}/tv-wall-mount/full-motion-double-arm-mounts`);
+  }
 
   // If old ?arm= query param is accessed, 301/308 redirect to clean URL path
   if (arm) {
     const canonicalArm = ARM_ALIASES[arm] || arm;
     if (ARM_SLUGS.includes(canonicalArm)) {
-      const headersList = await headers();
-      const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
-      const prefix = locale === "ar" ? "/ar" : "";
       const pageQuery = page && Number(page) > 1 ? `?page=${page}` : "";
       permanentRedirect(
         `${prefix}/${categorySlug}/${subcategorySlug}/${canonicalArm}${pageQuery}`

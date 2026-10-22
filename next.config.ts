@@ -50,6 +50,26 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/tv",
+        destination: "/led-tv",
+        permanent: true,
+      },
+      {
+        source: "/tv/:sub*",
+        destination: "/led-tv/:sub*",
+        permanent: true,
+      },
+      {
+        source: "/ar/tv",
+        destination: "/ar/led-tv",
+        permanent: true,
+      },
+      {
+        source: "/ar/tv/:sub*",
+        destination: "/ar/led-tv/:sub*",
+        permanent: true,
+      },
+      {
         source: "/blog/how-to-choose-the-right-tv-mount-for-y",
         destination: "/blog/how-to-choose-the-right-tv-mount-for-your-space",
         permanent: true,

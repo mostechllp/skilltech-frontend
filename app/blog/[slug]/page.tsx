@@ -1,6 +1,6 @@
 import { fetchBlogBySlug, fetchBlogPosts, MEDIA_BASE_URL } from "@/lib/api";
 import BlogDetailClient from "./BlogDetailClient";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from 'next';
 
 import { headers } from "next/headers";
@@ -15,6 +15,14 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const { slug } = await params;
+
+  if (slug === "how-to-choose-the-right-tv-mount-for-y") {
+    permanentRedirect("/blog/how-to-choose-the-right-tv-mount-for-your-space");
+  }
+  if (slug === "top-5-av-solutions-for-modern-workspa") {
+    permanentRedirect("/blog/top-5-av-solutions-for-modern-workspaces");
+  }
+
   const post = await fetchBlogBySlug(slug);
  
   if (!post) {
@@ -82,6 +90,14 @@ export async function generateMetadata(
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
+
+  if (slug === "how-to-choose-the-right-tv-mount-for-y") {
+    permanentRedirect("/blog/how-to-choose-the-right-tv-mount-for-your-space");
+  }
+  if (slug === "top-5-av-solutions-for-modern-workspa") {
+    permanentRedirect("/blog/top-5-av-solutions-for-modern-workspaces");
+  }
+
   const post = await fetchBlogBySlug(slug);
   const recentPosts = await fetchBlogPosts();
 
