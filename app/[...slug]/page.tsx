@@ -61,6 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const headersList = await headers();
   const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const prefix = locale === "ar" ? "/ar" : "";
 
   const nameTrans =
     locale === "ar" && product.title_ar ? product.title_ar : product.title || product.name;
@@ -103,6 +104,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: title,
       description: description,
       images: imageUrl ? [imageUrl] : [],
+    },
+    alternates: {
+      canonical: `https://skilltechonline.com${prefix}/${slug.join("/")}`,
     },
   };
 }

@@ -171,9 +171,37 @@ export async function submitServiceBooking(data: any) {
 }
 
 export async function fetchProductBySlug(slug: string) {
-  const res = await fetch(`${API_BASE_URL}/products/${slug}/`);
-  if (!res.ok) return null;
-  return res.json();
+  let res = await fetch(`${API_BASE_URL}/products/${slug}/`, { next: { revalidate: 60 } });
+  if (res.ok) return res.json();
+
+  // If slug uses new category "floor-stands-cart", fallback to DB slug_path with "floor-stands"
+  if (slug.startsWith("floor-stands-cart/")) {
+    const fallbackSlug = slug.replace("floor-stands-cart/", "floor-stands/");
+    res = await fetch(`${API_BASE_URL}/products/${fallbackSlug}/`, { next: { revalidate: 60 } });
+    if (res.ok) return res.json();
+  }
+
+  // If slug uses new category "led-tv", fallback to DB slug_path with "tv"
+  if (slug.startsWith("led-tv/")) {
+    const fallbackSlug = slug.replace("led-tv/", "tv/");
+    res = await fetch(`${API_BASE_URL}/products/${fallbackSlug}/`, { next: { revalidate: 60 } });
+    if (res.ok) return res.json();
+  }
+
+  // Fallback for opposite case if needed
+  if (slug.startsWith("floor-stands/")) {
+    const fallbackSlug = slug.replace("floor-stands/", "floor-stands-cart/");
+    res = await fetch(`${API_BASE_URL}/products/${fallbackSlug}/`, { next: { revalidate: 60 } });
+    if (res.ok) return res.json();
+  }
+
+  if (slug.startsWith("tv/")) {
+    const fallbackSlug = slug.replace("tv/", "led-tv/");
+    res = await fetch(`${API_BASE_URL}/products/${fallbackSlug}/`, { next: { revalidate: 60 } });
+    if (res.ok) return res.json();
+  }
+
+  return null;
 }
 
 export async function fetchBanners() {
