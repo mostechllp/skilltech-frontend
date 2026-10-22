@@ -267,7 +267,7 @@ const rightCategories = categories ? categories.slice(8) : [];
             {/* Links Section */}
             <div className="footer-links-container">
               <div className="footer-links-column">
-                <h2 className="footer-heading">{t("Quick Links")}</h2>
+                <h3 className="footer-heading">{t("Quick Links")}</h3>
                 <ul className="footer-links-list">
                   <li className="footer-links-item">
                     <Link href="/" className="footer-links-link">
@@ -361,7 +361,7 @@ const rightCategories = categories ? categories.slice(8) : [];
               </div>
               {leftCategories?.length > 0 && (
                 <div className="footer-links-column">
-                  <h2 className="footer-heading">{t("Products")}</h2>
+                  <h3 className="footer-heading">{t("Products")}</h3>
                   <ul className="footer-links-list">
                     {leftCategories &&
                       leftCategories.map((cat: any) => (
@@ -409,7 +409,7 @@ const rightCategories = categories ? categories.slice(8) : [];
             <div className="connect-box">
               {/* Left contact info */}
               <div className="connect-left">
-                <h2>{t("Let’s Connect")}</h2>
+                <h3>{t("Let’s Connect")}</h3>
                 <p>
                   {t("We welcome partnership opportunities. To apply as a dealer, please provide your experience details for our review.")}
                 </p>
@@ -569,7 +569,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                   </span>{" "}
                   {t("Those Who Trust Our")}
                 </button>
-                <h2>{t("Send us a message")}</h2>
+                <h3>{t("Send us a message")}</h3>
                 {status.success && (
                   <div className="alert alert-success mt-2">
                     {t("Message sent successfully!")}

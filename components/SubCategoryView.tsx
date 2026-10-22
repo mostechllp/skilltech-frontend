@@ -103,54 +103,54 @@ const armSeoData: Record<
     "single-arm": {
       title: "Single Arm Articulating Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech single arm articulating monitor arm. Adjustable, sturdy desk mount for better ergonomics and a clutter-free workspace. Order online today.",
+        "Shop single arm articulating monitor mounts from Skill Tech. Sturdy desk mount for better ergonomics and a tidy workspace. Order online today.",
     },
     "double-arm": {
       title: "Double Arm Articulating Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech double arm articulating monitor arm. Adjustable, sturdy desk mount for dual screens and a clutter-free workspace. Order online today.",
+        "Shop double arm articulating monitor mounts from Skill Tech. Adjustable, sturdy desk mount for dual screens and a tidy workspace. Buy online today.",
     },
     "triple-arm": {
       title: "Triple Arm Articulating Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech triple arm articulating monitor arm. Adjustable, sturdy desk mount for three screens and a clutter-free workspace. Order online today.",
+        "Shop triple arm articulating monitor mounts from Skill Tech. Sturdy desk mount for three screens and a comfortable workspace. Order online today.",
     },
     "quad-arm": {
       title: "Quad Arm Articulating Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech quad arm articulating monitor arm. Adjustable, sturdy desk mount for four screens and a clutter-free workspace. Order online today.",
+        "Shop quad arm articulating monitor mounts from Skill Tech. Sturdy desk mount for four screens and an organized workspace. Order online today.",
     },
     "six-arm": {
       title: "Six Arm Articulating Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech six arm articulating monitor arm. Adjustable, heavy-duty desk mount for six screens and a clutter-free workspace. Order online today.",
+        "Shop six arm articulating monitor mounts from Skill Tech. Heavy-duty desk mount for multi-screen setups and organized desks. Buy online today.",
     },
   },
   ergonomic: {
     "single-arm": {
       title: "Single Arm Ergonomic Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech single arm ergonomic monitor mount. Adjustable height and tilt for better posture and a tidy, comfortable desk. Order online today.",
+        "Shop single arm ergonomic monitor mounts from Skill Tech. Adjustable height and tilt for better posture and a tidy, clear desk. Order online today.",
     },
     "double-arm": {
       title: "Double Arm Ergonomic Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech double arm ergonomic monitor mount. Adjustable height and tilt for dual screens, better posture and a tidy desk. Order online today.",
+        "Shop double arm ergonomic monitor mounts from Skill Tech. Adjustable height and tilt for dual screens, better posture and a tidy desk. Buy online.",
     },
     "triple-arm": {
       title: "Triple Arm Ergonomic Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech triple arm ergonomic monitor mount. Adjustable height and tilt for three screens, better posture and a tidy desk. Order online today.",
+        "Shop triple arm ergonomic monitor mounts from Skill Tech. Adjustable height and tilt for three screens and a comfortable setup. Buy online today.",
     },
     "quad-arm": {
       title: "Quad Arm Ergonomic Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech quad arm ergonomic monitor mount. Adjustable height and tilt for four screens, better posture and a tidy desk. Order online today.",
+        "Shop quad arm ergonomic monitor mounts from Skill Tech. Adjustable height and tilt for four screens, better posture and tidy desk. Buy online.",
     },
     workstation: {
       title: "Ergonomic Workstation Monitor Mount | SkillTech Online",
       description:
-        "Shop the SkillTech ergonomic workstation monitor mount. Adjustable height and tilt for multiple screens, better posture and a tidy desk. Order online today.",
+        "Shop ergonomic workstation monitor mounts from Skill Tech. Adjustable height and tilt for multiple screens and better posture. Order online today.",
     },
   },
 };
@@ -159,135 +159,134 @@ const subcategorySeoData: Record<string, { title: string; description: string; c
   // Existing mappings
   "fixed-flat-wall-mounts": {
     title: "Durable Slim Fixed Flat TV Wall Mounts - Skill Tech",
-    description: "Buy durable slim fixed flat TV wall mounts from Skill Tech. Ultra-low profile, strong and easy to install for a sleek, space-saving look. Order online today.",
+    description: "Buy slim fixed flat TV wall mounts from Skill Tech. Ultra-low profile, strong and easy to install for a sleek, space-saving look. Order online today.",
+    canonical: "https://skilltechonline.com/tv-wall-mount/fixed-flat-wall-mounts",
   },
   "full-motion-single-arm": {
     title: "Full Motion Single Arm TV Wall Mounts - Skill Tech",
-    description: "Shop full motion single arm TV wall mounts from Skill Tech. Swivel, tilt and extend for perfect viewing angles in any room. Strong, durable and easy to install.",
+    description: "Shop full motion single arm TV wall mounts from Skill Tech. Swivel, tilt and extend for clear viewing angles. Durable, strong and easy to install.",
+    canonical: "https://skilltechonline.com/tv-wall-mount/full-motion-single-arm",
   },
   "tilt-wall-mounts": {
     title: "Adjustable Tilt TV Wall Mount Brackets - Skill Tech",
-    description: "Explore adjustable tilt TV wall mount brackets from Skill Tech. Reduce glare, get the perfect viewing angle and enjoy a secure fit. Shop online at best prices.",
+    description: "Explore adjustable tilt TV wall mount brackets from Skill Tech. Reduce glare, get the best viewing angle and enjoy a secure fit. Shop online today.",
+    canonical: "https://skilltechonline.com/tv-wall-mount/tilt-wall-mounts",
   },
   "full-motion-double-arm-mounts": {
     title: "Full Motion Double Arm TV Mounts - Skill Tech Online",
-    description: "Shop full motion double arm TV mounts from Skill Tech Online. Heavy-duty, flexible and smooth to adjust for larger screens. Easy to install and durable.",
+    description: "Shop full motion double arm TV mounts from Skill Tech. Heavy-duty, flexible and smooth to adjust for larger screens. Easy to install and durable.",
+    canonical: "https://skilltechonline.com/tv-wall-mount/full-motion-double-arm-mounts",
+  },
+  "full-motion-double-arm-mount": {
+    title: "Full Motion Double Arm TV Mounts - Skill Tech Online",
+    description: "Shop full motion double arm TV mounts from Skill Tech. Heavy-duty, flexible and smooth to adjust for larger screens. Easy to install and durable.",
+    canonical: "https://skilltechonline.com/tv-wall-mount/full-motion-double-arm-mounts",
+  },
+  "articulating-monitor-arm": {
+    title: "Articulating Monitor Arms UAE | Desk Mounts | Skill Tech",
+    description: "Shop adjustable articulating monitor arms in UAE from Skill Tech. Ergonomic desk mounts with smooth swivel and tilt for home and office. Buy online.",
+    canonical: "https://skilltechonline.com/desktop-mounts/articulating-monitor-arm",
   },
   "desktop-mount": {
     title: "Desktop Mounts UAE | Tabletop TV Stands | Skill Tech",
-    description:
-      "Buy desktop mounts in UAE with VESA support, swivel and height-adjustable designs for 23–75 inch TVs, with sturdy tabletop bases for home and office use.",
+    description: "Buy desktop mounts in UAE with VESA support, swivel and height-adjustable designs for 23–75 inch TVs. Sturdy tabletop bases for home and office.",
+    canonical: "https://skilltechonline.com/desktop-mounts/desktop-mount",
   },
   "ergonomic": {
     title: "Ergonomic Monitor Mounts for Desktop | SkillTech Online",
-    description:
-      "Explore SkillTech ergonomic desktop monitor mounts. Adjustable single to multi-arm setups that improve posture and comfort at work. Shop online today.",
+    description: "Explore SkillTech ergonomic desktop monitor mounts. Adjustable single to multi-arm setups that improve posture and comfort at work. Shop online today.",
+    canonical: "https://skilltechonline.com/desktop-mounts/ergonomic",
   },
   "tv-ceiling-mount": {
     title: "TV Ceiling Mounts UAE | Heavy-Duty & Telescopic | Skill Tech",
-    description:
-      "Buy TV ceiling mounts in UAE with heavy-duty steel builds, adjustable height, tilt, swivel and cable management for home and commercial displays.",
+    description: "Buy TV ceiling mounts in UAE with heavy-duty steel builds, adjustable height, tilt, swivel and cable management for home and commercial displays.",
+    canonical: "https://skilltechonline.com/tv-ceiling-mounts/tv-ceiling-mount",
   },
   "motorized-tv-wall-mounts": {
     title: "Motorized TV Wall Mounts for Home | SkillTech Online",
-    description:
-      "Shop SkillTech motorized TV wall mounts with remote control for smooth tilt, swivel and height adjustment. Sturdy, sleek and easy to use. Order online today",
+    description: "Shop motorized TV wall mounts with remote control for smooth tilt, swivel and height adjustment from Skill Tech. Sturdy, sleek and easy to use today.",
+    canonical: "https://skilltechonline.com/motorized-mounts/motorized-tv-wall-mounts",
   },
   "motorized-tv-cart-or-trolly": {
     title: "Motorized TV Carts & Electric Trolleys | Skill Tech",
-    description:
-      "Explore motorized TV carts with electric height adjustment, smooth mobility and durable construction for conference rooms, education and commercial AV projects.",
+    description: "Explore motorized TV carts with electric height adjustment, smooth mobility and durable construction for conference rooms and offices. Order online.",
+    canonical: "https://skilltechonline.com/motorized-mounts/motorized-tv-cart-or-trolly",
   },
 
   // 15 requested subcategory SEO meta titles, descriptions & canonical tags
   "motorized-tv-lift": {
     title: "Motorized TV Lift UAE | Smart & Pop-Up Models | Skill Tech",
-    description:
-      "Buy motorized TV lifts in UAE with app and voice control, pop-up or drop-down motion, 360° swivel and support for large TVs in concealed installations.",
+    description: "Buy motorized TV lifts in UAE with app control, pop-up or drop-down motion, 360° swivel and support for large TVs in concealed setups. Shop online.",
     canonical: "https://skilltechonline.com/motorized-mounts/motorized-tv-lift",
   },
   "motorized-tv-ceiling-mounts": {
     title: "Motorized TV Ceiling Mounts with Remote | SkillTech Online",
-    description:
-      "Shop motorized TV ceiling mounts at SkillTech Online. Remote-controlled, flip-down mounts that save space and suit homes, offices, and commercial spaces.",
+    description: "Shop motorized TV ceiling mounts from Skill Tech. Remote-controlled flip-down mounts that save space for homes, offices and showrooms. Buy online.",
     canonical: "https://skilltechonline.com/motorized-mounts/motorized-tv-ceiling-mounts",
   },
   "floor-stands": {
     title: "TV Floor Stands UAE | Modern Display Stands | Skill Tech",
-    description:
-      "Shop TV floor stands in UAE at Skill Tech. Modern, sturdy display stands for homes, offices, and commercial spaces. Fast delivery across the UAE.",
+    description: "Shop TV floor stands in UAE at Skill Tech. Modern, sturdy display stands for homes, offices, and commercial spaces. Fast delivery across the UAE.",
     canonical: "https://skilltechonline.com/floor-stands-cart/floor-stands",
   },
   "tv-cart-or-trolley": {
     title: "TV Carts & Trolleys UAE | Mobile Display Stands | Skill Tech",
-    description:
-      "Buy TV carts and trolleys in UAE with adjustable height, heavy-duty support, smooth caster mobility and cable management for offices and commercial displays.",
+    description: "Buy TV carts and trolleys in UAE with adjustable height, heavy-duty support, smooth mobility and cable management for offices and schools. Shop online.",
     canonical: "https://skilltechonline.com/floor-stands-cart/tv-cart-or-trolley",
   },
   "projector-ceiling-mounts": {
     title: "Projector Ceiling Mounts UAE | Heavy-Duty | Skill Tech",
-    description:
-      "Buy projector ceiling mounts in UAE with heavy-duty support, adjustable tilt, swivel, extension ranges and cable management for home and professional AV setups.",
+    description: "Buy projector ceiling mounts in UAE with heavy-duty build, adjustable tilt, swivel and cable management for home and commercial AV setups. Buy online.",
     canonical: "https://skilltechonline.com/projector-mounts/projector-ceiling-mounts",
   },
   "projector-floor-stands": {
     title: "Projector Floor Stands UAE | Mobile Trolley | Skill Tech",
-    description:
-      "Buy projector floor stands in UAE with adjustable height, 10kg support, tilting platform and mobile casters for offices, classrooms and presentations.",
+    description: "Buy projector floor stands in UAE with adjustable height, sturdy support, tilting platform and mobile casters for offices and classrooms. Buy online.",
     canonical: "https://skilltechonline.com/projector-mounts/projector-floor-stands",
   },
   "motorized-projector-screens": {
     title: "Motorized Projector Screens UAE | Electric | Skill Tech",
-    description:
-      "Buy motorized projector screens in UAE with remote control, matte white fabric, wide viewing angles and wall or ceiling mounting for professional AV setups.",
+    description: "Buy motorized projector screens in UAE with remote control, matte white fabric and wide viewing angles for home and corporate AV setups. Shop online.",
     canonical: "https://skilltechonline.com/projector-screens/motorized-projector-screens",
   },
   "projector-screen": {
     title: "Projector Screens UAE | Motorized & Tripod | Skill Tech",
-    description:
-      "Buy projector screens in UAE, including motorized, manual and tripod options with matte white fabric and wide viewing angles for home and professional use.",
+    description: "Buy projector screens in UAE, including motorized, manual and tripod options with matte white fabric and wide viewing angles. Order online today.",
     canonical: "https://skilltechonline.com/projector-screens/projector-screen",
   },
   "tripod-projector-screens": {
     title: "Tripod Projector Screens UAE | Portable 120in | Skill Tech",
-    description:
-      "Buy tripod projector screens in UAE with a 120-inch 4:3 display, matte white fabric, 160° viewing angle and stable portable stand for presentations.",
+    description: "Buy tripod projector screens in UAE with a 120-inch 4:3 display, matte white fabric, 160° viewing angle and stable portable stand for presentations.",
     canonical: "https://skilltechonline.com/projector-screens/tripod-projector-screens",
   },
   "laptop-stands": {
     title: "Laptop Stands UAE | Ergonomic & Adjustable | Skill Tech",
-    description:
-      "Buy laptop stands in UAE with adjustable height, foldable designs, 360° rotation and aluminium builds for ergonomic home, office and mobile workspaces.",
+    description: "Buy laptop stands in UAE with adjustable height, foldable design, 360° rotation and aluminium build for ergonomic workspaces. Order online today.",
     canonical: "https://skilltechonline.com/laptop-tablet-stands/laptop-stands",
   },
   "tablet-floor-stands": {
     title: "Adjustable Tablet Floor Stands & Holders | SkillTech Online",
-    description:
-      "Shop adjustable tablet floor stands at SkillTech Online. Sturdy, height-adjustable holders for iPad and tablets, ideal for office, retail, and home use.",
+    description: "Shop adjustable tablet floor stands from Skill Tech. Sturdy, height-adjustable holders for iPad and tablets for office, retail and home. Buy online.",
     canonical: "https://skilltechonline.com/laptop-tablet-stands/tablet-floor-stands",
   },
   "tablet-wall-mounts": {
     title: "Tablet & iPad Stands UAE | Secure Mounts | Skill Tech",
-    description:
-      "Explore secure tablet and iPad stands in the UAE, including desk, floor, wall and kiosk mounts with adjustable viewing for offices and commercial spaces.",
+    description: "Explore secure tablet and iPad stands in UAE, including desk, floor, wall and kiosk mounts with adjustable viewing for office and retail. Buy online.",
     canonical: "https://skilltechonline.com/laptop-tablet-stands/tablet-wall-mounts",
   },
   "pos-stands": {
     title: "POS Stands UAE | Adjustable Payment Mounts | Skill Tech",
-    description:
-      "Buy POS stands in UAE with swivel, tilt, rotation and cable management for secure credit card terminals, monitors and organized checkout counters.",
+    description: "Buy POS stands in UAE with swivel, tilt, rotation and cable management for secure credit card terminals, monitors and organized checkout counters.",
     canonical: "https://skilltechonline.com/pos-mounts/pos-stands",
   },
   "digital-signage-wall-mounts": {
     title: "Digital Signage Wall Mounts UAE | Video Wall | Skill Tech",
-    description:
-      "Buy digital signage wall mounts in UAE with pop-out and quick-release designs, VESA compatibility and fine adjustment for professional video walls.",
+    description: "Buy digital signage wall mounts in UAE with pop-out and quick-release designs, VESA compatibility and fine adjustment for professional video walls.",
     canonical: "https://skilltechonline.com/video-wall-mounts/digital-signage-wall-mounts",
   },
   "video-wall-floor-stands": {
     title: "Video Wall Floor Stands for Displays | SkillTech Online",
-    description:
-      "Explore floor standing video wall mounts with durable construction, multi-display support and professional AV installation solutions for commercial projects. Enquire today.",
+    description: "Explore floor standing video wall mounts with durable build, multi-display support and professional AV mounting for commercial projects. Enquire now.",
     canonical: "https://skilltechonline.com/video-wall-mounts/video-wall-floor-stands",
   },
 };
@@ -503,7 +502,6 @@ export default async function SubCategoryView({
 
   return (
     <>
-      <link rel="canonical" href={canonicalUrl} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
@@ -526,11 +524,15 @@ export default async function SubCategoryView({
           className="container"
           style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "5px" }}
         >
-          <Link href="/" style={{ color: "#3351a3", textDecoration: "none" }}>
+          <Link href="/" aria-label="Skill Tech Home" style={{ color: "#3351a3", textDecoration: "none" }}>
             {t("Home")}
           </Link>
           <span>{locale === "ar" ? " < " : " > "}</span>
-          <Link href={`/${categorySlug}`} className="breadcrumb-link">
+          <Link
+            href={`/${categorySlug}`}
+            aria-label={locale === "ar" && subCategory.category?.name_ar ? subCategory.category.name_ar : subCategory.category?.name || formatSlug(categorySlug)}
+            className="breadcrumb-link"
+          >
             {locale === "ar" && subCategory.category?.name_ar
               ? subCategory.category.name_ar
               : subCategory.category?.name || formatSlug(categorySlug)}
@@ -540,6 +542,7 @@ export default async function SubCategoryView({
             <>
               <Link
                 href={`/${categorySlug}/${subcategorySlug}`}
+                aria-label={baseSubCategoryName}
                 className="breadcrumb-link"
               >
                 {baseSubCategoryName}

@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import ServiceClient from './ServiceClient';
 import { headers } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
@@ -12,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = locale === "ar"
     ? "الخدمات | TV Wall Mounting & Installation Service | Skill Tech"
     : "TV Wall Mounting & Installation Service | Skill Tech";
-  const description = "Professional TV wall mounting and installation services in the UAE. Skill Tech ensures safe, secure setups for homes and businesses at competitive rates.";
+  const description = "Professional TV wall mounting and installation services in UAE. Skill Tech ensures safe, secure setups for homes and offices at competitive rates.";
 
   const imageUrl = seo?.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
 

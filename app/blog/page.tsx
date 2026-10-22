@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import BlogClient from './BlogClient';
 import { headers } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
@@ -12,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = locale === "ar"
     ? "المدونة | Skill Tech Blog | TV Mounting Tips, Guides & Insights"
     : "Skill Tech Blog | TV Mounting Tips, Guides & Insights";
-  const description = "Read the Skill Tech blog for expert TV mounting tips, step-by-step guides, and helpful insights to get the most from your home entertainment setup today.";
+  const description = "Read the Skill Tech blog for expert TV mounting tips, step-by-step guides, and helpful insights to get the most from your home entertainment setup.";
 
   const imageUrl = seo?.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
 

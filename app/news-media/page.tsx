@@ -4,6 +4,8 @@ import NewsMediaClient from './NewsMediaClient';
 import { fetchNewsPost, fetchSEO, MEDIA_BASE_URL } from '@/lib/api';
 import { headers } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";

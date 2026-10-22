@@ -35,7 +35,12 @@ export default function BlogClient({ posts, banner }: BlogClientProps) {
 
                 return (
                   <div key={post.id} className="col-md-6 col-lg-4">
-                      <Link href={`/blog/${post.slug}`} className="blog-card" style={{textDecoration:"none"}} >
+                      <Link
+                        href={`/blog/${post.slug}`}
+                        aria-label={title}
+                        className="blog-card"
+                        style={{textDecoration:"none"}}
+                      >
                            <div className="blog-img">
                               {image ? (
                                   <Image src={image} alt={title} width={400} height={250} style={{ objectFit: "cover" }} />
@@ -44,7 +49,7 @@ export default function BlogClient({ posts, banner }: BlogClientProps) {
                               )}
                            </div>
                            <div className="blog-content">
-                                <h2 className="blog-title">{title}</h2>
+                                <h3 className="blog-title">{title}</h3>
                                 <p className="blog-text" title={shortDesc}>{shortDesc}</p>
                                 <button className="read-more-btn mt-auto mb-0">
                                    <span className="white-circle"><i className="fas fa-play"></i></span>

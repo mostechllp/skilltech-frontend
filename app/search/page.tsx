@@ -8,6 +8,8 @@ import ProductCard from "@/components/ProductCard";
 import { headers } from "next/headers";
 import { translations } from "@/lib/translations";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
@@ -18,7 +20,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: `${t("Search Results")} - Skill Tech`,
-    description: t("Search results for products."),
+    description: t("Search results for products at Skill Tech."),
+    robots: {
+      index: false,
+      follow: true,
+    },
+    alternates: {
+      canonical: "https://skilltechonline.com/search",
+    },
   };
 }
 

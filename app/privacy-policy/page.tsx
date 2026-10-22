@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { headers } from "next/headers";
 import { translations } from "@/lib/translations";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
@@ -15,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: locale === "ar" ? `سياسة الخصوصية | Skill Tech Electronics Trading LLC` : "Privacy Policy | Skill Tech Electronics Trading LLC",
-    description: "Read Skill Tech Electronics Trading LLC's privacy policy to understand how we collect, use, and protect your personal information across our services.",
+    description: "Read Skill Tech's privacy policy to understand how we collect, use, and protect your personal information across our website and AV services.",
     alternates: {
       canonical,
     },

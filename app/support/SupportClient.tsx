@@ -115,7 +115,7 @@ export default function SupportClient() {
                                 height: "auto",
                               }}
                             />
-                            <h2>{itemTitle}</h2>
+                            <h4>{itemTitle}</h4>
                           <div
                             className="explore-btn"
                             onClick={async (e) => {

@@ -7,6 +7,8 @@ import SubCategoryView, {
 } from "@/components/SubCategoryView";
 import { ARM_SLUGS, ARM_ALIASES } from "@/lib/armConstants";
 
+export const dynamic = "force-dynamic";
+
 type Params = {
   categorySlug: string;
   subcategorySlug: string;

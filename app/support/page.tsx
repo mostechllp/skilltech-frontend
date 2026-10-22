@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import SupportClient from './SupportClient';
 import { headers } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
@@ -12,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = locale === "ar"
     ? "الدعم | Skill Tech Support | Expert AV Technical Assistance"
     : "Skill Tech Support | Expert AV Technical Assistance";
-  const description = "Get expert AV technical support from Skill Tech. Our team provides reliable troubleshooting and assistance for all your TV mounting and installation needs.";
+  const description = "Get expert AV technical support from Skill Tech. Our team provides reliable troubleshooting and help for all your TV mounting and display setups.";
 
   const imageUrl = seo?.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
 

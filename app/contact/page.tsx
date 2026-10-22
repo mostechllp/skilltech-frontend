@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import ContactClient from './ContactClient';
 import { headers } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
@@ -12,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = locale === "ar"
     ? "اتصل بنا | Contact Skill Tech | TV Mounting Services in UAE Today"
     : "Contact Skill Tech | TV Mounting Services in UAE Today";
-  const description = "Contact Skill Tech today for professional TV mounting services across the UAE. Reach our expert team for quotes, bookings, and installation support now.";
+  const description = "Contact Skill Tech today for professional TV mounting services across UAE. Reach our expert team for quotes, bookings, and fast installation support.";
 
   const imageUrl = seo?.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
 

@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import CareerClient from './CareerClient';
 import { headers } from "next/headers";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
@@ -12,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = locale === "ar"
     ? "الوظائف | Skill Tech Careers | Explore Job Opportunities Now"
     : "Skill Tech Careers | Explore Job Opportunities Now";
-  const description = "Explore exciting career opportunities at Skill Tech. Join our growing team of TV mounting and AV installation professionals across the UAE and beyond.";
+  const description = "Explore exciting career opportunities at Skill Tech. Join our growing team of TV mounting and AV installation professionals in the UAE. Apply today.";
 
   const imageUrl = seo?.meta_image ? (seo.meta_image.startsWith('http') ? seo.meta_image : `${MEDIA_BASE_URL}${seo.meta_image}`) : null;
 
@@ -30,8 +32,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: seo.meta_title,
-      description: seo.meta_description,
+      title,
+      description,
       images: imageUrl ? [imageUrl] : [],
     },
   };
