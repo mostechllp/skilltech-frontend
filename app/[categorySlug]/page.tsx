@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "@/components/Link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { fetchCategoryBySlug, fetchSubCategoriesByCategory, MEDIA_BASE_URL } from "@/lib/api";
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -17,6 +17,21 @@ export async function generateMetadata(
   { params }: Props
 ): Promise<Metadata> {
   const categorySlug = (await params).categorySlug;
+
+  if (categorySlug === "floor-stands") {
+    const headersList = await headers();
+    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+    const prefix = locale === "ar" ? "/ar" : "";
+    permanentRedirect(`${prefix}/floor-stands-cart`);
+  }
+
+  if (categorySlug === "tv") {
+    const headersList = await headers();
+    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+    const prefix = locale === "ar" ? "/ar" : "";
+    permanentRedirect(`${prefix}/led-tv`);
+  }
+
   const category = await fetchCategoryBySlug(categorySlug);
  
   if (!category) {
@@ -87,6 +102,10 @@ export async function generateMetadata(
       title: "Smart & Standard 4K Skill Tech LED TVs and Displays",
       description: "Shop smart and standard 4K Skill Tech LED TVs and displays. Sharp picture, vibrant colours and great value for home and business. Buy online today.",
     },
+    "led-tv": {
+      title: "Smart & Standard 4K Skill Tech LED TVs and Displays",
+      description: "Shop smart and standard 4K Skill Tech LED TVs and displays. Sharp picture, vibrant colours and great value for home and business. Buy online today.",
+    },
   };
 
   const customSeo = categorySeoData[categorySlug];
@@ -122,6 +141,21 @@ export async function generateMetadata(
 
 export default async function CategoryPage({ params }: { params: Promise<{ categorySlug: string }> }) {
   const { categorySlug } = await params;
+
+  if (categorySlug === "floor-stands") {
+    const headersList = await headers();
+    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+    const prefix = locale === "ar" ? "/ar" : "";
+    permanentRedirect(`${prefix}/floor-stands-cart`);
+  }
+
+  if (categorySlug === "tv") {
+    const headersList = await headers();
+    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+    const prefix = locale === "ar" ? "/ar" : "";
+    permanentRedirect(`${prefix}/led-tv`);
+  }
+
   const category = await fetchCategoryBySlug(categorySlug);
   
   if (!category) {
@@ -138,6 +172,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     "cctv-camera-brackets": "CCTV Camera Brackets",
     "other-mounts-accessories": "Other Mounts & Accessories",
     "tv": "LED TV",
+    "led-tv": "LED TV",
   };
   const nameTrans = locale === "ar" && category.name_ar ? category.name_ar : (categoryH1Names[categorySlug] || category.name);
   const t = (key: string) => {
@@ -163,6 +198,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     "cctv-camera-brackets": "CCTV Camera Brackets",
     "other-mounts-accessories": "Other Mounts & Accessories",
     "tv": "LED TV",
+    "led-tv": "LED TV",
   };
 
   const breadcrumbName = categoryBreadcrumbNames[categorySlug] || category.name;

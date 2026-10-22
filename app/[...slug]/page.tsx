@@ -28,6 +28,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const [categorySlug, subcategorySlug, segment3] = slug;
 
+  if (categorySlug === "floor-stands") {
+    const headersList = await headers();
+    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+    const prefix = locale === "ar" ? "/ar" : "";
+    permanentRedirect(`${prefix}/floor-stands-cart/${slug.slice(1).join("/")}`);
+  }
+
+  if (categorySlug === "tv") {
+    const headersList = await headers();
+    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+    const prefix = locale === "ar" ? "/ar" : "";
+    permanentRedirect(`${prefix}/led-tv/${slug.slice(1).join("/")}`);
+  }
+
   // Check if segment 3 is an arm filter slug
   if (slug.length === 3 && ARM_SLUGS.includes(segment3)) {
     return generateSubCategoryMetadata({
@@ -99,6 +113,20 @@ export default async function CatchAllDetailPage({
 }: Props) {
   const { slug } = await params;
   const [categorySlug, subcategorySlug, segment3] = slug;
+
+  if (categorySlug === "floor-stands") {
+    const headersList = await headers();
+    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+    const prefix = locale === "ar" ? "/ar" : "";
+    permanentRedirect(`${prefix}/floor-stands-cart/${slug.slice(1).join("/")}`);
+  }
+
+  if (categorySlug === "tv") {
+    const headersList = await headers();
+    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+    const prefix = locale === "ar" ? "/ar" : "";
+    permanentRedirect(`${prefix}/led-tv/${slug.slice(1).join("/")}`);
+  }
 
   // If segment 3 is an arm alias (e.g. single -> single-arm), redirect permanently
   if (slug.length === 3 && ARM_ALIASES[segment3]) {
