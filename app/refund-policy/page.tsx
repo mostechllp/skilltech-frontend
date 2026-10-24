@@ -2,10 +2,19 @@ import React from 'react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Refund Policy - Skill Tech',
+  title: 'Refund Policy – Returns & Refunds | SkillTech Online',
   description: 'Read the official refund and return policy for Skill Tech. Find details on returns, exchanges, warranty and order cancellations across the UAE.',
   alternates: {
     canonical: 'https://skilltechonline.com/refund-policy',
+  },
+  openGraph: {
+    title: 'Refund Policy – Returns & Refunds | SkillTech Online',
+    description: 'Read the official refund and return policy for Skill Tech. Find details on returns, exchanges, warranty and order cancellations across the UAE.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Refund Policy – Returns & Refunds | SkillTech Online',
+    description: 'Read the official refund and return policy for Skill Tech. Find details on returns, exchanges, warranty and order cancellations across the UAE.',
   },
 };
 

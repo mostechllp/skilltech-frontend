@@ -93,6 +93,7 @@ export default function SupportClient() {
                 }`}
                 id="catalogue"
               >
+                <h2 className="visually-hidden">{t("Product Catalogues")}</h2>
                 <div className="row">
                   {catalogues.length > 0 ? (
                     catalogues.map((item) => {
@@ -115,7 +116,7 @@ export default function SupportClient() {
                                 height: "auto",
                               }}
                             />
-                            <h4>{itemTitle}</h4>
+                            <h3>{itemTitle}</h3>
                           <div
                             className="explore-btn"
                             onClick={async (e) => {
@@ -147,6 +148,7 @@ export default function SupportClient() {
                 }`}
                 id="certificate"
               >
+                <h2 className="visually-hidden">{t("Official Certificates")}</h2>
                 <div className="row">
                   {certificates.length > 0 ? (
                     certificates.map((item) => {
