@@ -370,3 +370,14 @@ export async function fetchBranchLocations() {
   if (!res.ok) throw new Error("Failed to fetch branch locations");
   return res.json();
 }
+
+export async function fetchCountrySettings() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/country-settings/`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : data.results || [];
+  } catch {
+    return [];
+  }
+}

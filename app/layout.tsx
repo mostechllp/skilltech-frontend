@@ -6,7 +6,9 @@ import { fetchCategories, fetchProducts, fetchSiteSettings } from "@/lib/api";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { LanguageProvider } from "@/lib/LanguageContext";
+import { CountryProvider } from "@/lib/CountryContext";
 import PWARegistration from "@/components/PWARegistration";
+import VisitorTracker from "@/components/VisitorTracker";
 
 import { Poppins } from "next/font/google";
 
@@ -98,12 +100,15 @@ export default async function RootLayout({
           }}
         />
         <PWARegistration />
+        <VisitorTracker />
         <LanguageProvider initialLanguage={locale}>
-          <Header />
-          <main id="main-content" role="main">
-            {children}
-          </main>
-          <Footer categories={footerCategories} />
+          <CountryProvider>
+            <Header />
+            <main id="main-content" role="main">
+              {children}
+            </main>
+            <Footer categories={footerCategories} />
+          </CountryProvider>
         </LanguageProvider>
         
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" strategy="beforeInteractive" />

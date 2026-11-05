@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "@/components/Link";
 import React from "react";
-import { fetchSEO, MEDIA_BASE_URL } from "@/lib/api";
+import { fetchSEO, fetchSiteSettings, MEDIA_BASE_URL } from "@/lib/api";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { translations } from "@/lib/translations";
+import CustomerReviews from "@/components/CustomerReviews";
 
 export const dynamic = "force-dynamic";
 
@@ -48,6 +49,8 @@ export async function generateMetadata(): Promise<Metadata> {
 const About = async () => {
   const headersList = await headers();
   const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const settings = await fetchSiteSettings().catch(() => null);
+  const reviewsUrl = settings?.google_map_link || "https://www.google.com/search?q=Skill+Mount+Electronics+Trading+LLC+Reviews";
 
   const t = (key: string) => {
     const langDict = (translations[locale] as Record<string, string>) || {};
@@ -589,6 +592,9 @@ const About = async () => {
           </div>
         </div>
       </section>
+
+      {/* What Our Customers Say - Google Reviews Section */}
+      <CustomerReviews reviewsUrl={reviewsUrl} />
     </div>
   );
 };
