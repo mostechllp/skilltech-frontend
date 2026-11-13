@@ -45,6 +45,41 @@ export default function Footer({ categories }: { categories?: any[] }) {
 const leftCategories = categories ? categories.slice(0, 8) : [];
 const rightCategories = categories ? categories.slice(8) : [];
 
+  const getFooterCatName = (cat: any) => {
+    if (language === "ar") return cat.name_ar || t(cat.name?.trim() || "");
+    if (language === "hi") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_hi && cat.name_hi !== cat.name) return cat.name_hi;
+      return trans || cat.name;
+    }
+    if (language === "es") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_es && cat.name_es !== cat.name) return cat.name_es;
+      return trans || cat.name;
+    }
+    if (language === "pt") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_pt && cat.name_pt !== cat.name) return cat.name_pt;
+      return trans || cat.name;
+    }
+    if (language === "fr") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_fr && cat.name_fr !== cat.name) return cat.name_fr;
+      return trans || cat.name;
+    }
+    if (language === "ru") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_ru && cat.name_ru !== cat.name) return cat.name_ru;
+      return trans || cat.name;
+    }
+    return cat.name;
+  };
+
 
   const [status, setStatus] = useState({
     loading: false,
@@ -156,7 +191,7 @@ const rightCategories = categories ? categories.slice(8) : [];
       if (response?.reference_number) {
         sessionStorage.setItem("thank_you_ref", response.reference_number);
       }
-      router.push(language === "ar" ? `/ar/service/thank-you` : `/service/thank-you`);
+      router.push(language === "ar" ? `/ar/service/thank-you` : language === "hi" ? `/hi/service/thank-you` : language === "es" ? `/es/service/thank-you` : language === "pt" ? `/pt/service/thank-you` : language === "fr" ? `/fr/service/thank-you` : language === "ru" ? `/ru/service/thank-you` : `/service/thank-you`);
     } catch (err: any) {
       setBookingStatus({
         loading: false,
@@ -432,7 +467,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                             <span className="pink-circle footer-links-icon-wrap">
                               <i className="fa fa-play"></i>
                             </span>
-                            {language === "ar" && cat.name_ar ? cat.name_ar : cat.name}
+                            {getFooterCatName(cat)}
                           </Link>
                         </li>
                       ))}
@@ -453,7 +488,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                             <span className="pink-circle footer-links-icon-wrap">
                               <i className="fa fa-play"></i>
                             </span>
-                            {language === "ar" && cat.name_ar ? cat.name_ar : cat.name}
+                            {getFooterCatName(cat)}
                           </Link>
                         </li>
                       ))}
@@ -943,7 +978,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                       serviceOptions.installation_types.length > 0 &&
                       serviceOptions.installation_types.map((type: any) => (
                         <option key={type.id} value={type.name}>
-                          {language === "ar" && type.name_ar ? type.name_ar : type.name}
+                          {language === "ar" && type.name_ar ? type.name_ar : (language === "hi" && type.name_hi ? type.name_hi : (language === "es" && type.name_es ? type.name_es : (language === "pt" && type.name_pt ? type.name_pt : t(type.name))))}
                         </option>
                       ))}
                   </select>
@@ -969,7 +1004,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                       serviceOptions.tv_sizes.length > 0 &&
                       serviceOptions.tv_sizes.map((item: any) => (
                         <option key={item.id} value={item.size}>
-                          {language === "ar" && item.size_ar ? item.size_ar : item.size}
+                          {language === "ar" && item.size_ar ? item.size_ar : (language === "hi" && item.size_hi ? item.size_hi : (language === "es" && item.size_es ? item.size_es : (language === "pt" && item.size_pt ? item.size_pt : t(item.size))))}
                         </option>
                       ))}
                   </select>
@@ -1008,7 +1043,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                       serviceOptions.available_times.length > 0 &&
                       serviceOptions.available_times.map((item: any) => (
                         <option key={item.id} value={item.time_slot}>
-                          {language === "ar" && item.time_slot_ar ? item.time_slot_ar : item.time_slot}
+                          {language === "ar" && item.time_slot_ar ? item.time_slot_ar : (language === "hi" && item.time_slot_hi ? item.time_slot_hi : (language === "es" && item.time_slot_es ? item.time_slot_es : (language === "pt" && item.time_slot_pt ? item.time_slot_pt : t(item.time_slot))))}
                         </option>
                       ))}
                   </select>

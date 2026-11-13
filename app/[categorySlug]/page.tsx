@@ -4,8 +4,9 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { fetchCategoryBySlug, fetchSubCategoriesByCategory, MEDIA_BASE_URL } from "@/lib/api";
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import { headers } from "next/headers";
 import { translations } from "@/lib/translations";
+import { getServerLocale } from "@/lib/locale";
+import Support, { generateMetadata as generateSupportMetadata } from "../support/page";
 
 export const dynamic = "force-dynamic";
 
@@ -18,17 +19,43 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const categorySlug = (await params).categorySlug;
 
+  if (categorySlug === "support") {
+    return generateSupportMetadata();
+  }
+
+  if (categorySlug === "services") {
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+    permanentRedirect(`${prefix}/service`);
+  }
+
+  if (categorySlug === "contact-us") {
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+    permanentRedirect(`${prefix}/contact`);
+  }
+
+  if (categorySlug === "careers") {
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+    permanentRedirect(`${prefix}/career`);
+  }
+
+  if (categorySlug === "about-us") {
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+    permanentRedirect(`${prefix}/about`);
+  }
+
   if (categorySlug === "floor-stands") {
-    const headersList = await headers();
-    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
-    const prefix = locale === "ar" ? "/ar" : "";
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
     permanentRedirect(`${prefix}/floor-stands-cart`);
   }
 
   if (categorySlug === "tv") {
-    const headersList = await headers();
-    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
-    const prefix = locale === "ar" ? "/ar" : "";
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
     permanentRedirect(`${prefix}/led-tv`);
   }
 
@@ -40,14 +67,32 @@ export async function generateMetadata(
     };
   }
 
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
   const t = (key: string) => {
+    if (!key) return "";
     const langDict = (translations[locale] as Record<string, string>) || {};
-    return langDict[key] || key;
+    if (langDict[key]) return langDict[key];
+    const trimmed = key.trim();
+    if (langDict[trimmed]) return langDict[trimmed];
+    const lower = trimmed.toLowerCase();
+    for (const [k, v] of Object.entries(langDict)) {
+      if (k.toLowerCase() === lower) return v;
+    }
+    return key;
   };
 
-  const nameTrans = locale === "ar" && category.name_ar ? category.name_ar : category.name;
+  const nameTrans =
+    locale === "ar" && category.name_ar
+      ? category.name_ar
+      : locale === "hi"
+      ? (t(category.name?.trim() || "") !== category.name?.trim() ? t(category.name?.trim() || "") : ((category as any).name_hi && !(category as any).name_hi.includes("नेतृत्व") ? (category as any).name_hi : t(category.name)))
+      : locale === "es" && (category as any).name_es
+      ? (category as any).name_es
+      : locale === "pt" && (category as any).name_pt
+      ? (category as any).name_pt
+      : locale === "fr" && (category as any).name_fr
+      ? (category as any).name_fr
+      : t(category.name);
 
   const categorySeoData: Record<string, { title: string; description: string }> = {
     "tv-wall-mount": {
@@ -116,7 +161,15 @@ export async function generateMetadata(
   const imagePath = category.meta_image || category.image;
   const imageUrl = imagePath ? (imagePath.startsWith('http') ? imagePath : `${MEDIA_BASE_URL}${imagePath}`) : null;
   
-  const canonical = locale === "ar" ? `https://skilltechonline.com/ar/${categorySlug}` : `https://skilltechonline.com/${categorySlug}`;
+  const canonical = locale === "ar" 
+    ? `https://skilltechonline.com/ar/${categorySlug}` 
+    : locale === "hi" 
+    ? `https://skilltechonline.com/hi/${categorySlug}` 
+    : locale === "es" 
+    ? `https://skilltechonline.com/es/${categorySlug}` 
+    : locale === "pt" 
+    ? `https://skilltechonline.com/pt/${categorySlug}` 
+    : `https://skilltechonline.com/${categorySlug}`;
 
   return {
     title: title,
@@ -142,17 +195,43 @@ export async function generateMetadata(
 export default async function CategoryPage({ params }: { params: Promise<{ categorySlug: string }> }) {
   const { categorySlug } = await params;
 
+  if (categorySlug === "support") {
+    return <Support />;
+  }
+
+  if (categorySlug === "services") {
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+    permanentRedirect(`${prefix}/service`);
+  }
+
+  if (categorySlug === "contact-us") {
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+    permanentRedirect(`${prefix}/contact`);
+  }
+
+  if (categorySlug === "careers") {
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+    permanentRedirect(`${prefix}/career`);
+  }
+
+  if (categorySlug === "about-us") {
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+    permanentRedirect(`${prefix}/about`);
+  }
+
   if (categorySlug === "floor-stands") {
-    const headersList = await headers();
-    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
-    const prefix = locale === "ar" ? "/ar" : "";
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
     permanentRedirect(`${prefix}/floor-stands-cart`);
   }
 
   if (categorySlug === "tv") {
-    const headersList = await headers();
-    const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
-    const prefix = locale === "ar" ? "/ar" : "";
+    const locale = await getServerLocale();
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
     permanentRedirect(`${prefix}/led-tv`);
   }
 
@@ -162,8 +241,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     notFound();
   }
 
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
   const categoryH1Names: Record<string, string> = {
     "pos-mounts": "POS Mounts",
     "video-wall-mounts": "Video Wall Mounts",
@@ -174,11 +252,52 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
     "tv": "LED TV",
     "led-tv": "LED TV",
   };
-  const nameTrans = locale === "ar" && category.name_ar ? category.name_ar : (categoryH1Names[categorySlug] || category.name);
+  const rawCatName = categoryH1Names[categorySlug] || category.name;
   const t = (key: string) => {
+    if (!key) return "";
     const langDict = (translations[locale] as Record<string, string>) || {};
-    return langDict[key] || key;
+    if (langDict[key]) return langDict[key];
+    const trimmed = key.trim();
+    if (langDict[trimmed]) return langDict[trimmed];
+    const lower = trimmed.toLowerCase();
+    for (const [k, v] of Object.entries(langDict)) {
+      if (k.toLowerCase() === lower) return v;
+    }
+    return key;
   };
+  const getCatNameTrans = () => {
+    if (locale === "ar") return category.name_ar || rawCatName;
+    if (locale === "hi") {
+      const trans = t(rawCatName?.trim() || "");
+      if (trans && trans !== rawCatName?.trim()) return trans;
+      if ((category as any).name_hi && !(category as any).name_hi.includes("नेतृत्व")) {
+        return (category as any).name_hi;
+      }
+      return trans || rawCatName;
+    }
+    if (locale === "es") {
+      const trans = t(rawCatName?.trim() || "");
+      if (trans && trans !== rawCatName?.trim()) return trans;
+      return (category as any).name_es || trans || rawCatName;
+    }
+    if (locale === "pt") {
+      const trans = t(rawCatName?.trim() || "");
+      if (trans && trans !== rawCatName?.trim()) return trans;
+      return (category as any).name_pt || trans || rawCatName;
+    }
+    if (locale === "fr") {
+      const trans = t(rawCatName?.trim() || "");
+      if (trans && trans !== rawCatName?.trim()) return trans;
+      return (category as any).name_fr || trans || rawCatName;
+    }
+    if (locale === "ru") {
+      const trans = t(rawCatName?.trim() || "");
+      if (trans && trans !== rawCatName?.trim()) return trans;
+      return (category as any).name_ru || trans || rawCatName;
+    }
+    return rawCatName;
+  };
+  const nameTrans = getCatNameTrans();
 
   const subcategories = await fetchSubCategoriesByCategory(categorySlug);
 
@@ -279,8 +398,43 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
                 className="col-lg-3 col-md-6 col-6"
               >
                 <div className="category-card">
-                  <Image src={`${sub.image??"/images/default.png"}`} alt={locale === "ar" && sub.name_ar ? sub.name_ar : sub.name} width={400} height={300} sizes="(max-width: 575px) 50vw, (max-width: 991px) 33vw, 25vw" style={{ objectFit: "cover" }} />
-                  <h3>{locale === "ar" && sub.name_ar ? sub.name_ar : sub.name}</h3>
+                  <Image
+                    src={`${sub.image ?? "/images/default.png"}`}
+                    alt={
+                      locale === "ar" && sub.name_ar
+                        ? sub.name_ar
+                        : locale === "hi" && sub.name_hi
+                        ? sub.name_hi
+                        : locale === "es" && sub.name_es
+                        ? sub.name_es
+                        : locale === "pt" && sub.name_pt
+                        ? sub.name_pt
+                        : locale === "fr" && (sub as any).name_fr
+                        ? (sub as any).name_fr
+                        : locale === "ru" && (sub as any).name_ru
+                        ? (sub as any).name_ru
+                        : sub.name
+                    }
+                    width={400}
+                    height={300}
+                    sizes="(max-width: 575px) 50vw, (max-width: 991px) 33vw, 25vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                  <h3>
+                    {locale === "ar" && sub.name_ar
+                      ? sub.name_ar
+                      : locale === "hi"
+                      ? (t(sub.name?.trim() || "") !== sub.name?.trim() ? t(sub.name?.trim() || "") : (sub.name_hi || t(sub.name)))
+                      : locale === "es"
+                      ? (t(sub.name?.trim() || "") !== sub.name?.trim() ? t(sub.name?.trim() || "") : (sub.name_es || t(sub.name)))
+                      : locale === "pt"
+                      ? (t(sub.name?.trim() || "") !== sub.name?.trim() ? t(sub.name?.trim() || "") : (sub.name_pt || t(sub.name)))
+                      : locale === "fr"
+                      ? (t(sub.name?.trim() || "") !== sub.name?.trim() ? t(sub.name?.trim() || "") : ((sub as any).name_fr || t(sub.name)))
+                      : locale === "ru"
+                      ? (t(sub.name?.trim() || "") !== sub.name?.trim() ? t(sub.name?.trim() || "") : ((sub as any).name_ru || t(sub.name)))
+                      : sub.name}
+                  </h3>
                   <p>{sub.products_count || 0}{t(" Products")}</p>
                 </div>
               </Link>

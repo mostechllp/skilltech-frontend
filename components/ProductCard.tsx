@@ -50,6 +50,16 @@ export default function ProductCard({ product }: { product: any }) {
       <small>
         {language === "ar"
           ? (product.title_ar || product.short_description_ar || product.title || product.short_description)
+          : language === "hi"
+          ? (product.title_hi && product.title_hi !== product.title ? product.title_hi : (product.short_description_hi && product.short_description_hi !== product.short_description ? product.short_description_hi : (t(product.title || product.short_description || "") || product.title_hi || product.title)))
+          : language === "es"
+          ? (product.title_es && product.title_es !== product.title ? product.title_es : (product.short_description_es && product.short_description_es !== product.short_description ? product.short_description_es : (t(product.title || product.short_description || "") || product.title_es || product.title)))
+          : language === "pt"
+          ? (product.title_pt && product.title_pt !== product.title ? product.title_pt : (product.short_description_pt && product.short_description_pt !== product.short_description ? product.short_description_pt : (t(product.title || product.short_description || "") || product.title_pt || product.title)))
+          : language === "fr"
+          ? (product.title_fr && product.title_fr !== product.title ? product.title_fr : (product.short_description_fr && product.short_description_fr !== product.short_description ? product.short_description_fr : (t(product.title || product.short_description || "") || product.title_fr || product.title)))
+          : language === "ru"
+          ? (product.title_ru && product.title_ru !== product.title ? product.title_ru : (product.short_description_ru && product.short_description_ru !== product.short_description ? product.short_description_ru : (t(product.title || product.short_description || "") || product.title_ru || product.title)))
           : (product.title || product.short_description)}
       </small>
 
@@ -58,6 +68,16 @@ export default function ProductCard({ product }: { product: any }) {
           {displayFeatures.map((item: any, index: number) => {
             const label = language === "ar" && item.feature?.title_ar 
               ? item.feature.title_ar 
+              : language === "hi" && item.feature?.title_hi
+              ? item.feature.title_hi
+              : language === "es" && item.feature?.title_es
+              ? item.feature.title_es
+              : language === "pt" && item.feature?.title_pt
+              ? item.feature.title_pt
+              : language === "fr" && item.feature?.title_fr
+              ? item.feature.title_fr
+              : language === "ru" && item.feature?.title_ru
+              ? item.feature.title_ru
               : (item.feature?.title || "");
               
             const isFullWidth = item.isFullWidth || (displayFeatures.length % 2 !== 0 && index === displayFeatures.length - 1);

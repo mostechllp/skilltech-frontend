@@ -10,9 +10,27 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO('blog');
-  const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/blog' : 'https://skilltechonline.com/blog';
+  const canonical = locale === "ar"
+    ? 'https://skilltechonline.com/ar/blog'
+    : locale === "hi"
+    ? 'https://skilltechonline.com/hi/blog'
+    : locale === "es"
+    ? 'https://skilltechonline.com/es/blog'
+    : locale === "pt"
+    ? 'https://skilltechonline.com/pt/blog'
+    : locale === "fr"
+    ? 'https://skilltechonline.com/fr/blog'
+    : 'https://skilltechonline.com/blog';
   const title = locale === "ar"
     ? "المدونة | Skill Tech Blog | TV Mounting Tips, Guides & Insights"
+    : locale === "hi"
+    ? "ब्लॉग | Skill Tech Blog | TV Mounting Tips, Guides & Insights"
+    : locale === "es"
+    ? "Blog | Skill Tech Blog | TV Mounting Tips, Guides & Insights"
+    : locale === "pt"
+    ? "Blog | Skill Tech Blog | TV Mounting Tips, Guides & Insights"
+    : locale === "fr"
+    ? "Blog | Blog Skill Tech | Conseils & Guides de Fixation TV"
     : "Skill Tech Blog | TV Mounting Tips, Guides & Insights";
   const description = "Read the Skill Tech blog for expert TV mounting tips, step-by-step guides, and helpful insights to get the most from your home entertainment setup.";
 

@@ -46,6 +46,10 @@ export default function Pagination({ count, pageSize = 32 }: { count: number, pa
       <span className="mx-3 fw-bold" style={{fontSize:"14px"}} >
         {language === "ar"
           ? `الصفحة ${currentPage} من ${totalPages}`
+          : language === "hi"
+          ? `पृष्ठ ${currentPage} का ${totalPages}`
+          : language === "es" || language === "pt"
+          ? `Página ${currentPage} de ${totalPages}`
           : `Page ${currentPage} of ${totalPages}`
         }
       </span>

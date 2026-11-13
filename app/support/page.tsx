@@ -10,9 +10,17 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO('support');
-  const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/support' : 'https://skilltechonline.com/support';
+  const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/support' : locale === "hi" ? 'https://skilltechonline.com/hi/support' : locale === "es" ? 'https://skilltechonline.com/es/support' : locale === "pt" ? 'https://skilltechonline.com/pt/support' : locale === "fr" ? 'https://skilltechonline.com/fr/support' : 'https://skilltechonline.com/support';
   const title = locale === "ar"
     ? "الدعم | Skill Tech Support | Expert AV Technical Assistance"
+    : locale === "hi"
+    ? "सहायता | Skill Tech Support | Expert AV Technical Assistance"
+    : locale === "es"
+    ? "Soporte | Skill Tech Support | Asistencia Técnica Experta en AV"
+    : locale === "pt"
+    ? "Suporte | Skill Tech Support | Assistência Técnica Especializada em AV"
+    : locale === "fr"
+    ? "Support | Skill Tech Support | Assistance Technique Audiovisuelle"
     : "Skill Tech Support | Expert AV Technical Assistance";
   const description = "Get expert AV technical support from Skill Tech. Our team provides reliable troubleshooting and help for all your TV mounting and display setups.";
 

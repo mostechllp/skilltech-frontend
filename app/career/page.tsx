@@ -10,9 +10,27 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO('career');
-  const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/career' : 'https://skilltechonline.com/career';
+  const canonical = locale === "ar"
+    ? 'https://skilltechonline.com/ar/career'
+    : locale === "hi"
+    ? 'https://skilltechonline.com/hi/career'
+    : locale === "es"
+    ? 'https://skilltechonline.com/es/career'
+    : locale === "pt"
+    ? 'https://skilltechonline.com/pt/career'
+    : locale === "fr"
+    ? 'https://skilltechonline.com/fr/career'
+    : 'https://skilltechonline.com/career';
   const title = locale === "ar"
     ? "الوظائف | Skill Tech Careers | Explore Job Opportunities Now"
+    : locale === "hi"
+    ? "करियर | Skill Tech Careers | Explore Job Opportunities Now"
+    : locale === "es"
+    ? "Carreras | Skill Tech Careers | Explore Job Opportunities Now"
+    : locale === "pt"
+    ? "Carreiras | Skill Tech Careers | Explore Job Opportunities Now"
+    : locale === "fr"
+    ? "Carrières | Skill Tech Carrières | Découvrez Nos Opportunités"
     : "Skill Tech Careers | Explore Job Opportunities Now";
   const description = "Explore exciting career opportunities at Skill Tech. Join our growing team of TV mounting and AV installation professionals in the UAE. Apply today.";
 

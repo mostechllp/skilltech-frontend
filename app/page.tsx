@@ -4,11 +4,26 @@ import Image from "next/image";
 import HomeClient from "./HomeClient";
 import type { Metadata } from 'next';
 
+import { getServerLocale } from "@/lib/locale";
+
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getServerLocale();
   const seo = await fetchSEO('home');
-  const canonical = seo?.canonical_url || 'https://skilltechonline.com/';
+  const canonical = locale === "ar"
+    ? 'https://skilltechonline.com/ar'
+    : locale === "hi"
+    ? 'https://skilltechonline.com/hi'
+    : locale === "es"
+    ? 'https://skilltechonline.com/es'
+    : locale === "pt"
+    ? 'https://skilltechonline.com/pt'
+    : locale === "fr"
+    ? 'https://skilltechonline.com/fr'
+    : locale === "ru"
+    ? 'https://skilltechonline.com/ru'
+    : seo?.canonical_url || 'https://skilltechonline.com/';
   if (!seo) {
     return {
       alternates: {
@@ -24,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: seo.meta_description,
     keywords: seo.meta_keywords,
     alternates: {
-      canonical: seo.canonical_url || 'https://skilltechonline.com/',
+      canonical,
     },
     openGraph: {
       title: seo.meta_title,
@@ -70,14 +85,14 @@ const localBusinessSchema = {
 };
 
 export default async function Home() {
-  const categories = await fetchCategories(true);
-  const exploreCategories = await fetchCategories(undefined, true);
-  const banners = await fetchBanners();
-  const offers = await fetchOffers();
+  const categories = (await fetchCategories(true).catch(() => [])) || [];
+  const exploreCategories = (await fetchCategories(undefined, true).catch(() => [])) || [];
+  const banners = (await fetchBanners().catch(() => [])) || [];
+  const offers = (await fetchOffers().catch(() => [])) || [];
   const initialCategory = exploreCategories && exploreCategories.length > 0 ? exploreCategories[0].slug : undefined;
-  const products = await fetchProducts(true, 1, initialCategory);
-  const clients = await fetchClients();
-  const projects = await fetchProjects();
+  const products = (await fetchProducts(true, 1, initialCategory).catch(() => ({ results: [], count: 0 }))) || { results: [], count: 0 };
+  const clients = (await fetchClients().catch(() => [])) || [];
+  const projects = (await fetchProjects().catch(() => [])) || [];
 
   return (
     <>

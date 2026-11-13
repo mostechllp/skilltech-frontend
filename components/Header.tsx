@@ -73,6 +73,8 @@ export default function Header() {
   const { country: selectedCountry, setCountry, countries } = useCountry();
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const countryDropdownRef = useRef<HTMLDivElement>(null);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
   const [mainCategories, setMainCategories] = useState<MainCategory[]>([]);
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -170,6 +172,9 @@ export default function Header() {
       if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target as Node)) {
         setIsCountryDropdownOpen(false);
       }
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setIsLangDropdownOpen(false);
+      }
     }
     document.addEventListener("click", handleClickOutside);
     return () => {
@@ -180,8 +185,8 @@ export default function Header() {
   const handleSearchSubmit = () => {
     if (searchQuery.trim()) {
       setShowResults(false);
-      const searchPath = language === "ar" ? "/ar/search" : "/search";
-      router.push(`${searchPath}?q=${encodeURIComponent(searchQuery)}`);
+      const searchPrefix = language === "ar" ? "/ar" : language === "hi" ? "/hi" : language === "es" ? "/es" : language === "pt" ? "/pt" : language === "fr" ? "/fr" : language === "ru" ? "/ru" : "";
+      router.push(`${searchPrefix}/search?q=${encodeURIComponent(searchQuery)}`);
     }
   };
 
@@ -211,15 +216,27 @@ export default function Header() {
 
   const isActive = (path: string) => {
     if (!pathname) return false;
-    if (path === "/") return pathname === "/" || pathname === "/ar";
-    return pathname === path || pathname === `/ar${path}` || pathname.startsWith(`${path}/`) || pathname.startsWith(`/ar${path}/`);
+    if (path === "/") return pathname === "/" || pathname === "/ar" || pathname === "/hi" || pathname === "/es" || pathname === "/pt" || pathname === "/fr";
+    return (
+      pathname === path ||
+      pathname === `/ar${path}` ||
+      pathname === `/hi${path}` ||
+      pathname === `/es${path}` ||
+      pathname === `/pt${path}` ||
+      pathname === `/fr${path}` ||
+      pathname.startsWith(`${path}/`) ||
+      pathname.startsWith(`/ar${path}/`) ||
+      pathname.startsWith(`/hi${path}/`) ||
+      pathname.startsWith(`/es${path}/`) ||
+      pathname.startsWith(`/pt${path}/`) ||
+      pathname.startsWith(`/fr${path}/`)
+    );
   };
 
   const isProductActive = () => {
     if (!pathname) return false;
-    const cleanPath = pathname.startsWith("/ar/") 
-      ? pathname.replace(/^\/ar/, "") 
-      : (pathname === "/ar" ? "/" : pathname);
+    const cleanPath = pathname
+      .replace(/^\/(ar|hi|es|pt|fr)/, "") || "/";
 
     if (cleanPath === "/category" || cleanPath.startsWith("/category/"))
       return true;
@@ -417,22 +434,72 @@ export default function Header() {
               </ul>
             </div>
 
-            <div className="lang-switcher">
-              <button
-                type="button"
-                onClick={() => setLanguage("en")}
-                className={language === "en" ? "active" : ""}
+            {/* Language Dropdown */}
+            <div className="country-dropdown language-dropdown" ref={langDropdownRef}>
+              <div
+                className="selected-country selected-language"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsLangDropdownOpen(!isLangDropdownOpen);
+                  setIsCountryDropdownOpen(false);
+                }}
+                role="button"
+                aria-haspopup="listbox"
+                aria-expanded={isLangDropdownOpen}
               >
-                EN
-              </button>
-              <span className="lang-separator">|</span>
-              <button
-                type="button"
-                onClick={() => setLanguage("ar")}
-                className={language === "ar" ? "active" : ""}
+                <i
+                  className="fa fa-globe"
+                  style={{ fontSize: "12px", color: "#ffffff", opacity: 0.9 }}
+                ></i>
+                <span>
+                  {language === "ar" ? "العربية" : language === "hi" ? "हिन्दी" : language === "es" ? "Español" : language === "pt" ? "Português" : language === "fr" ? "Français" : language === "ru" ? "Русский" : "English"}
+                </span>
+                <i
+                  className="fa fa-chevron-down"
+                  style={{
+                    fontSize: "9px",
+                    color: "#ffffff",
+                    opacity: 0.8,
+                    transition: "transform 0.2s ease",
+                    transform: isLangDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                ></i>
+              </div>
+              <ul
+                className="country-list language-list"
+                style={{ display: isLangDropdownOpen ? "block" : "none" }}
+                role="listbox"
               >
-                العربية
-              </button>
+                {[
+                  { code: "en" as const, label: "English" },
+                  { code: "ar" as const, label: "العربية" },
+                  { code: "hi" as const, label: "हिन्दी" },
+                  { code: "es" as const, label: "Español" },
+                  { code: "pt" as const, label: "Português" },
+                  { code: "fr" as const, label: "Français" },
+                  { code: "ru" as const, label: "Русский" },
+                ].map((l) => (
+                  <li
+                    key={l.code}
+                    className={l.code === language ? "active" : ""}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLanguage(l.code);
+                      setIsLangDropdownOpen(false);
+                    }}
+                    role="option"
+                    aria-selected={l.code === language}
+                  >
+                    <span>{l.label}</span>
+                    {l.code === language && (
+                      <i
+                        className="fa fa-check"
+                        style={{ fontSize: "11px", color: "#3351a3", marginInlineStart: "auto" }}
+                      ></i>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -822,6 +889,12 @@ function SearchPopup({
                       >
                         {language === "ar"
                           ? (product.short_description_ar || product.title_ar || product.short_description || product.title)
+                          : language === "hi"
+                          ? (product.short_description_hi || product.title_hi || t(product.title || product.short_description || ""))
+                          : language === "es"
+                          ? (product.short_description_es || product.title_es || t(product.title || product.short_description || ""))
+                          : language === "pt"
+                          ? (product.short_description_pt || product.title_pt || t(product.title || product.short_description || ""))
                           : (product.short_description || product.title)}
                       </p>
                     </div>

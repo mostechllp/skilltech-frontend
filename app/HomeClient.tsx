@@ -115,6 +115,150 @@ useEffect(() => {
     : exploreCategories?.slice(0, 7) || [];
   const hasMoreCategories = (exploreCategories?.length || 0) > 7;
 
+  const getCategoryTitle = (cat: any) => {
+    if (!cat) return "";
+    if (language === "ar") return cat.name_ar || t(cat.name?.trim() || "");
+    if (language === "hi") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_hi && cat.name_hi !== cat.name) return cat.name_hi;
+      return trans || cat.name_hi || cat.name;
+    }
+    if (language === "es") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_es && cat.name_es !== cat.name) return cat.name_es;
+      return trans || cat.name_es || cat.name;
+    }
+    if (language === "pt") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_pt && cat.name_pt !== cat.name) return cat.name_pt;
+      return trans || cat.name_pt || cat.name;
+    }
+    if (language === "fr") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_fr && cat.name_fr !== cat.name) return cat.name_fr;
+      return trans || cat.name_fr || cat.name;
+    }
+    if (language === "ru") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_ru && cat.name_ru !== cat.name) return cat.name_ru;
+      return trans || cat.name_ru || cat.name;
+    }
+    return cat.name;
+  };
+
+  const getOfferTitle = (item: any) => {
+    if (!item) return "";
+    if (language === "ar") return item.title_ar || t(item.title);
+    if (language === "hi") {
+      if (item.title_hi && item.title_hi !== item.title) return item.title_hi;
+      const trans = t(item.title?.trim() || "");
+      if (trans && trans !== item.title?.trim()) return trans;
+      return item.title_hi || trans || item.title;
+    }
+    if (language === "es") {
+      if (item.title_es && item.title_es !== item.title) return item.title_es;
+      const trans = t(item.title?.trim() || "");
+      if (trans && trans !== item.title?.trim()) return trans;
+      return item.title_es || trans || item.title;
+    }
+    if (language === "pt") {
+      if (item.title_pt && item.title_pt !== item.title) return item.title_pt;
+      const trans = t(item.title?.trim() || "");
+      if (trans && trans !== item.title?.trim()) return trans;
+      return item.title_pt || trans || item.title;
+    }
+    if (language === "fr") {
+      if (item.title_fr && item.title_fr !== item.title) return item.title_fr;
+      const trans = t(item.title?.trim() || "");
+      if (trans && trans !== item.title?.trim()) return trans;
+      return item.title_fr || trans || item.title;
+    }
+    if (language === "ru") {
+      if (item.title_ru && item.title_ru !== item.title) return item.title_ru;
+      const trans = t(item.title?.trim() || "");
+      if (trans && trans !== item.title?.trim()) return trans;
+      return item.title_ru || trans || item.title;
+    }
+    return item.title;
+  };
+
+  const getOfferSubtitle = (item: any) => {
+    if (!item) return "";
+    if (language === "ar") return item.subtitle_ar || t(item.subtitle);
+    if (language === "hi") {
+      if (item.subtitle_hi && item.subtitle_hi !== item.subtitle) return item.subtitle_hi;
+      const trans = t(item.subtitle?.trim() || "");
+      if (trans && trans !== item.subtitle?.trim()) return trans;
+      return item.subtitle_hi || trans || item.subtitle;
+    }
+    if (language === "es") {
+      if (item.subtitle_es && item.subtitle_es !== item.subtitle) return item.subtitle_es;
+      const trans = t(item.subtitle?.trim() || "");
+      if (trans && trans !== item.subtitle?.trim()) return trans;
+      return item.subtitle_es || trans || item.subtitle;
+    }
+    if (language === "pt") {
+      if (item.subtitle_pt && item.subtitle_pt !== item.subtitle) return item.subtitle_pt;
+      const trans = t(item.subtitle?.trim() || "");
+      if (trans && trans !== item.subtitle?.trim()) return trans;
+      return item.subtitle_pt || trans || item.subtitle;
+    }
+    if (language === "fr") {
+      if (item.subtitle_fr && item.subtitle_fr !== item.subtitle) return item.subtitle_fr;
+      const trans = t(item.subtitle?.trim() || "");
+      if (trans && trans !== item.subtitle?.trim()) return trans;
+      return item.subtitle_fr || trans || item.subtitle;
+    }
+    if (language === "ru") {
+      if (item.subtitle_ru && item.subtitle_ru !== item.subtitle) return item.subtitle_ru;
+      const trans = t(item.subtitle?.trim() || "");
+      if (trans && trans !== item.subtitle?.trim()) return trans;
+      return item.subtitle_ru || trans || item.subtitle;
+    }
+    return item.subtitle;
+  };
+
+  const getOfferButtonText = (item: any) => {
+    if (!item) return t("Explore");
+    if (language === "ar") return item.button_text_ar || t(item.button_text || "Explore");
+    if (language === "hi") {
+      if (item.button_text_hi && item.button_text_hi !== item.button_text) return item.button_text_hi;
+      const trans = t((item.button_text || "Explore").trim());
+      if (trans && trans !== item.button_text) return trans;
+      return item.button_text_hi || trans || t("Explore");
+    }
+    if (language === "es") {
+      if (item.button_text_es && item.button_text_es !== item.button_text) return item.button_text_es;
+      const trans = t((item.button_text || "Explore").trim());
+      if (trans && trans !== item.button_text) return trans;
+      return item.button_text_es || trans || t("Explore");
+    }
+    if (language === "pt") {
+      if (item.button_text_pt && item.button_text_pt !== item.button_text) return item.button_text_pt;
+      const trans = t((item.button_text || "Explore").trim());
+      if (trans && trans !== item.button_text) return trans;
+      return item.button_text_pt || trans || t("Explore");
+    }
+    if (language === "fr") {
+      if (item.button_text_fr && item.button_text_fr !== item.button_text) return item.button_text_fr;
+      const trans = t((item.button_text || "Explore").trim());
+      if (trans && trans !== item.button_text) return trans;
+      return item.button_text_fr || trans || t("Explore");
+    }
+    if (language === "ru") {
+      if (item.button_text_ru && item.button_text_ru !== item.button_text) return item.button_text_ru;
+      const trans = t((item.button_text || "Explore").trim());
+      if (trans && trans !== item.button_text) return trans;
+      return item.button_text_ru || trans || t("Explore");
+    }
+    return item.button_text || "Explore";
+  };
+
   useEffect(() => {
     // jQuery / Owl Carousel Logic
     let attempts = 0;
@@ -311,7 +455,7 @@ useEffect(() => {
                 <div key={cat.id} className="item">
                   <Link
                     href={`/${cat.slug}`}
-                    aria-label={language === "ar" && cat.name_ar ? cat.name_ar : cat.name}
+                    aria-label={getCategoryTitle(cat)}
                     style={{
                       textDecoration: "none",
                       width: "100%",
@@ -324,13 +468,13 @@ useEffect(() => {
                     >
                       <Image
                         src={`${cat.image ?? "/images/default.png"}`}
-                        alt={language === "ar" && cat.name_ar ? cat.name_ar : cat.name}
+                        alt={getCategoryTitle(cat)}
                         fill
                         sizes="(max-width: 768px) 100vw, 140px"
                         style={{ objectFit: "cover" }}
                       />
                     </div>
-                    <p>{language === "ar" && cat.name_ar ? cat.name_ar : cat.name}</p>
+                    <p>{getCategoryTitle(cat)}</p>
                   </Link>
                 </div>
               ))}
@@ -358,24 +502,24 @@ useEffect(() => {
               {offers[0] && (
                 <Link
                   href={language === "ar" && offers[0].button_link_ar ? offers[0].button_link_ar : offers[0].button_link}
-                  aria-label={language === "ar" && offers[0].title_ar ? offers[0].title_ar : (offers[0].title || "Featured Product")}
+                  aria-label={getOfferTitle(offers[0]) || "Featured Product"}
                   className="arrival-card"
                 >
                   <Image
                     src={offers[0].image}
-                    alt={language === "ar" && offers[0].title_ar ? offers[0].title_ar : offers[0].title}
+                    alt={getOfferTitle(offers[0])}
                     width={800}
                     height={800}
                     sizes="(max-width: 991px) 100vw, 50vw"
                     style={{ objectFit: "cover", width: "100%" }}
                   />
                   <div className="arrival-overlay">
-                    <p className="arrival-subtitle">{language === "ar" && offers[0].subtitle_ar ? offers[0].subtitle_ar : offers[0].subtitle}</p>
-                    <h3>{language === "ar" && offers[0].title_ar ? offers[0].title_ar : offers[0].title}</h3>
+                    <p className="arrival-subtitle">{getOfferSubtitle(offers[0])}</p>
+                    <h3>{getOfferTitle(offers[0])}</h3>
                     {!isMobile && (
                       <div>
                         <button className="explore-btn">
-                          {language === "ar" && offers[0].button_text_ar ? offers[0].button_text_ar : offers[0].button_text}
+                          {getOfferButtonText(offers[0])}
                           <span className="arrow-circle">
                             <i className="fas fa-play"></i>
                           </span>
@@ -395,24 +539,24 @@ useEffect(() => {
                   {offers[1] && (
                     <Link
                       href={language === "ar" && offers[1].button_link_ar ? offers[1].button_link_ar : offers[1].button_link}
-                      aria-label={language === "ar" && offers[1].title_ar ? offers[1].title_ar : (offers[1].title || "Featured Product")}
+                      aria-label={getOfferTitle(offers[1]) || "Featured Product"}
                       className="arrival-card"
                     >
                       <Image
                         src={offers[1].image || "/images/new-arrival7.png"}
-                        alt={language === "ar" && offers[1].title_ar ? offers[1].title_ar : offers[1].title}
+                        alt={getOfferTitle(offers[1])}
                         width={400}
                         height={400}
                         sizes="(max-width: 991px) 50vw, 25vw"
                         style={{ objectFit: "cover", width: "100%" }}
                       />
                       <div className="arrival-overlay">
-                        <p className="arrival-subtitle">{language === "ar" && offers[1].subtitle_ar ? offers[1].subtitle_ar : offers[1].subtitle}</p>
-                        <h3>{language === "ar" && offers[1].title_ar ? offers[1].title_ar : offers[1].title}</h3>
+                        <p className="arrival-subtitle">{getOfferSubtitle(offers[1])}</p>
+                        <h3>{getOfferTitle(offers[1])}</h3>
                         {!isMobile && (
                           <div>
                             <button className="explore-btn">
-                              {language === "ar" && offers[1].button_text_ar ? offers[1].button_text_ar : offers[1].button_text}
+                              {getOfferButtonText(offers[1])}
                               <span className="arrow-circle">
                                 <i className="fas fa-play"></i>
                               </span>
@@ -428,24 +572,24 @@ useEffect(() => {
                   {offers[2] && (
                     <Link
                       href={language === "ar" && offers[2].button_link_ar ? offers[2].button_link_ar : offers[2].button_link}
-                      aria-label={language === "ar" && offers[2].title_ar ? offers[2].title_ar : (offers[2].title || "Featured Product")}
+                      aria-label={getOfferTitle(offers[2]) || "Featured Product"}
                       className="arrival-card"
                     >
                       <Image
                         src={offers[2].image}
-                        alt={language === "ar" && offers[2].title_ar ? offers[2].title_ar : offers[2].title}
+                        alt={getOfferTitle(offers[2])}
                         width={400}
                         height={400}
                         sizes="(max-width: 991px) 50vw, 25vw"
                         style={{ objectFit: "cover", width: "100%" }}
                       />
                       <div className="arrival-overlay">
-                        <p className="arrival-subtitle">{language === "ar" && offers[2].subtitle_ar ? offers[2].subtitle_ar : offers[2].subtitle}</p>
-                        <h3>{language === "ar" && offers[2].title_ar ? offers[2].title_ar : offers[2].title}</h3>
+                        <p className="arrival-subtitle">{getOfferSubtitle(offers[2])}</p>
+                        <h3>{getOfferTitle(offers[2])}</h3>
                         {!isMobile && (
                           <div>
                             <button className="explore-btn">
-                              {language === "ar" && offers[2].button_text_ar ? offers[2].button_text_ar : offers[2].button_text}
+                              {getOfferButtonText(offers[2])}
                               <span className="arrow-circle">
                                 <i className="fas fa-play"></i>
                               </span>
@@ -462,24 +606,24 @@ useEffect(() => {
                   {offers[3] && (
                     <Link
                       href={language === "ar" && offers[3].button_link_ar ? offers[3].button_link_ar : offers[3].button_link}
-                      aria-label={language === "ar" && offers[3].title_ar ? offers[3].title_ar : (offers[3].title || "Featured Product")}
+                      aria-label={getOfferTitle(offers[3]) || "Featured Product"}
                       className="arrival-card"
                     >
                       <Image
                         src={offers[3].image}
-                        alt={language === "ar" && offers[3].title_ar ? offers[3].title_ar : offers[3].title}
+                        alt={getOfferTitle(offers[3])}
                         width={800}
                         height={400}
                         sizes="(max-width: 991px) 100vw, 50vw"
                         style={{ objectFit: "cover", width: "100%" }}
                       />
                       <div className="arrival-overlay">
-                        <p className="arrival-subtitle">{language === "ar" && offers[3].subtitle_ar ? offers[3].subtitle_ar : offers[3].subtitle}</p>
-                        <h3>{language === "ar" && offers[3].title_ar ? offers[3].title_ar : offers[3].title}</h3>
+                        <p className="arrival-subtitle">{getOfferSubtitle(offers[3])}</p>
+                        <h3>{getOfferTitle(offers[3])}</h3>
                         {!isMobile && (
                           <div>
                             <button className="explore-btn">
-                              {language === "ar" && offers[3].button_text_ar ? offers[3].button_text_ar : offers[3].button_text}
+                              {getOfferButtonText(offers[3])}
                               <span className="arrow-circle">
                                 <i className="fas fa-play"></i>
                               </span>
@@ -559,7 +703,7 @@ useEffect(() => {
                   if (window.innerWidth < 768) {
                     setIsExpanded(!isExpanded); // mobile
                   } else {
-                    router.push(language === "ar" ? "/ar/about" : "/about"); // desktop
+                    router.push(language === "ar" ? "/ar/about" : language === "hi" ? "/hi/about" : language === "es" ? "/es/about" : language === "pt" ? "/pt/about" : language === "fr" ? "/fr/about" : language === "ru" ? "/ru/about" : "/about"); // desktop
                   }
                 }}
               >
@@ -625,7 +769,7 @@ useEffect(() => {
                         transition: "all 0.3s ease",
                       }}
                     >
-                      {language === "ar" && cat.name_ar ? cat.name_ar : cat.name}
+                      {getCategoryTitle(cat)}
                     </span>
                     {index < exploreCategories.length - 1 && (
                       <>
@@ -659,7 +803,7 @@ useEffect(() => {
                      className={`category-pill ${selectedCategory === cat.slug ? "active" : ""}`}
                      onClick={() => setSelectedCategory(cat.slug)}
                   >
-                    {language === "ar" && cat.name_ar ? cat.name_ar : cat.name}
+                    {getCategoryTitle(cat)}
                   </button>
                 ))}
                 {hasMoreCategories && (
@@ -790,7 +934,7 @@ useEffect(() => {
               </p>
               <div>
                 <button onClick={()=>{
-                  router.push(language === "ar" ? "/ar/service#booking" : "/service#booking")
+                  router.push(language === "ar" ? "/ar/service#booking" : language === "hi" ? "/hi/service#booking" : language === "es" ? "/es/service#booking" : language === "pt" ? "/pt/service#booking" : language === "fr" ? "/fr/service#booking" : language === "ru" ? "/ru/service#booking" : "/service#booking")
                 }} className="read-more-btn">
                   <span className="white-circle">
                     <i className="fas fa-play"></i>
@@ -873,16 +1017,80 @@ useEffect(() => {
                   {project.image && (
                     <Image
                       src={`${project.image}`}
-                      alt={language === "ar" && project.title_ar ? project.title_ar : project.title}
+                      alt={
+                        language === "ar" && project.title_ar
+                          ? project.title_ar
+                          : language === "hi" && project.title_hi
+                          ? project.title_hi
+                          : language === "es" && project.title_es
+                          ? project.title_es
+                          : language === "pt" && project.title_pt
+                          ? project.title_pt
+                          : language === "fr" && (project as any).title_fr
+                          ? (project as any).title_fr
+                          : language === "ru" && (project as any).title_ru
+                          ? (project as any).title_ru
+                          : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                          ? t(project.title)
+                          : project.title
+                      }
                       width={400}
                       height={300}
                       style={{ objectFit: "cover" }}
                     />
                   )}
-                  <span className="location-pill">{language === "ar" && project.location_ar ? project.location_ar : project.location}</span>
+                  <span className="location-pill">
+                    {language === "ar" && project.location_ar
+                      ? project.location_ar
+                      : language === "hi" && project.location_hi
+                      ? project.location_hi
+                      : language === "es" && project.location_es
+                      ? project.location_es
+                      : language === "pt" && project.location_pt
+                      ? project.location_pt
+                      : language === "fr" && (project as any).location_fr
+                      ? (project as any).location_fr
+                      : language === "ru" && (project as any).location_ru
+                      ? (project as any).location_ru
+                      : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                      ? t(project.location)
+                      : project.location}
+                  </span>
                   <div className="card-info">
-                    <p className="small-title">{language === "ar" && project.subtitle_ar ? project.subtitle_ar : project.subtitle}</p>
-                    <p className="main-title">{language === "ar" && project.title_ar ? project.title_ar : project.title}</p>
+                    <p className="small-title">
+                      {language === "ar" && project.subtitle_ar
+                        ? project.subtitle_ar
+                        : language === "hi" && project.subtitle_hi
+                        ? project.subtitle_hi
+                        : language === "es" && project.subtitle_es
+                        ? project.subtitle_es
+                        : language === "pt" && project.subtitle_pt
+                        ? project.subtitle_pt
+                        : language === "fr" && (project as any).subtitle_fr
+                        ? (project as any).subtitle_fr
+                        : language === "ru" && (project as any).subtitle_ru
+                        ? (project as any).subtitle_ru
+                        : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                        ? t(project.subtitle)
+                        : project.subtitle}
+                    </p>
+                    <p className="main-title">
+                      {language === "ar" && project.title_ar
+                        ? project.title_ar
+                        : language === "hi" && project.title_hi
+                        ? project.title_hi
+                        : language === "es" && project.title_es
+                        ? project.title_es
+                        : language === "pt" && project.title_pt
+                        ? project.title_pt
+                        : language === "fr" && (project as any).title_fr
+                        ? (project as any).title_fr
+                        : language === "ru" && (project as any).title_ru
+                        ? (project as any).title_ru
+                        : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                        ? t(project.title)
+                        : project.title}
+                    </p>
                   </div>
                 </div>
               ))}

@@ -32,11 +32,51 @@ export async function generateMetadata(
   }
 
   const headersList = await headers();
-  const locale = headersList.get("x-locale") || "en";
+  const headerLocale = headersList.get("x-locale");
+  const locale = headerLocale === "ar" || headerLocale === "hi" || headerLocale === "es" || headerLocale === "pt" || headerLocale === "fr" || headerLocale === "ru" ? headerLocale : "en";
 
-  const title = locale === "ar" && post.title_ar ? post.title_ar : post.title;
-  const shortDesc = locale === "ar" && post.short_description_ar ? post.short_description_ar : post.short_description;
-  const content = locale === "ar" && post.content_ar ? post.content_ar : post.content;
+  const title =
+    locale === "ar" && post.title_ar
+      ? post.title_ar
+      : locale === "hi" && post.title_hi
+      ? post.title_hi
+      : locale === "es" && post.title_es
+      ? post.title_es
+      : locale === "pt" && post.title_pt
+      ? post.title_pt
+      : locale === "fr" && post.title_fr
+      ? post.title_fr
+      : locale === "ru" && (post as any).title_ru
+      ? (post as any).title_ru
+      : post.title;
+  const shortDesc =
+    locale === "ar" && post.short_description_ar
+      ? post.short_description_ar
+      : locale === "hi" && post.short_description_hi
+      ? post.short_description_hi
+      : locale === "es" && post.short_description_es
+      ? post.short_description_es
+      : locale === "pt" && post.short_description_pt
+      ? post.short_description_pt
+      : locale === "fr" && post.short_description_fr
+      ? post.short_description_fr
+      : locale === "ru" && (post as any).short_description_ru
+      ? (post as any).short_description_ru
+      : post.short_description;
+  const content =
+    locale === "ar" && post.content_ar
+      ? post.content_ar
+      : locale === "hi" && post.content_hi
+      ? post.content_hi
+      : locale === "es" && post.content_es
+      ? post.content_es
+      : locale === "pt" && post.content_pt
+      ? post.content_pt
+      : locale === "fr" && post.content_fr
+      ? post.content_fr
+      : locale === "ru" && (post as any).content_ru
+      ? (post as any).content_ru
+      : post.content;
 
   const blogSeoData: Record<string, { title: string; description: string }> = {
     "how-to-choose-the-right-tv-mount-for-your-space": {
@@ -54,14 +94,15 @@ export async function generateMetadata(
   };
 
   const customSeo = blogSeoData[slug];
-  const finalTitle = locale === "ar" ? title : (customSeo?.title || title);
-  const finalDescription = locale === "ar" ? (shortDesc || content?.substring(0, 160)) : (customSeo?.description || shortDesc || content?.substring(0, 160));
-  const author = locale === "ar" && post.author_ar ? post.author_ar : post.author;
+  const finalTitle = locale === "ar" || locale === "hi" || locale === "es" || locale === "pt" || locale === "fr" || locale === "ru" ? title : (customSeo?.title || title);
+  const finalDescription = locale === "ar" || locale === "hi" || locale === "es" || locale === "pt" || locale === "fr" || locale === "ru" ? (shortDesc || content?.substring(0, 160)) : (customSeo?.description || shortDesc || content?.substring(0, 160));
+  const author = locale === "ar" && post.author_ar ? post.author_ar : locale === "hi" && post.author_hi ? post.author_hi : locale === "es" && post.author_es ? post.author_es : locale === "pt" && post.author_pt ? post.author_pt : locale === "fr" && post.author_fr ? post.author_fr : locale === "ru" && (post as any).author_ru ? (post as any).author_ru : post.author;
   const image = locale === "ar" && post.image_ar ? post.image_ar : post.image;
 
   const imageUrl = image ? (image.startsWith('http') ? image : `${MEDIA_BASE_URL}${image}`) : null;
  
-  const canonical = locale === "ar" ? `https://skilltechonline.com/ar/blog/${slug}` : `https://skilltechonline.com/blog/${slug}`;
+  const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
+  const canonical = `https://skilltechonline.com${prefix}/blog/${slug}`;
 
   return {
     title: finalTitle,
@@ -107,7 +148,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
-  const postTitle = locale === "ar" && post.title_ar ? post.title_ar : post.title;
+  const postTitle = locale === "ar" && post.title_ar ? post.title_ar : locale === "hi" && post.title_hi ? post.title_hi : locale === "es" && post.title_es ? post.title_es : locale === "pt" && post.title_pt ? post.title_pt : locale === "fr" && post.title_fr ? post.title_fr : locale === "ru" && (post as any).title_ru ? (post as any).title_ru : post.title;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org/",

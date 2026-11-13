@@ -10,10 +10,18 @@ interface NewsItem {
   id: number;
   title: string;
   title_ar?: string;
+  title_hi?: string;
+  title_es?: string;
+  title_pt?: string;
+  title_fr?: string;
   slug: string;
   cover_image: string;
   content: string;
   content_ar?: string;
+  content_hi?: string;
+  content_es?: string;
+  content_pt?: string;
+  content_fr?: string;
   category?: { name: string } | string;
   published_at: string;
   video_url?: string;
@@ -119,20 +127,68 @@ export default function NewsMediaClient({ newsItems, totalCount }: NewsMediaClie
                       {getCategoryName(news.category)}
                     </span>
                     <span className="news-row-dot"></span>
-                    <span className="news-row-date">
-                      {new Date(news.published_at).toLocaleDateString(language === "ar" ? "ar-EG" : "en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
+                    <span className="news-row-date" suppressHydrationWarning>
+                      {new Date(news.published_at).toLocaleDateString(
+                        language === "ar"
+                          ? "ar-EG"
+                          : language === "hi"
+                          ? "hi-IN"
+                          : language === "es"
+                          ? "es-ES"
+                          : language === "pt"
+                          ? "pt-PT"
+                          : language === "fr"
+                          ? "fr-FR"
+                          : language === "ru"
+                          ? "ru-RU"
+                          : "en-US",
+                        {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        }
+                      )}
                     </span>
                   </div>
 
-                  <h2 className="news-row-title">{language === "ar" && news.title_ar ? news.title_ar : news.title}</h2>
+                  <h2 className="news-row-title">
+                    {language === "ar" && news.title_ar
+                      ? news.title_ar
+                      : language === "hi" && (news.title_hi || (news as any).title_hi)
+                      ? (news.title_hi || (news as any).title_hi)
+                      : language === "es" && (news.title_es || (news as any).title_es)
+                      ? (news.title_es || (news as any).title_es)
+                      : language === "pt" && (news.title_pt || (news as any).title_pt)
+                      ? (news.title_pt || (news as any).title_pt)
+                      : language === "fr" && (news.title_fr || (news as any).title_fr)
+                      ? (news.title_fr || (news as any).title_fr)
+                      : language === "ru" && ((news as any).title_ru)
+                      ? ((news as any).title_ru)
+                      : language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru"
+                      ? t(news.title)
+                      : news.title}
+                  </h2>
 
                   <div
                     className="news-content-body"
-                    dangerouslySetInnerHTML={{ __html: language === "ar" && news.content_ar ? news.content_ar : news.content }}
+                    dangerouslySetInnerHTML={{
+                      __html:
+                        language === "ar" && news.content_ar
+                          ? news.content_ar
+                          : language === "hi" && (news.content_hi || (news as any).content_hi)
+                          ? (news.content_hi || (news as any).content_hi)
+                          : language === "es" && (news.content_es || (news as any).content_es)
+                          ? (news.content_es || (news as any).content_es)
+                          : language === "pt" && (news.content_pt || (news as any).content_pt)
+                          ? (news.content_pt || (news as any).content_pt)
+                          : language === "fr" && (news.content_fr || (news as any).content_fr)
+                          ? (news.content_fr || (news as any).content_fr)
+                          : language === "ru" && ((news as any).content_ru)
+                          ? ((news as any).content_ru)
+                          : language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru"
+                          ? (t(news.content) || news.content)
+                          : news.content,
+                    }}
                   />
                 </div>
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { headers } from "next/headers";
+import { getServerLocale } from "@/lib/locale";
 import "./globals.css";
 import { fetchCategories, fetchProducts, fetchSiteSettings } from "@/lib/api";
 import Footer from "@/components/Footer";
@@ -59,8 +59,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const footerCategories = await fetchCategories(undefined, undefined, true);
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (

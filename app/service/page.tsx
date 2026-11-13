@@ -10,9 +10,27 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO('services');
-  const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/service' : 'https://skilltechonline.com/service';
+  const canonical = locale === "ar"
+    ? 'https://skilltechonline.com/ar/service'
+    : locale === "hi"
+    ? 'https://skilltechonline.com/hi/service'
+    : locale === "es"
+    ? 'https://skilltechonline.com/es/service'
+    : locale === "pt"
+    ? 'https://skilltechonline.com/pt/service'
+    : locale === "fr"
+    ? 'https://skilltechonline.com/fr/service'
+    : 'https://skilltechonline.com/service';
   const title = locale === "ar"
     ? "الخدمات | TV Wall Mounting & Installation Service | Skill Tech"
+    : locale === "hi"
+    ? "सेवाएं | TV Wall Mounting & Installation Service | Skill Tech"
+    : locale === "es"
+    ? "Servicios | TV Wall Mounting & Installation Service | Skill Tech"
+    : locale === "pt"
+    ? "Serviços | TV Wall Mounting & Installation Service | Skill Tech"
+    : locale === "fr"
+    ? "Services | Fixation Murale TV & Installation | Skill Tech"
     : "TV Wall Mounting & Installation Service | Skill Tech";
   const description = "Professional TV wall mounting and installation services in UAE. Skill Tech ensures safe, secure setups for homes and offices at competitive rates.";
 

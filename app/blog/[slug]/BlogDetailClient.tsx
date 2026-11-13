@@ -1,16 +1,69 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "@/components/Link";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export default function BlogDetailClient({ post, recentPosts }: { post: any, recentPosts: any[] }) {
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   const { language, t } = useLanguage();
+  const prefix = language === "ar" ? "/ar" : language === "hi" ? "/hi" : language === "es" ? "/es" : language === "pt" ? "/pt" : language === "fr" ? "/fr" : "";
+  const defaultUrl = `https://skilltechonline.com${prefix}/blog/${post.slug}`;
+  const [shareUrl, setShareUrl] = useState(defaultUrl);
 
-  const postTitle = language === "ar" && post.title_ar ? post.title_ar : post.title;
-  const postAuthor = language === "ar" && post.author_ar ? post.author_ar : post.author;
-  const postContent = language === "ar" && post.content_ar ? post.content_ar : post.content;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setShareUrl(window.location.href);
+    }
+  }, []);
+
+  const postTitle =
+    language === "ar" && post.title_ar
+      ? post.title_ar
+      : language === "hi" && post.title_hi
+      ? post.title_hi
+      : language === "es" && post.title_es
+      ? post.title_es
+      : language === "pt" && post.title_pt
+      ? post.title_pt
+      : language === "fr" && (post as any).title_fr
+      ? (post as any).title_fr
+      : language === "ru" && (post as any).title_ru
+      ? (post as any).title_ru
+      : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+      ? t(post.title)
+      : post.title;
+  const postAuthor =
+    language === "ar" && post.author_ar
+      ? post.author_ar
+      : language === "hi" && post.author_hi
+      ? post.author_hi
+      : language === "es" && post.author_es
+      ? post.author_es
+      : language === "pt" && post.author_pt
+      ? post.author_pt
+      : language === "fr" && (post as any).author_fr
+      ? (post as any).author_fr
+      : language === "ru" && (post as any).author_ru
+      ? (post as any).author_ru
+      : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+      ? (t(post.author) || "Admin")
+      : post.author;
+  const postContent =
+    language === "ar" && post.content_ar
+      ? post.content_ar
+      : language === "hi" && post.content_hi
+      ? post.content_hi
+      : language === "es" && post.content_es
+      ? post.content_es
+      : language === "pt" && post.content_pt
+      ? post.content_pt
+      : language === "fr" && (post as any).content_fr
+      ? (post as any).content_fr
+      : language === "ru" && (post as any).content_ru
+      ? (post as any).content_ru
+      : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+      ? (t(post.content) || post.content)
+      : post.content;
   const postImage = language === "ar" && post.image_ar ? post.image_ar : post.image;
 
   return (
@@ -28,9 +81,9 @@ export default function BlogDetailClient({ post, recentPosts }: { post: any, rec
                         </div>
                         
                         <div className="meta mb-3 text-muted small">
-                            <span className="me-3">
+                            <span className="me-3" suppressHydrationWarning>
                               <i className="fa fa-calendar-alt me-2 text-pink"></i>
-                              {new Date(post.created_at).toLocaleDateString(language === "ar" ? "ar-EG" : "en-US", {
+                              {new Date(post.created_at).toLocaleDateString(language === "ar" ? "ar-EG" : language === "hi" ? "hi-IN" : language === "es" ? "es-ES" : language === "pt" ? "pt-PT" : language === "fr" ? "fr-FR" : "en-US", {
                                 month: "long",
                                 day: "numeric",
                                 year: "numeric",
@@ -50,7 +103,7 @@ export default function BlogDetailClient({ post, recentPosts }: { post: any, rec
                             <div className="tags mb-4">
                                 <strong className="me-2 text-blue">{t("Tags:")}</strong>
                                 {post.tags.map((tag: string, i: number) => (
-                                    <span key={i} className="badge bg-light text-dark me-2 border">{tag}</span>
+                                    <span key={i} className="badge bg-light text-dark me-2 border">{t(tag)}</span>
                                 ))}
                             </div>
                         )}
@@ -72,7 +125,22 @@ export default function BlogDetailClient({ post, recentPosts }: { post: any, rec
                         <h2 className="mb-4 text-blue fw-bold h4">{t("Recent Posts")}</h2>
                         <div className="recent-posts">
                             {recentPosts.map((recent) => {
-                                const recentTitle = language === "ar" && recent.title_ar ? recent.title_ar : recent.title;
+                                const recentTitle =
+                                  language === "ar" && recent.title_ar
+                                    ? recent.title_ar
+                                    : language === "hi" && recent.title_hi
+                                    ? recent.title_hi
+                                    : language === "es" && recent.title_es
+                                    ? recent.title_es
+                                    : language === "pt" && recent.title_pt
+                                    ? recent.title_pt
+                                    : language === "fr" && (recent as any).title_fr
+                                    ? (recent as any).title_fr
+                                    : language === "ru" && (recent as any).title_ru
+                                    ? (recent as any).title_ru
+                                    : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                                    ? t(recent.title)
+                                    : recent.title;
                                 const recentImage = language === "ar" && recent.image_ar ? recent.image_ar : recent.image;
 
                                 return (

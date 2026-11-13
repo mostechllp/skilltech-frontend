@@ -1,11 +1,11 @@
 import React from "react";
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import { permanentRedirect } from "next/navigation";
 import SubCategoryView, {
   generateSubCategoryMetadata,
 } from "@/components/SubCategoryView";
 import { ARM_SLUGS, ARM_ALIASES } from "@/lib/armConstants";
+import { getServerLocale } from "@/lib/locale";
 
 export const dynamic = "force-dynamic";
 
@@ -26,9 +26,8 @@ type Props = {
 
 export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { categorySlug, subcategorySlug } = await params;
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
-  const prefix = locale === "ar" ? "/ar" : "";
+  const locale = await getServerLocale();
+  const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : "";
 
   if (categorySlug === "floor-stands") {
     permanentRedirect(`${prefix}/floor-stands-cart/${subcategorySlug}`);
@@ -53,9 +52,8 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
 export default async function SubCategoryPage({ params, searchParams }: Props) {
   const { categorySlug, subcategorySlug } = await params;
   const { page, arm } = (await searchParams) || {};
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
-  const prefix = locale === "ar" ? "/ar" : "";
+  const locale = await getServerLocale();
+  const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : "";
 
   if (categorySlug === "floor-stands") {
     permanentRedirect(`${prefix}/floor-stands-cart/${subcategorySlug}`);

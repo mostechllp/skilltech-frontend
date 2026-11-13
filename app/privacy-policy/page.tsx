@@ -1,22 +1,42 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { headers } from "next/headers";
+import { getServerLocale } from "@/lib/locale";
 import { translations } from "@/lib/translations";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
+
   const t = (key: string) => {
     const langDict = (translations[locale] as Record<string, string>) || {};
     return langDict[key] || key;
   };
 
-  const canonical = locale === "ar" ? "https://skilltechonline.com/ar/privacy-policy" : "https://skilltechonline.com/privacy-policy";
+  const canonical = locale === "ar"
+    ? "https://skilltechonline.com/ar/privacy-policy"
+    : locale === "hi"
+    ? "https://skilltechonline.com/hi/privacy-policy"
+    : locale === "es"
+    ? "https://skilltechonline.com/es/privacy-policy"
+    : locale === "pt"
+    ? "https://skilltechonline.com/pt/privacy-policy"
+    : locale === "fr"
+    ? "https://skilltechonline.com/fr/privacy-policy"
+    : "https://skilltechonline.com/privacy-policy";
 
   return {
-    title: locale === "ar" ? `سياسة الخصوصية | Skill Tech Electronics Trading LLC` : "Privacy Policy | Skill Tech Electronics Trading LLC",
+    title: locale === "ar"
+      ? `سياسة الخصوصية | Skill Tech Electronics Trading LLC`
+      : locale === "hi"
+      ? `गोपनीयता नीति | Skill Tech Electronics Trading LLC`
+      : locale === "es"
+      ? `Política de Privacidad | Skill Tech Electronics Trading LLC`
+      : locale === "pt"
+      ? `Política de Privacidade | Skill Tech Electronics Trading LLC`
+      : locale === "fr"
+      ? `Politique de Confidentialité | Skill Tech Electronics Trading LLC`
+      : "Privacy Policy | Skill Tech Electronics Trading LLC",
     description: "Read Skill Tech's privacy policy to understand how we collect, use, and protect your personal information across our website and AV services.",
     alternates: {
       canonical,
@@ -41,8 +61,8 @@ const breadcrumbJsonLd = {
 };
 
 export default async function PrivacyPolicyPage() {
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
+
   const t = (key: string) => {
     const langDict = (translations[locale] as Record<string, string>) || {};
     return langDict[key] || key;

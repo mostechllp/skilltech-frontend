@@ -18,6 +18,7 @@ export interface CountryConfig {
   phone?: string;
   email?: string;
   address_heading?: string;
+  address_heading_ar?: string;
   address?: string;
   address_ar?: string;
   whatsapp?: string;

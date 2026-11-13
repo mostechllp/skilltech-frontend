@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "@/components/Link";
 import React from "react";
 import { API_BASE_URL, fetchCatalogues, fetchCertificates } from "@/lib/api";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -10,6 +10,7 @@ interface SupportItem {
   id: number;
   title: string;
   title_ar?: string;
+  title_hi?: string;
   thumbnail: string;
   file: string;
 }
@@ -97,7 +98,20 @@ export default function SupportClient() {
                 <div className="row">
                   {catalogues.length > 0 ? (
                     catalogues.map((item) => {
-                      const itemTitle = language === "ar" && item.title_ar ? item.title_ar : item.title;
+                      const itemTitle =
+                        language === "ar" && item.title_ar
+                          ? item.title_ar
+                          : language === "hi" && item.title_hi
+                          ? item.title_hi
+                          : language === "es" && (item as any).title_es
+                          ? (item as any).title_es
+                          : language === "pt" && (item as any).title_pt
+                          ? (item as any).title_pt
+                          : language === "fr" && (item as any).title_fr
+                          ? (item as any).title_fr
+                          : language === "ru" && (item as any).title_ru
+                          ? (item as any).title_ru
+                          : t(item.title);
                       return (
                         <div className="col-md-3 col-sm-4 col-6 mb-4" key={item.id}>
                           <div
@@ -152,7 +166,20 @@ export default function SupportClient() {
                 <div className="row">
                   {certificates.length > 0 ? (
                     certificates.map((item) => {
-                      const itemTitle = language === "ar" && item.title_ar ? item.title_ar : item.title;
+                      const itemTitle =
+                        language === "ar" && item.title_ar
+                          ? item.title_ar
+                          : language === "hi" && item.title_hi
+                          ? item.title_hi
+                          : language === "es" && (item as any).title_es
+                          ? (item as any).title_es
+                          : language === "pt" && (item as any).title_pt
+                          ? (item as any).title_pt
+                          : language === "fr" && (item as any).title_fr
+                          ? (item as any).title_fr
+                          : language === "ru" && (item as any).title_ru
+                          ? (item as any).title_ru
+                          : t(item.title);
                       return (
                         <div className="col-md-3 col-sm-6 col-6 mb-4" key={item.id}>
                           <div

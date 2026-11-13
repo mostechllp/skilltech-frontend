@@ -77,7 +77,7 @@ export default function ContactClient() {
         comments: "",
       });
       setIsCaptchaVerified(false); // Reset captcha verification
-      router.push(language === "ar" ? "/ar/contact/thank-you" : "/contact/thank-you");
+      router.push(language === "ar" ? "/ar/contact/thank-you" : language === "hi" ? "/hi/contact/thank-you" : language === "es" ? "/es/contact/thank-you" : language === "pt" ? "/pt/contact/thank-you" : language === "fr" ? "/fr/contact/thank-you" : "/contact/thank-you");
     } catch (err: any) {
       setStatus({
         loading: false,
@@ -215,9 +215,35 @@ export default function ContactClient() {
               <div key={loc.id} className="col-md-4 mb-4">
                 <div className="contact-card h-100">
                   <i className={`fa fa-${loc.icon || "store"}`}></i>
-                  <h2>{language === "ar" && loc.title_ar ? loc.title_ar : loc.title}</h2>
+                  <h2>
+                    {language === "ar" && loc.title_ar
+                      ? loc.title_ar
+                      : language === "hi"
+                      ? (loc.title_hi || t(loc.title))
+                      : language === "es"
+                      ? ((loc as any).title_es || t(loc.title))
+                      : language === "pt"
+                      ? ((loc as any).title_pt || t(loc.title))
+                      : language === "fr"
+                      ? ((loc as any).title_fr || t(loc.title))
+                      : language === "ru"
+                      ? ((loc as any).title_ru || t(loc.title))
+                      : loc.title}
+                  </h2>
                   <p style={{ whiteSpace: "pre-line" }}>
-                    {language === "ar" && loc.address_ar ? loc.address_ar : loc.address}
+                    {language === "ar" && loc.address_ar
+                      ? loc.address_ar
+                      : language === "hi"
+                      ? (loc.address_hi || t(loc.address))
+                      : language === "es"
+                      ? ((loc as any).address_es || t(loc.address))
+                      : language === "pt"
+                      ? ((loc as any).address_pt || t(loc.address))
+                      : language === "fr"
+                      ? ((loc as any).address_fr || t(loc.address))
+                      : language === "ru"
+                      ? ((loc as any).address_ru || t(loc.address))
+                      : loc.address}
                   </p>
                   
                   {(loc.tel1 || loc.tel2 || loc.email || (language === "ar" ? loc.working_hours_ar : loc.working_hours)) && (
@@ -246,7 +272,22 @@ export default function ContactClient() {
                       {(language === "ar" ? loc.working_hours_ar : loc.working_hours) && (
                         <>
                           <br />
-                          <strong>{t("Working Hours:")}</strong> {language === "ar" ? loc.working_hours_ar : loc.working_hours}
+                          <strong>{t("Working Hours:")}</strong>{" "}
+                          <span>
+                            {language === "ar"
+                              ? loc.working_hours_ar
+                              : language === "hi"
+                              ? (loc.working_hours_hi || t(loc.working_hours))
+                              : language === "es"
+                              ? ((loc as any).working_hours_es || t(loc.working_hours))
+                              : language === "pt"
+                              ? ((loc as any).working_hours_pt || t(loc.working_hours))
+                              : language === "fr"
+                              ? ((loc as any).working_hours_fr || t(loc.working_hours))
+                              : language === "ru"
+                              ? ((loc as any).working_hours_ru || t(loc.working_hours))
+                              : loc.working_hours}
+                          </span>
                         </>
                       )}
                     </p>
@@ -277,9 +318,46 @@ export default function ContactClient() {
                 <div key={loc.id} className="col-lg-3 col-md-6 col-6">
                   <div className="location-card h-100">
                     <div className="location-info">
-                      <h3>{language === "ar" && loc.country_ar ? loc.country_ar : loc.country}</h3>
-                      <p className="location-address" title={language === "ar" && loc.address_ar ? loc.address_ar : loc.address}>
-                        {language === "ar" && loc.address_ar ? loc.address_ar : loc.address}
+                      <h3>
+                        {language === "ar" && loc.country_ar
+                          ? loc.country_ar
+                          : language === "hi"
+                          ? (loc.country_hi || t(loc.country))
+                          : language === "es"
+                          ? ((loc as any).country_es || t(loc.country))
+                          : language === "pt"
+                          ? ((loc as any).country_pt || t(loc.country))
+                          : language === "fr"
+                          ? ((loc as any).country_fr || t(loc.country))
+                          : language === "ru"
+                          ? ((loc as any).country_ru || t(loc.country))
+                          : loc.country}
+                      </h3>
+                      <p
+                        className="location-address"
+                        title={
+                          language === "ar" && loc.address_ar
+                            ? loc.address_ar
+                            : language === "hi"
+                            ? (loc.address_hi || t(loc.address))
+                            : language === "es"
+                            ? ((loc as any).address_es || t(loc.address))
+                            : language === "pt"
+                            ? ((loc as any).address_pt || t(loc.address))
+                            : language === "fr"
+                            ? ((loc as any).address_fr || t(loc.address))
+                            : language === "ru"
+                            ? ((loc as any).address_ru || t(loc.address))
+                            : loc.address
+                        }
+                      >
+                        {language === "ar" && loc.address_ar
+                          ? loc.address_ar
+                          : language === "hi"
+                          ? (loc.address_hi || t(loc.address))
+                          : language === "es"
+                          ? ((loc as any).address_es || t(loc.address))
+                          : loc.address}
                       </p>
 
                       <p className="location-email" title={loc.email}>
