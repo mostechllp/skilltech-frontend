@@ -482,13 +482,13 @@ const rightCategories = categories ? categories.slice(8) : [];
                   </div>
                   <div className="contact-text">
                     <h3 className="contact-title">
-                      {country.address_heading
-                        ? (language === "ar" ? t(country.address_heading) : country.address_heading)
-                        : (language === "ar" && settings?.address_heading_ar
-                          ? settings.address_heading_ar
-                          : settings?.address_heading
-                          ? t(settings.address_heading)
-                          : t("Head Office"))}
+                      {language === "ar"
+                        ? (country.address_heading_ar ||
+                            (country.address_heading ? t(country.address_heading) : null) ||
+                            settings?.address_heading_ar ||
+                            (settings?.address_heading ? t(settings.address_heading) : t("Head Office")))
+                        : (country.address_heading ||
+                            (settings?.address_heading ? t(settings.address_heading) : t("Head Office")))}
                     </h3>
                     {country.address ? (
                       <p style={{ whiteSpace: "pre-line" }}>
