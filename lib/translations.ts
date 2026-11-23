@@ -28,7 +28,7 @@ export const translations = {
     "Request a Quote": "Request a Quote",
     "What Our Customers Say": "What Our Customers Say",
     "View All Reviews on Google": "View All Reviews on Google",
-    "1,383+ Google Reviews": "1,383+ Google Reviews",
+    "1,400+ Google Reviews": "1,400+ Google Reviews",
     "Customer Reviews": "Customer Reviews",
     "Real feedback from our satisfied clients across the UAE.": "Real feedback from our satisfied clients across the UAE.",
 
@@ -498,7 +498,7 @@ export const translations = {
     "Request a Quote": "طلب عرض سعر",
     "What Our Customers Say": "ماذا يقول عملاؤنا",
     "View All Reviews on Google": "عرض جميع التقييمات على Google",
-    "1,383+ Google Reviews": "أكثر من 1,383 تقييم على Google",
+    "1,400+ Google Reviews": "أكثر من 1,400 تقييم على Google",
     "Customer Reviews": "آراء العملاء",
     "Real feedback from our satisfied clients across the UAE.": "آراء حقيقية من عملائنا الكرام في جميع أنحاء الإمارات.",
 
@@ -970,7 +970,7 @@ export const translations = {
     "Request a Quote": "कोटेशन का अनुरोध करें",
     "What Our Customers Say": "हमारे ग्राहक क्या कहते हैं",
     "View All Reviews on Google": "गूगल पर सभी समीक्षाएं देखें",
-    "1,383+ Google Reviews": "1,383+ गूगल समीक्षाएं",
+    "1,400+ Google Reviews": "1,400+ गूगल समीक्षाएं",
     "Customer Reviews": "ग्राहक समीक्षाएं",
     "Real feedback from our satisfied clients across the UAE.": "पूरे यूएई में हमारे संतुष्ट ग्राहकों से वास्तविक प्रतिक्रिया।",
 
@@ -1830,7 +1830,7 @@ export const translations = {
     "Request a Quote": "Solicitar Cotización",
     "What Our Customers Say": "Lo Que Dicen Nuestros Clientes",
     "View All Reviews on Google": "Ver Todas las Reseñas en Google",
-    "1,383+ Google Reviews": "Más de 1.383 Reseñas en Google",
+    "1,400+ Google Reviews": "Más de 1.400 Reseñas en Google",
     "Customer Reviews": "Reseñas de Clientes",
     "Real feedback from our satisfied clients across the UAE.": "Comentarios reales de nuestros clientes satisfechos en los EAU.",
 
@@ -2591,7 +2591,7 @@ export const translations = {
     "Request a Quote": "Solicitar Orçamento",
     "What Our Customers Say": "O Que Nossos Clientes Dizem",
     "View All Reviews on Google": "Ver Todas as Avaliações no Google",
-    "1,383+ Google Reviews": "Mais de 1.383 Avaliações no Google",
+    "1,400+ Google Reviews": "Mais de 1.400 Avaliações no Google",
     "Customer Reviews": "Avaliações de Clientes",
     "Real feedback from our satisfied clients across the UAE.": "Feedback real de nossos clientes satisfeitos em todos os Emirados Árabes Unidos.",
 
@@ -3372,7 +3372,7 @@ export const translations = {
     "Request a Quote": "Demander un Devis",
     "What Our Customers Say": "Ce Que Disent Nos Clients",
     "View All Reviews on Google": "Voir Tous les Avis sur Google",
-    "1,383+ Google Reviews": "Plus de 1 383 Avis Google",
+    "1,400+ Google Reviews": "Plus de 1 400 Avis Google",
     "Customer Reviews": "Avis Clients",
     "Real feedback from our satisfied clients across the UAE.": "Retours authentiques de nos clients satisfaits à travers les Émirats Arabes Unis.",
 
@@ -4136,7 +4136,7 @@ export const translations = {
     "Request a Quote": "Запросить цену",
     "What Our Customers Say": "Отзывы наших клиентов",
     "View All Reviews on Google": "Все отзывы в Google",
-    "1,383+ Google Reviews": "Более 1 383 отзывов в Google",
+    "1,400+ Google Reviews": "Более 1 400 отзывов в Google",
     "Customer Reviews": "Отзывы клиентов",
     "Real feedback from our satisfied clients across the UAE.": "Реальные отзывы наших довольных клиентов в ОАЭ.",
     "Find Your Way to Us": "Как нас найти",

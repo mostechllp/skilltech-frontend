@@ -116,7 +116,7 @@ export default function CustomerReviews({ reviewsUrl = "https://www.google.com/s
             </div>
 
             <span style={{ color: "#64748b", fontSize: "14px", fontWeight: "500" }}>
-              {t("1,383+ Google Reviews")}
+              {t("1,400+ Google Reviews")}
             </span>
           </div>
         </div>

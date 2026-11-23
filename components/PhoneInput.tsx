@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useCountry } from "@/lib/CountryContext";
 
 interface Country {
   name: string;
@@ -106,19 +107,34 @@ export default function PhoneInput({
   "aria-label": ariaLabel,
 }: PhoneInputProps) {
   const { language, dir } = useLanguage();
+  
+  let currentCountryCode = "ae";
+  try {
+    const countryContext = useCountry();
+    if (countryContext?.countryCode) {
+      currentCountryCode = countryContext.countryCode;
+    }
+  } catch {
+    currentCountryCode = "ae";
+  }
+
+  const defaultCountry =
+    COUNTRIES.find((c) => c.code.toLowerCase() === currentCountryCode.toLowerCase()) || COUNTRIES[0];
+
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState<Country>(COUNTRIES[0]); // default UAE +971
+  const [selectedCountry, setSelectedCountry] = useState<Country>(defaultCountry);
   const [localNumber, setLocalNumber] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Sort countries by dialCode length descending to ensure accurate dial code matching
   const sortedCountries = [...COUNTRIES].sort((a, b) => b.dialCode.length - a.dialCode.length);
 
-  // Parse external value on mount/change
+  // Parse external value on mount/change, or adopt active GCC country if empty
   useEffect(() => {
     if (!value) {
       setLocalNumber("");
+      setSelectedCountry(defaultCountry);
       return;
     }
     
@@ -128,11 +144,10 @@ export default function PhoneInput({
       setSelectedCountry(matched);
       setLocalNumber(value.slice(matched.dialCode.length).trim());
     } else {
-      // If it doesn't match any known country, default to UAE and set local number to the whole value
-      setSelectedCountry(COUNTRIES[0]);
+      setSelectedCountry(defaultCountry);
       setLocalNumber(value);
     }
-  }, [value]);
+  }, [value, currentCountryCode]);
 
   // Handle local text input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

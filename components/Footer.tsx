@@ -328,7 +328,7 @@ const rightCategories = categories ? categories.slice(8) : [];
                         </div>
                       </div>
                       <span style={{ fontSize: "11px", color: "rgba(255, 255, 255, 0.8)", fontWeight: "500" }}>
-                        {t("1,383+ Google Reviews")}
+                        {t("1,400+ Google Reviews")}
                       </span>
                     </div>
                   </a>
