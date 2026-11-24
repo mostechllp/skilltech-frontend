@@ -305,7 +305,9 @@ export default function ServiceClient() {
                     ? item.time_slot_pt
                     : language === "fr" && (item as any).time_slot_fr
                     ? (item as any).time_slot_fr
-                    : (language === "hi" || language === "es" || language === "pt" || language === "fr")
+                    : language === "ru" && (item as any).time_slot_ru
+                    ? (item as any).time_slot_ru
+                    : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
                     ? t(item.time_slot)
                     : item.time_slot}
                 </option>
@@ -626,7 +628,9 @@ export default function ServiceClient() {
                           ? faq.question_pt
                           : language === "fr" && (faq as any).question_fr
                           ? (faq as any).question_fr
-                          : (language === "hi" || language === "es" || language === "pt" || language === "fr")
+                          : language === "ru" && (faq as any).question_ru
+                          ? (faq as any).question_ru
+                          : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
                           ? t(faq.question)
                           : faq.question}
                         <span className="arrowed">▼</span>
@@ -648,7 +652,9 @@ export default function ServiceClient() {
                             ? faq.answer_pt
                             : language === "fr" && (faq as any).answer_fr
                             ? (faq as any).answer_fr
-                            : (language === "hi" || language === "es" || language === "pt" || language === "fr")
+                            : language === "ru" && (faq as any).answer_ru
+                            ? (faq as any).answer_ru
+                            : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
                             ? t(faq.answer)
                             : faq.answer}
                         </p>

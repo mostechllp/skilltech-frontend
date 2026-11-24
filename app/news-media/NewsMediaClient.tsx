@@ -14,6 +14,7 @@ interface NewsItem {
   title_es?: string;
   title_pt?: string;
   title_fr?: string;
+  title_ru?: string;
   slug: string;
   cover_image: string;
   content: string;
@@ -22,6 +23,7 @@ interface NewsItem {
   content_es?: string;
   content_pt?: string;
   content_fr?: string;
+  content_ru?: string;
   category?: { name: string } | string;
   published_at: string;
   video_url?: string;

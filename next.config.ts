@@ -52,6 +52,22 @@ const nextConfig: NextConfig = {
         source: "/pt/:path*",
         destination: "/:path*",
       },
+      {
+        source: "/fr",
+        destination: "/",
+      },
+      {
+        source: "/fr/:path*",
+        destination: "/:path*",
+      },
+      {
+        source: "/ru",
+        destination: "/",
+      },
+      {
+        source: "/ru/:path*",
+        destination: "/:path*",
+      },
     ];
   },
   async redirects() {
