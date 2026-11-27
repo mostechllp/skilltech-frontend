@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { headers } from "next/headers";
+import { getServerLocale } from "@/lib/locale";
 import "./globals.css";
 import { fetchCategories, fetchProducts, fetchSiteSettings } from "@/lib/api";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { LanguageProvider } from "@/lib/LanguageContext";
+import { CountryProvider } from "@/lib/CountryContext";
 import PWARegistration from "@/components/PWARegistration";
+import VisitorTracker from "@/components/VisitorTracker";
 
 import { Poppins } from "next/font/google";
 
@@ -57,8 +59,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const footerCategories = await fetchCategories(undefined, undefined, true);
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
@@ -98,12 +99,15 @@ export default async function RootLayout({
           }}
         />
         <PWARegistration />
+        <VisitorTracker />
         <LanguageProvider initialLanguage={locale}>
-          <Header />
-          <main id="main-content" role="main">
-            {children}
-          </main>
-          <Footer categories={footerCategories} />
+          <CountryProvider>
+            <Header />
+            <main id="main-content" role="main">
+              {children}
+            </main>
+            <Footer categories={footerCategories} />
+          </CountryProvider>
         </LanguageProvider>
         
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" strategy="beforeInteractive" />

@@ -10,9 +10,27 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO('contact');
-  const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/contact' : 'https://skilltechonline.com/contact';
+  const canonical = locale === "ar"
+    ? 'https://skilltechonline.com/ar/contact'
+    : locale === "hi"
+    ? 'https://skilltechonline.com/hi/contact'
+    : locale === "es"
+    ? 'https://skilltechonline.com/es/contact'
+    : locale === "pt"
+    ? 'https://skilltechonline.com/pt/contact'
+    : locale === "fr"
+    ? 'https://skilltechonline.com/fr/contact'
+    : 'https://skilltechonline.com/contact';
   const title = locale === "ar"
     ? "اتصل بنا | Contact Skill Tech | TV Mounting Services in UAE Today"
+    : locale === "hi"
+    ? "संपर्क करें | Contact Skill Tech | TV Mounting Services in UAE Today"
+    : locale === "es"
+    ? "Contacto | Contact Skill Tech | TV Mounting Services in UAE Today"
+    : locale === "pt"
+    ? "Contato | Contact Skill Tech | TV Mounting Services in UAE Today"
+    : locale === "fr"
+    ? "Contactez-nous | Contact Skill Tech | Services de Fixation TV aux EAU"
     : "Contact Skill Tech | TV Mounting Services in UAE Today";
   const description = "Contact Skill Tech today for professional TV mounting services across UAE. Reach our expert team for quotes, bookings, and fast installation support.";
 

@@ -8,7 +8,7 @@ type PageProps = {
 
 export default async function ContactThankYou({ searchParams }: PageProps) {
   const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = (headersList.get("x-locale") as "en" | "ar" | "hi" | "es" | "pt") || "en";
 
   const resolvedSearchParams = await (searchParams instanceof Promise ? searchParams : Promise.resolve(searchParams || {}));
   const ref = typeof resolvedSearchParams.ref === 'string' ? resolvedSearchParams.ref : undefined;

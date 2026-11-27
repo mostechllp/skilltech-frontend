@@ -20,6 +20,54 @@ const nextConfig: NextConfig = {
         source: "/catalogue.pdf",
         destination,
       },
+      {
+        source: "/ar",
+        destination: "/",
+      },
+      {
+        source: "/ar/:path*",
+        destination: "/:path*",
+      },
+      {
+        source: "/hi",
+        destination: "/",
+      },
+      {
+        source: "/hi/:path*",
+        destination: "/:path*",
+      },
+      {
+        source: "/es",
+        destination: "/",
+      },
+      {
+        source: "/es/:path*",
+        destination: "/:path*",
+      },
+      {
+        source: "/pt",
+        destination: "/",
+      },
+      {
+        source: "/pt/:path*",
+        destination: "/:path*",
+      },
+      {
+        source: "/fr",
+        destination: "/",
+      },
+      {
+        source: "/fr/:path*",
+        destination: "/:path*",
+      },
+      {
+        source: "/ru",
+        destination: "/",
+      },
+      {
+        source: "/ru/:path*",
+        destination: "/:path*",
+      },
     ];
   },
   async redirects() {
@@ -50,6 +98,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/hi/floor-stands",
+        destination: "/hi/floor-stands-cart",
+        permanent: true,
+      },
+      {
+        source: "/hi/floor-stands/:sub",
+        destination: "/hi/floor-stands-cart/:sub",
+        permanent: true,
+      },
+      {
         source: "/tv",
         destination: "/led-tv",
         permanent: true,
@@ -67,6 +125,56 @@ const nextConfig: NextConfig = {
       {
         source: "/ar/tv/:sub*",
         destination: "/ar/led-tv/:sub*",
+        permanent: true,
+      },
+      {
+        source: "/hi/tv",
+        destination: "/hi/led-tv",
+        permanent: true,
+      },
+      {
+        source: "/hi/tv/:sub*",
+        destination: "/hi/led-tv/:sub*",
+        permanent: true,
+      },
+      {
+        source: "/es/floor-stands",
+        destination: "/es/floor-stands-cart",
+        permanent: true,
+      },
+      {
+        source: "/es/floor-stands/:sub",
+        destination: "/es/floor-stands-cart/:sub",
+        permanent: true,
+      },
+      {
+        source: "/es/tv",
+        destination: "/es/led-tv",
+        permanent: true,
+      },
+      {
+        source: "/es/tv/:sub*",
+        destination: "/es/led-tv/:sub*",
+        permanent: true,
+      },
+      {
+        source: "/pt/floor-stands",
+        destination: "/pt/floor-stands-cart",
+        permanent: true,
+      },
+      {
+        source: "/pt/floor-stands/:sub",
+        destination: "/pt/floor-stands-cart/:sub",
+        permanent: true,
+      },
+      {
+        source: "/pt/tv",
+        destination: "/pt/led-tv",
+        permanent: true,
+      },
+      {
+        source: "/pt/tv/:sub*",
+        destination: "/pt/led-tv/:sub*",
         permanent: true,
       },
       {

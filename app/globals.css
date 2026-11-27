@@ -148,75 +148,103 @@ body {
 .country-dropdown {
   position: relative;
   cursor: pointer;
-}
-
-@media (min-width: 992px) {
-  .country-dropdown {
-    flex: 0 0 200px;
-    display: flex;
-    justify-content: flex-end;
-    margin-inline-start: auto;
-    /* Push to end */
-  }
-}
-
-.country-dropdown span {
-  color: #fff;
+  user-select: none;
 }
 
 .selected-country {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  border: 1px solid #ccc;
-  border-radius: 25px;
-  padding: 4px 8px;
-  color: #000;
+  gap: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  padding: 3px 10px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.selected-country:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #ffffff;
 }
 
 .selected-country img {
   width: 18px;
-  height: 18px;
-  object-fit: contain;
+  height: 13px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.selected-country span {
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
 .country-list {
   display: none;
   position: absolute;
-  top: 110%;
-  left: 0;
-  background: #fff;
-  border: 1px solid #ccc;
-  border-radius: 6px;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
   list-style: none;
-  width: 150px;
-  z-index: 10;
-  padding-left: 0;
-
+  min-width: 180px;
+  z-index: 1050;
+  padding: 6px 0;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  margin: 0;
 }
 
-.country-list img {
-  width: 18px;
-  height: 18px;
-  object-fit: contain;
-}
-
-.country-list ul {
-  padding-left: 10px;
+[dir="rtl"] .country-list {
+  right: auto;
+  left: 0;
 }
 
 .country-list li {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 5px 10px;
-  color: #000;
-  font-size: 14px;
+  gap: 10px;
+  padding: 8px 14px;
+  color: #1e293b;
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
 }
 
 .country-list li:hover {
-  background: #f0f0f0;
+  background: #f1f5f9;
+  color: #3351a3;
+}
+
+.country-list li.active {
+  background: #eef2ff;
+  color: #3351a3;
+  font-weight: 600;
+}
+
+.country-list img {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.language-dropdown .selected-language {
+  min-width: 85px;
+}
+
+.language-list {
+  min-width: 130px !important;
 }
 
 
@@ -240,76 +268,109 @@ body {
   /* 🔹 Left social icons */
   .left-icons {
     display: flex;
-    gap: 10px;
+    gap: 5px !important;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .left-icons a {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 11px !important;
+    flex-shrink: 0;
   }
 
   .left-icons a i {
-    font-size: 14px;
-    color: #3351a3;
-    background: #f5f5f5;
-    border-radius: 50%;
-    padding: 6px;
-    transition: all 0.3s ease;
+    font-size: 11px !important;
   }
 
-  .left-icons a i:hover {
-    background: #f10182;
-    color: #fff;
-  }
-
-  /* 🔹 Country flag on right */
+  /* 🔹 Country dropdown on mobile */
   .country-dropdown {
     position: relative;
-    width: 75px;
+    width: auto !important;
+    flex-shrink: 0;
   }
 
   .selected-country {
-    display: flex;
+    display: inline-flex !important;
     align-items: center;
-    gap: 6px;
+    gap: 5px !important;
+    padding: 3px 8px !important;
+    height: 26px !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 20px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
     cursor: pointer;
+    box-sizing: border-box;
   }
 
   .selected-country img {
-    width: 16px;
-    height: 16px;
-    object-fit: contain;
+    width: 16px !important;
+    height: 11px !important;
+    object-fit: cover !important;
+    border-radius: 2px !important;
   }
 
   .selected-country span {
-    font-size: 10px;
-    color: #fff;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    color: #fff !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
   }
 
-  /* Hide dropdown list by default (if using JS toggle) */
+  .selected-country i {
+    font-size: 8px !important;
+  }
+
   .country-list {
     display: none;
-    padding-left: 0;
-    width: 80px;
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    width: auto !important;
+    min-width: 175px !important;
+    max-width: 250px !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    padding: 6px 0 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2) !important;
+    z-index: 99999 !important;
+    margin: 0 !important;
+  }
 
+  [dir="rtl"] .country-list {
+    right: auto !important;
+    left: 0 !important;
   }
 
   .country-list li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 5px 10px;
-    color: #000;
-    font-size: 10px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 9px !important;
+    padding: 8px 12px !important;
+    color: #1e293b !important;
+    font-size: 12.5px !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+  }
+
+  .country-list li img {
+    width: 18px !important;
+    height: 12px !important;
+    object-fit: cover !important;
+  }
+
+  .country-list li.active {
+    background: #eef2ff !important;
+    color: #3351a3 !important;
+    font-weight: 600 !important;
   }
 
   /* Prevent top-header overflow on mobile */
   .top-header-inner {
     gap: 6px !important;
-  }
-
-  .left-icons {
-    gap: 6px !important;
-  }
-
-  .left-icons a i {
-    font-size: 11px !important;
-    padding: 4px !important;
   }
 
   .top-header-inner .gap-3 {
@@ -3475,7 +3536,7 @@ textarea {
   .connect-right h2,
   .connect-right h3 {
     font-size: 18px;
-    text-align: left;
+    text-align: center;
   }
 
   .connect-left p {
@@ -3490,12 +3551,25 @@ textarea {
     text-align: center;
   }
 
+  .contact-text {
+    width: 100%;
+    text-align: center;
+  }
+
+  .contact-text h3,
+  .contact-text h4,
+  .contact-text h5 {
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
   .icon-circle {
     margin-bottom: 5px;
   }
 
   .social-icons {
     justify-content: center;
+    flex-wrap: wrap;
   }
 
   .contact-form {

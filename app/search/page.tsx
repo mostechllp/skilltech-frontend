@@ -12,7 +12,7 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = (headersList.get("x-locale") as "en" | "ar" | "hi" | "es" | "pt" | "fr") || "en";
   const t = (key: string) => {
     const langDict = (translations[locale] as Record<string, string>) || {};
     return langDict[key] || key;
@@ -37,7 +37,7 @@ export default async function SearchPage({
   searchParams: Promise<{ q?: string; page?: string }>;
 }) {
   const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = (headersList.get("x-locale") as "en" | "ar" | "hi" | "es" | "pt" | "fr") || "en";
   const t = (key: string) => {
     const langDict = (translations[locale] as Record<string, string>) || {};
     return langDict[key] || key;

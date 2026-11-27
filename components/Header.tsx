@@ -16,6 +16,7 @@ import OldMegaMenu from "./OldMegaMenu";
 import NewMegaMenu from "./NewMegaMenu";
 import RequestQuoteModal from "./RequestQuoteModal";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useCountry } from "@/lib/CountryContext";
 
 interface SubCategory {
   id: number;
@@ -69,11 +70,11 @@ export default function Header() {
   const { language, setLanguage, t } = useLanguage();
   const router = useRouter();
   const pathname = usePathname();
+  const { country: selectedCountry, setCountry, countries } = useCountry();
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState({
-    name: "UAE",
-    flag: "/images/flag1.png",
-  });
+  const countryDropdownRef = useRef<HTMLDivElement>(null);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const langDropdownRef = useRef<HTMLDivElement>(null);
   const [mainCategories, setMainCategories] = useState<MainCategory[]>([]);
   const [settings, setSettings] = useState<SiteSettings | null>(null);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
@@ -162,11 +163,17 @@ export default function Header() {
     return () => clearTimeout(delayDebounceFn);
   }, [searchQuery]);
 
-  // Handle click outside to close search results
+  // Handle click outside to close search results and country dropdown
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
         setShowResults(false);
+      }
+      if (countryDropdownRef.current && !countryDropdownRef.current.contains(event.target as Node)) {
+        setIsCountryDropdownOpen(false);
+      }
+      if (langDropdownRef.current && !langDropdownRef.current.contains(event.target as Node)) {
+        setIsLangDropdownOpen(false);
       }
     }
     document.addEventListener("click", handleClickOutside);
@@ -178,8 +185,8 @@ export default function Header() {
   const handleSearchSubmit = () => {
     if (searchQuery.trim()) {
       setShowResults(false);
-      const searchPath = language === "ar" ? "/ar/search" : "/search";
-      router.push(`${searchPath}?q=${encodeURIComponent(searchQuery)}`);
+      const searchPrefix = language === "ar" ? "/ar" : language === "hi" ? "/hi" : language === "es" ? "/es" : language === "pt" ? "/pt" : language === "fr" ? "/fr" : language === "ru" ? "/ru" : "";
+      router.push(`${searchPrefix}/search?q=${encodeURIComponent(searchQuery)}`);
     }
   };
 
@@ -209,15 +216,27 @@ export default function Header() {
 
   const isActive = (path: string) => {
     if (!pathname) return false;
-    if (path === "/") return pathname === "/" || pathname === "/ar";
-    return pathname === path || pathname === `/ar${path}` || pathname.startsWith(`${path}/`) || pathname.startsWith(`/ar${path}/`);
+    if (path === "/") return pathname === "/" || pathname === "/ar" || pathname === "/hi" || pathname === "/es" || pathname === "/pt" || pathname === "/fr";
+    return (
+      pathname === path ||
+      pathname === `/ar${path}` ||
+      pathname === `/hi${path}` ||
+      pathname === `/es${path}` ||
+      pathname === `/pt${path}` ||
+      pathname === `/fr${path}` ||
+      pathname.startsWith(`${path}/`) ||
+      pathname.startsWith(`/ar${path}/`) ||
+      pathname.startsWith(`/hi${path}/`) ||
+      pathname.startsWith(`/es${path}/`) ||
+      pathname.startsWith(`/pt${path}/`) ||
+      pathname.startsWith(`/fr${path}/`)
+    );
   };
 
   const isProductActive = () => {
     if (!pathname) return false;
-    const cleanPath = pathname.startsWith("/ar/") 
-      ? pathname.replace(/^\/ar/, "") 
-      : (pathname === "/ar" ? "/" : pathname);
+    const cleanPath = pathname
+      .replace(/^\/(ar|hi|es|pt|fr)/, "") || "/";
 
     if (cleanPath === "/category" || cleanPath.startsWith("/category/"))
       return true;
@@ -236,12 +255,6 @@ export default function Header() {
       });
     });
   };
-
-  const countries = [
-    { name: "UAE", flag: "/images/flag1.png", value: "uae" },
-    { name: "India", flag: "/images/flag1.png", value: "india" },
-    { name: "Saudi Arabia", flag: "/images/flag1.png", value: "saudi" },
-  ];
 
   return (
     <>
@@ -316,93 +329,177 @@ export default function Header() {
 
           {/* Center: Contact Info */}
           <div className="right-info">
-            {settings?.email && (
+            {(selectedCountry?.email || settings?.email) && (
               <Link
-                href={`mailto:${settings?.email}`}
+                href={`mailto:${selectedCountry?.email || settings?.email}`}
                 style={{ color: "inherit", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", whiteSpace: "nowrap" }}
               >
-                <i className="fa fa-envelope"></i> {settings.email}
+                <i className="fa fa-envelope"></i> {selectedCountry?.email || settings?.email}
               </Link>
             )}
-            {settings?.phone && (
+            {(selectedCountry?.phone || settings?.phone) && (
               <Link
-                href={`tel:${settings.phone}`}
+                href={`tel:${selectedCountry?.phone || settings?.phone}`}
                 style={{ color: "inherit", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", whiteSpace: "nowrap" }}
               >
-                <i className="fa fa-phone"></i> <span dir="ltr" style={{ whiteSpace: "nowrap" }}>{settings.phone}</span>
+                <i className="fa fa-phone"></i> <span dir="ltr" style={{ whiteSpace: "nowrap" }}>{selectedCountry?.phone || settings?.phone}</span>
               </Link>
             )}
-            {settings?.phone_number2 && (
+            {(selectedCountry?.mobile || settings?.phone_number2) && (
               <Link
-                href={`tel:${settings.phone_number2}`}
+                href={`tel:${selectedCountry?.mobile || settings?.phone_number2}`}
                 style={{ color: "inherit", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", whiteSpace: "nowrap" }}
               >
-                <i className="fa fa-phone"></i> <span dir="ltr" style={{ whiteSpace: "nowrap" }}>{settings.phone_number2}</span>
+                <i className="fa fa-phone"></i> <span dir="ltr" style={{ whiteSpace: "nowrap" }}>{selectedCountry?.mobile || settings?.phone_number2}</span>
               </Link>
             )}
           </div>
 
           {/* Right: Country Dropdown & Language Switcher */}
-          <div className="d-flex align-items-center gap-3" style={{ marginInlineStart: "auto" }}>
-            <div className="country-dropdown">
+          <div className="d-flex align-items-center gap-2 gap-sm-3" style={{ marginInlineStart: "auto", flexShrink: 0 }}>
+            <div className="country-dropdown" ref={countryDropdownRef}>
               <div
                 className="selected-country"
-                // onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
+                role="button"
+                tabIndex={0}
+                aria-haspopup="listbox"
+                aria-expanded={isCountryDropdownOpen}
+                aria-label="Select Country"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setIsCountryDropdownOpen(!isCountryDropdownOpen);
+                  }
+                }}
               >
                 <Image
                   src={selectedCountry.flag}
                   alt={`${selectedCountry.name} Flag`}
                   width={18}
-                  height={18}
-                  style={{ objectFit: "contain" }}
+                  height={13}
+                  style={{ objectFit: "cover", borderRadius: "2px" }}
                 />
-                <span>{t(selectedCountry.name)}</span>
+                <span className="d-none d-sm-inline">
+                  {language === "ar" ? selectedCountry.name_ar : t(selectedCountry.name)}
+                </span>
+                <span className="d-inline d-sm-none">
+                  {language === "ar"
+                    ? (selectedCountry.short_name_ar || selectedCountry.name_ar)
+                    : (selectedCountry.short_name || selectedCountry.name)}
+                </span>
+                <i
+                  className="fa fa-chevron-down"
+                  style={{
+                    fontSize: "9px",
+                    color: "#ffffff",
+                    opacity: 0.8,
+                    transition: "transform 0.2s ease",
+                    transform: isCountryDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                ></i>
               </div>
               <ul
                 className="country-list"
                 style={{ display: isCountryDropdownOpen ? "block" : "none" }}
+                role="listbox"
               >
-                {countries.map((country) => (
+                {countries.map((c) => (
                   <li
-                    key={country.value}
-                    data-value={country.value}
+                    key={c.code}
+                    className={c.code === selectedCountry.code ? "active" : ""}
                     onClick={() => {
-                      setSelectedCountry({
-                        name: country.name,
-                        flag: country.flag,
-                      });
+                      setCountry(c.code);
                       setIsCountryDropdownOpen(false);
                     }}
+                    role="option"
+                    aria-selected={c.code === selectedCountry.code}
                   >
                     <Image
-                      src={country.flag}
-                      alt={`${country.name} Flag`}
-                      width={18}
-                      height={18}
-                      style={{ objectFit: "contain" }}
-                    />{" "}
-                    {t(country.name)}
+                      src={c.flag}
+                      alt={`${c.name} Flag`}
+                      width={20}
+                      height={14}
+                      style={{ objectFit: "cover", borderRadius: "2px" }}
+                    />
+                    <span>{language === "ar" ? c.name_ar : t(c.name)}</span>
+                    {c.code === selectedCountry.code && (
+                      <i
+                        className="fa fa-check"
+                        style={{ fontSize: "11px", color: "#3351a3", marginInlineStart: "auto" }}
+                      ></i>
+                    )}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="lang-switcher">
-              <button
-                type="button"
-                onClick={() => setLanguage("en")}
-                className={language === "en" ? "active" : ""}
+            {/* Language Dropdown */}
+            <div className="country-dropdown language-dropdown" ref={langDropdownRef}>
+              <div
+                className="selected-country selected-language"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsLangDropdownOpen(!isLangDropdownOpen);
+                  setIsCountryDropdownOpen(false);
+                }}
+                role="button"
+                aria-haspopup="listbox"
+                aria-expanded={isLangDropdownOpen}
               >
-                EN
-              </button>
-              <span className="lang-separator">|</span>
-              <button
-                type="button"
-                onClick={() => setLanguage("ar")}
-                className={language === "ar" ? "active" : ""}
+                <i
+                  className="fa fa-globe"
+                  style={{ fontSize: "12px", color: "#ffffff", opacity: 0.9 }}
+                ></i>
+                <span>
+                  {language === "ar" ? "العربية" : language === "hi" ? "हिन्दी" : language === "es" ? "Español" : language === "pt" ? "Português" : language === "fr" ? "Français" : language === "ru" ? "Русский" : "English"}
+                </span>
+                <i
+                  className="fa fa-chevron-down"
+                  style={{
+                    fontSize: "9px",
+                    color: "#ffffff",
+                    opacity: 0.8,
+                    transition: "transform 0.2s ease",
+                    transform: isLangDropdownOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  }}
+                ></i>
+              </div>
+              <ul
+                className="country-list language-list"
+                style={{ display: isLangDropdownOpen ? "block" : "none" }}
+                role="listbox"
               >
-                العربية
-              </button>
+                {[
+                  { code: "en" as const, label: "English" },
+                  { code: "ar" as const, label: "العربية" },
+                  { code: "hi" as const, label: "हिन्दी" },
+                  { code: "es" as const, label: "Español" },
+                  { code: "pt" as const, label: "Português" },
+                  { code: "fr" as const, label: "Français" },
+                  { code: "ru" as const, label: "Русский" },
+                ].map((l) => (
+                  <li
+                    key={l.code}
+                    className={l.code === language ? "active" : ""}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLanguage(l.code);
+                      setIsLangDropdownOpen(false);
+                    }}
+                    role="option"
+                    aria-selected={l.code === language}
+                  >
+                    <span>{l.label}</span>
+                    {l.code === language && (
+                      <i
+                        className="fa fa-check"
+                        style={{ fontSize: "11px", color: "#3351a3", marginInlineStart: "auto" }}
+                      ></i>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -792,6 +889,12 @@ function SearchPopup({
                       >
                         {language === "ar"
                           ? (product.short_description_ar || product.title_ar || product.short_description || product.title)
+                          : language === "hi"
+                          ? (product.short_description_hi || product.title_hi || t(product.title || product.short_description || ""))
+                          : language === "es"
+                          ? (product.short_description_es || product.title_es || t(product.title || product.short_description || ""))
+                          : language === "pt"
+                          ? (product.short_description_pt || product.title_pt || t(product.title || product.short_description || ""))
                           : (product.short_description || product.title)}
                       </p>
                     </div>

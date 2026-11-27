@@ -35,9 +35,646 @@ export default function ProductDetailClient({
   subcategorySlug?: string;
 }) {
   const { t, language } = useLanguage();
-  const productTitle = language === "ar" && product.title_ar ? product.title_ar : product.title;
-  const productDescription = language === "ar" && product.description_ar ? product.description_ar : product.description;
-  const productTags = language === "ar" && product.tags_ar ? product.tags_ar : product.tags;
+  const getProductTitle = () => {
+    if (language === "ar") return product.title_ar || t(product.title) || product.title;
+    if (language === "hi") {
+      if (product.title_hi && product.title_hi !== product.title) return product.title_hi;
+      const trans = t(product.title || "");
+      if (trans && trans !== product.title) return trans;
+      return product.title_hi || product.title;
+    }
+    if (language === "es") {
+      if (product.title_es && product.title_es !== product.title) return product.title_es;
+      const trans = t(product.title || "");
+      if (trans && trans !== product.title) return trans;
+      return product.title_es || product.title;
+    }
+    if (language === "pt") {
+      if (product.title_pt && product.title_pt !== product.title) return product.title_pt;
+      const trans = t(product.title || "");
+      if (trans && trans !== product.title) return trans;
+      return product.title_pt || product.title;
+    }
+    if (language === "fr") {
+      if (product.title_fr && product.title_fr !== product.title) return product.title_fr;
+      const trans = t(product.title || "");
+      if (trans && trans !== product.title) return trans;
+      return product.title_fr || product.title;
+    }
+    if (language === "ru") {
+      if (product.title_ru && product.title_ru !== product.title) return product.title_ru;
+      const trans = t(product.title || "");
+      if (trans && trans !== product.title) return trans;
+      return product.title_ru || product.title;
+    }
+    return product.title;
+  };
+  const productTitle = getProductTitle();
+
+  const getProductDescription = () => {
+    if (language === "ar") return product.description_ar || t(product.description) || product.description;
+    if (language === "hi") {
+      if (product.description_hi && product.description_hi !== product.description) return product.description_hi;
+      const trans = t(product.description || "");
+      if (trans && trans !== product.description) return trans;
+      return product.description_hi || product.description;
+    }
+    if (language === "es") {
+      if (product.description_es && product.description_es !== product.description) return product.description_es;
+      const trans = t(product.description || "");
+      if (trans && trans !== product.description) return trans;
+      return product.description_es || product.description;
+    }
+    if (language === "pt") {
+      if (product.description_pt && product.description_pt !== product.description) return product.description_pt;
+      const trans = t(product.description || "");
+      if (trans && trans !== product.description) return trans;
+      return product.description_pt || product.description;
+    }
+    if (language === "fr") {
+      if (product.description_fr && product.description_fr !== product.description) return product.description_fr;
+      const trans = t(product.description || "");
+      if (trans && trans !== product.description) return trans;
+      return product.description_fr || product.description;
+    }
+    if (language === "ru") {
+      if (product.description_ru && product.description_ru !== product.description) return product.description_ru;
+      const trans = t(product.description || "");
+      if (trans && trans !== product.description) return trans;
+      return product.description_ru || product.description;
+    }
+    return product.description;
+  };
+  const productDescription = getProductDescription();
+  const TAG_MAP_HI: Record<string, string> = {
+    floor: "फ्लोर",
+    floors: "फ्लोर",
+    stands: "स्टैंड्स",
+    stand: "स्टैंड",
+    "floor stands": "फ्लोर स्टैंड्स",
+    "floor stand": "फ्लोर स्टैंड",
+    freestanding: "फ्रीस्टैंडिंग",
+    "freestanding floor stand": "फ्रीस्टैंडिंग फ्लोर स्टैंड",
+    "freestanding heavy-duty floor stand": "फ्रीस्टैंडिंग हेवी-ड्यूटी फ्लोर स्टैंड",
+    "freestanding heavy duty floor stand": "फ्रीस्टैंडिंग हेवी-ड्यूटी फ्लोर स्टैंड",
+    "heavy-duty floor stand": "हेवी-ड्यूटी फ्लोर स्टैंड",
+    "heavy duty floor stand": "हेवी-ड्यूटी फ्लोर स्टैंड",
+    "heavy-duty": "हेवी-ड्यूटी",
+    "heavy duty": "हेवी-ड्यूटी",
+    "wall mount": "वॉल माउंट",
+    "wall mounts": "वॉल माउंट्स",
+    "ceiling mount": "सीलिंग माउंट",
+    "ceiling mounts": "सीलिंग माउंट्स",
+    "tv mount": "टीवी माउंट",
+    "tv mounts": "टीवी माउंट्स",
+    "tv stand": "टीवी स्टैंड",
+    "tv stands": "टीवी स्टैंड्स",
+    cart: "कार्ट",
+    trolley: "ट्रॉली",
+    projector: "प्रोजेक्टर",
+    "projector mount": "प्रोजेक्टर माउंट",
+    bracket: "ब्रैकेट",
+    brackets: "ब्रैकेट्स",
+    television: "टेलीविजन",
+    "smart tv": "स्मार्ट टीवी",
+    "led tv": "एलईडी टीवी",
+    rack: "रैक",
+    "network rack": "नेटवर्क रैक",
+    "server rack": "सर्वर रैक",
+    cabinet: "कैबिनेट",
+    indoor: "इंडोर",
+    outdoor: "आउटडोर",
+    enclosure: "एन्क्लोज़र",
+    "mobile cart": "मोबाइल कार्ट",
+    "mobile tv cart": "मोबाइल टीवी कार्ट",
+  };
+
+  const TAG_MAP_ES: Record<string, string> = {
+    floor: "suelo",
+    floors: "suelo",
+    stands: "soportes",
+    stand: "soporte",
+    "floor stands": "soportes de suelo",
+    "floor stand": "soporte de suelo",
+    freestanding: "independiente",
+    "freestanding floor stand": "soporte de suelo independiente",
+    "freestanding heavy-duty floor stand": "soporte de suelo independiente para servicio pesado",
+    "freestanding heavy duty floor stand": "soporte de suelo independiente para servicio pesado",
+    "heavy-duty floor stand": "soporte de suelo para servicio pesado",
+    "heavy duty floor stand": "soporte de suelo para servicio pesado",
+    "heavy-duty": "servicio pesado",
+    "heavy duty": "servicio pesado",
+    "wall mount": "soporte de pared",
+    "wall mounts": "soportes de pared",
+    "ceiling mount": "soporte de techo",
+    "ceiling mounts": "soportes de techo",
+    "tv mount": "soporte para tv",
+    "tv mounts": "soportes para tv",
+    "tv stand": "soporte para tv",
+    "tv stands": "soportes para tv",
+    cart: "carrito",
+    trolley: "carrito móvil",
+    projector: "proyector",
+    "projector mount": "soporte de proyector",
+    bracket: "soporte",
+    brackets: "soportes",
+    television: "televisión",
+    "smart tv": "smart tv",
+    "led tv": "tv led",
+    rack: "rack",
+    "network rack": "rack de red",
+    "server rack": "rack de servidores",
+    cabinet: "gabinete",
+    indoor: "interior",
+    outdoor: "exterior",
+    enclosure: "caja de protección",
+    "mobile cart": "carrito móvil",
+    "mobile tv cart": "carrito móvil para tv",
+  };
+
+  const TAG_MAP_PT: Record<string, string> = {
+    floor: "chão",
+    floors: "chão",
+    stands: "suportes",
+    stand: "suporte",
+    "floor stands": "suportes de chão",
+    "floor stand": "suporte de chão",
+    freestanding: "autônomo",
+    "freestanding floor stand": "suporte de chão autônomo",
+    "freestanding heavy-duty floor stand": "suporte de chão autônomo para serviço pesado",
+    "freestanding heavy duty floor stand": "suporte de chão autônomo para serviço pesado",
+    "heavy-duty floor stand": "suporte de chão para serviço pesado",
+    "heavy duty floor stand": "suporte de chão para serviço pesado",
+    "heavy-duty": "serviço pesado",
+    "heavy duty": "serviço pesado",
+    "wall mount": "suporte de parede",
+    "wall mounts": "suportes de parede",
+    "ceiling mount": "suporte de teto",
+    "ceiling mounts": "suportes de teto",
+    "tv mount": "suporte para tv",
+    "tv mounts": "suportes para tv",
+    "tv stand": "suporte para tv",
+    "tv stands": "suportes para tv",
+    cart: "pedestal móvel",
+    trolley: "carrinho para tv",
+    projector: "projetor",
+    "projector mount": "suporte de projetor",
+    bracket: "suporte",
+    brackets: "suportes",
+    television: "televisão",
+    "smart tv": "smart tv",
+    "led tv": "tv led",
+    rack: "rack",
+    "network rack": "rack de rede",
+    "server rack": "rack de servidor",
+    cabinet: "gabinete",
+    indoor: "indoor",
+    outdoor: "outdoor",
+    enclosure: "caixa de proteção",
+    "mobile cart": "carrinho móvel",
+    "mobile tv cart": "carrinho móvel para tv",
+    podium: "pódio",
+    "touch podium": "pódio touch",
+    "ir touch podium": "pódio touch ir",
+    "l-shape touch podium": "pódio touch em forma de l",
+    "l-shape podium": "pódio em forma de l",
+    "k-shape podium": "pódio em forma de k",
+    "interactive touch podium": "pódio touch interativo",
+    "digital podium": "pódio digital",
+    "smart digital podium": "pódio digital inteligente",
+    "corporate presentation podium": "pódio para apresentações corporativas",
+    "skill tech touch podium": "pódio touch skill tech",
+    kiosk: "quiosque",
+    "interactive kiosk": "quiosque interativo",
+    "touch screen kiosk": "quiosque touchscreen",
+    "touch kiosk": "quiosque touch",
+    "digital information kiosk": "quiosque de informação digital",
+    "information kiosk": "quiosque de informações",
+    "self service kiosk": "quiosque de autoatendimento",
+    "reception kiosk": "quiosque de recepção",
+    "interactive display": "display interativo",
+    "interactive display stand": "suporte para display interativo",
+    "touch display": "display touch",
+    "full hd touch display": "display touch full hd",
+    "4k touch display": "display touch 4k",
+    "infrared touch screen": "tela touch infravermelha",
+    "touch screen": "tela sensível ao toque",
+    "commercial touch display": "display touch comercial",
+    "commercial display": "display comercial",
+    "digital signage": "sinalização digital",
+  };
+
+  const TAG_MAP_FR: Record<string, string> = {
+    floor: "sol",
+    floors: "sol",
+    stands: "supports",
+    stand: "support",
+    "floor stands": "supports de sol",
+    "floor stand": "support de sol",
+    freestanding: "autoportant",
+    "freestanding floor stand": "support de sol autoportant",
+    "freestanding heavy-duty floor stand": "support de sol autoportant robuste",
+    "freestanding heavy duty floor stand": "support de sol autoportant robuste",
+    "heavy-duty floor stand": "support de sol robuste",
+    "heavy duty floor stand": "support de sol robuste",
+    "heavy-duty": "robuste",
+    "heavy duty": "robuste",
+    "wall mount": "support mural",
+    "wall mounts": "supports muraux",
+    "ceiling mount": "support de plafond",
+    "ceiling mounts": "supports de plafond",
+    "tv mount": "support tv",
+    "tv mounts": "supports tv",
+    "tv stand": "support tv",
+    "tv stands": "supports tv",
+    cart: "chariot mobile",
+    trolley: "chariot tv",
+    projector: "projecteur",
+    "projector mount": "support de projecteur",
+    bracket: "support",
+    brackets: "supports",
+    television: "télévision",
+    "smart tv": "smart tv",
+    "led tv": "tv led",
+    rack: "baie de brassage",
+    "network rack": "baie réseau",
+    "server rack": "baie serveur",
+    cabinet: "armoire",
+    indoor: "intérieur",
+    outdoor: "extérieur",
+    enclosure: "boîtier de protection",
+    "mobile cart": "chariot mobile",
+    "mobile tv cart": "chariot tv mobile",
+    podium: "pupitre",
+    "touch podium": "pupitre tactile",
+    "ir touch podium": "pupitre tactile ir",
+    "l-shape touch podium": "pupitre tactile en l",
+    "l-shape podium": "pupitre en l",
+    "k-shape podium": "pupitre en k",
+    "interactive touch podium": "pupitre tactile interactif",
+    "digital podium": "pupitre numérique",
+    "smart digital podium": "pupitre numérique intelligent",
+    "corporate presentation podium": "pupitre de présentation professionnelle",
+    "skill tech touch podium": "pupitre tactile skill tech",
+    kiosk: "borne",
+    "interactive kiosk": "borne interactive",
+    "touch screen kiosk": "borne tactile",
+    "touch kiosk": "borne tactile",
+    "digital information kiosk": "borne d'information numérique",
+    "information kiosk": "borne d'information",
+    "self service kiosk": "borne libre-service",
+    "reception kiosk": "borne d'accueil",
+    "interactive display": "écran interactif",
+    "interactive display stand": "support d'écran interactif",
+    "touch display": "écran tactile",
+    "full hd touch display": "écran tactile full hd",
+    "4k touch display": "écran tactile 4k",
+    "infrared touch screen": "écran tactile infrarouge",
+    "touch screen": "écran tactile",
+    "commercial touch display": "écran tactile commercial",
+    "commercial display": "écran commercial",
+    "digital signage": "affichage dynamique",
+  };
+
+  const translateTag = (rawTag: string): string => {
+    const trimmed = rawTag.replace(/\u00a0/g, " ").trim();
+    if (!trimmed) return "";
+
+    // Keep alphanumeric technical model numbers in English (e.g. SH1600FS, SK3200NT, SHCP6)
+    if (/^[A-Z0-9\-_]+$/i.test(trimmed) && /\d/.test(trimmed)) {
+      return trimmed;
+    }
+
+    // If already in Devanagari (Hindi) or Arabic script, preserve directly
+    if (/[\u0900-\u097F\u0600-\u06FF]/.test(trimmed)) {
+      return trimmed;
+    }
+
+    const lower = trimmed.toLowerCase();
+
+    if (language === "hi") {
+      if (TAG_MAP_HI[lower]) {
+        return TAG_MAP_HI[lower];
+      }
+
+      const direct = t(trimmed);
+      if (direct && direct.toLowerCase() !== trimmed.toLowerCase()) return direct;
+
+      const uaeMatch = lower.match(/^(.+?)\s+in\s+uae$/i);
+      if (uaeMatch) {
+        return `यूएई में ${translateTag(uaeMatch[1])}`;
+      }
+      const dubaiMatch = lower.match(/^(.+?)\s+in\s+dubai$/i);
+      if (dubaiMatch) {
+        return `दुबई में ${translateTag(dubaiMatch[1])}`;
+      }
+      const bestMatch = lower.match(/^best\s+(.+)$/i);
+      if (bestMatch) {
+        return `सर्वश्रेष्ठ ${translateTag(bestMatch[1])}`;
+      }
+      const qualityMatch = lower.match(/^quality\s+(.+)$/i);
+      if (qualityMatch) {
+        return `क्वालिटी ${translateTag(qualityMatch[1])}`;
+      }
+      const heavyMatch = lower.match(/^freestanding\s+heavy-?duty\s+(.+)$/i);
+      if (heavyMatch) {
+        return `फ्रीस्टैंडिंग हेवी-ड्यूटी ${translateTag(heavyMatch[1])}`;
+      }
+      const fsMatch = lower.match(/^freestanding\s+(.+)$/i);
+      if (fsMatch) {
+        return `फ्रीस्टैंडिंग ${translateTag(fsMatch[1])}`;
+      }
+      const hdMatch = lower.match(/^heavy-?duty\s+(.+)$/i);
+      if (hdMatch) {
+        return `हेवी-ड्यूटी ${translateTag(hdMatch[1])}`;
+      }
+      return direct || trimmed;
+    }
+
+    if (language === "es") {
+      if (TAG_MAP_ES[lower]) {
+        return TAG_MAP_ES[lower];
+      }
+      const direct = t(trimmed);
+      if (direct && direct.toLowerCase() !== trimmed.toLowerCase()) return direct;
+
+      const uaeMatch = lower.match(/^(.+?)\s+in\s+uae$/i);
+      if (uaeMatch) {
+        return `${translateTag(uaeMatch[1])} en EAU`;
+      }
+      const dubaiMatch = lower.match(/^(.+?)\s+in\s+dubai$/i);
+      if (dubaiMatch) {
+        return `${translateTag(dubaiMatch[1])} en Dubái`;
+      }
+      const bestMatch = lower.match(/^best\s+(.+)$/i);
+      if (bestMatch) {
+        return `Mejor ${translateTag(bestMatch[1])}`;
+      }
+      return direct || trimmed;
+    }
+
+    if (language === "pt") {
+      if (TAG_MAP_PT[lower]) {
+        return TAG_MAP_PT[lower];
+      }
+      const direct = t(trimmed);
+      if (direct && direct.toLowerCase() !== trimmed.toLowerCase()) return direct;
+
+      const inchMatch = lower.match(/^(\d+)\s*inch\s+(.+)$/i);
+      if (inchMatch) {
+        return `${translateTag(inchMatch[2])} de ${inchMatch[1]}"`;
+      }
+      const uaeMatch = lower.match(/^(.+?)\s+in\s+uae$/i);
+      if (uaeMatch) {
+        return `${translateTag(uaeMatch[1])} nos EAU`;
+      }
+      const dubaiMatch = lower.match(/^(.+?)\s+in\s+dubai$/i);
+      if (dubaiMatch) {
+        return `${translateTag(dubaiMatch[1])} em Dubai`;
+      }
+      const bestMatch = lower.match(/^best\s+(.+)$/i);
+      if (bestMatch) {
+        return `Melhor ${translateTag(bestMatch[1])}`;
+      }
+      return direct || trimmed;
+    }
+
+    if (language === "fr") {
+      if (TAG_MAP_FR[lower]) {
+        return TAG_MAP_FR[lower];
+      }
+      const direct = t(trimmed);
+      if (direct && direct.toLowerCase() !== trimmed.toLowerCase()) return direct;
+
+      const inchMatch = lower.match(/^(\d+)\s*inch\s+(.+)$/i);
+      if (inchMatch) {
+        return `${translateTag(inchMatch[2])} ${inchMatch[1]}"`;
+      }
+      const uaeMatch = lower.match(/^(.+?)\s+in\s+uae$/i);
+      if (uaeMatch) {
+        return `${translateTag(uaeMatch[1])} aux EAU`;
+      }
+      const dubaiMatch = lower.match(/^(.+?)\s+in\s+dubai$/i);
+      if (dubaiMatch) {
+        return `${translateTag(dubaiMatch[1])} à Dubaï`;
+      }
+      const bestMatch = lower.match(/^best\s+(.+)$/i);
+      if (bestMatch) {
+        return `Meilleur ${translateTag(bestMatch[1])}`;
+      }
+      return direct || trimmed;
+    }
+
+    if (language === "ru") {
+      const direct = t(trimmed);
+      if (direct && direct.toLowerCase() !== trimmed.toLowerCase()) return direct;
+      return direct || trimmed;
+    }
+
+    if (language === "ar") {
+      const direct = t(trimmed);
+      if (direct && direct.toLowerCase() !== trimmed.toLowerCase()) return direct;
+      const uaeMatch = lower.match(/^(.+?)\s+in\s+uae$/i);
+      if (uaeMatch) return `${translateTag(uaeMatch[1])} في الإمارات`;
+      const dubaiMatch = lower.match(/^(.+?)\s+in\s+dubai$/i);
+      if (dubaiMatch) return `${translateTag(dubaiMatch[1])} في دبي`;
+      const bestMatch = lower.match(/^best\s+(.+)$/i);
+      if (bestMatch) return `أفضل ${translateTag(bestMatch[1])}`;
+      return direct || trimmed;
+    }
+
+    const direct = t(trimmed);
+    return direct || trimmed;
+  };
+
+  const getBulletTitle = (bf: any) => {
+    if (language === "ar") return bf.title_ar || t((bf.title || "").trim());
+    if (language === "hi") {
+      if (bf.title_hi && bf.title_hi !== bf.title && !/^[A-Za-z\s\-_0-9.,/]+$/.test(bf.title_hi)) {
+        return bf.title_hi;
+      }
+      const rawTitle = (bf.title || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawTitle);
+      if (trans && trans.toLowerCase() !== rawTitle.toLowerCase()) return trans;
+      return bf.title_hi || trans || bf.title;
+    }
+    if (language === "es") {
+      if (bf.title_es && bf.title_es !== bf.title) return bf.title_es;
+      const rawTitle = (bf.title || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawTitle);
+      if (trans && trans.toLowerCase() !== rawTitle.toLowerCase()) return trans;
+      return bf.title_es || trans || bf.title;
+    }
+    if (language === "pt") {
+      if (bf.title_pt && bf.title_pt !== bf.title) return bf.title_pt;
+      const rawTitle = (bf.title || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawTitle);
+      if (trans && trans.toLowerCase() !== rawTitle.toLowerCase()) return trans;
+      return bf.title_pt || trans || bf.title;
+    }
+    if (language === "fr") {
+      if (bf.title_fr && bf.title_fr !== bf.title) return bf.title_fr;
+      const rawTitle = (bf.title || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawTitle);
+      if (trans && trans.toLowerCase() !== rawTitle.toLowerCase()) return trans;
+      return bf.title_fr || trans || bf.title;
+    }
+    if (language === "ru") {
+      if (bf.title_ru && bf.title_ru !== bf.title) return bf.title_ru;
+      const rawTitle = (bf.title || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawTitle);
+      if (trans && trans.toLowerCase() !== rawTitle.toLowerCase()) return trans;
+      return bf.title_ru || trans || bf.title;
+    }
+    return bf.title;
+  };
+
+  const getBulletText = (bf: any) => {
+    if (language === "ar") return bf.text_ar || t((bf.text || "").trim());
+    if (language === "hi") {
+      if (bf.text_hi && bf.text_hi !== bf.text && !/^[A-Za-z\s\-_0-9.,/%'":;()]+$/.test(bf.text_hi)) {
+        return bf.text_hi;
+      }
+      const rawText = (bf.text || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawText);
+      if (trans && trans.toLowerCase() !== rawText.toLowerCase()) return trans;
+      return bf.text_hi || trans || bf.text;
+    }
+    if (language === "es") {
+      if (bf.text_es && bf.text_es !== bf.text) return bf.text_es;
+      const rawText = (bf.text || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawText);
+      if (trans && trans.toLowerCase() !== rawText.toLowerCase()) return trans;
+      return bf.text_es || trans || bf.text;
+    }
+    if (language === "pt") {
+      if (bf.text_pt && bf.text_pt !== bf.text) return bf.text_pt;
+      const rawText = (bf.text || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawText);
+      if (trans && trans.toLowerCase() !== rawText.toLowerCase()) return trans;
+      return bf.text_pt || trans || bf.text;
+    }
+    if (language === "fr") {
+      if (bf.text_fr && bf.text_fr !== bf.text) return bf.text_fr;
+      const rawText = (bf.text || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawText);
+      if (trans && trans.toLowerCase() !== rawText.toLowerCase()) return trans;
+      return bf.text_fr || trans || bf.text;
+    }
+    if (language === "ru") {
+      if (bf.text_ru && bf.text_ru !== bf.text) return bf.text_ru;
+      const rawText = (bf.text || "").replace(/\u00a0/g, " ").trim();
+      const trans = t(rawText);
+      if (trans && trans.toLowerCase() !== rawText.toLowerCase()) return trans;
+      return bf.text_ru || trans || bf.text;
+    }
+    return bf.text;
+  };
+
+  const productTags =
+    language === "ar" && product.tags_ar
+      ? product.tags_ar
+      : language === "hi"
+      ? ((product as any).tags_hi || product.tags || "")
+          .split(",")
+          .map((tag: string) => translateTag(tag))
+          .filter(Boolean)
+          .join(", ")
+      : language === "es"
+      ? ((product as any).tags_es || product.tags || "")
+          .split(",")
+          .map((tag: string) => translateTag(tag))
+          .filter(Boolean)
+          .join(", ")
+      : language === "pt"
+      ? ((product as any).tags_pt || product.tags || "")
+          .split(",")
+          .map((tag: string) => translateTag(tag))
+          .filter(Boolean)
+          .join(", ")
+      : language === "fr"
+      ? ((product as any).tags_fr || product.tags || "")
+          .split(",")
+          .map((tag: string) => translateTag(tag))
+          .filter(Boolean)
+          .join(", ")
+      : language === "ru"
+      ? ((product as any).tags_ru || product.tags || "")
+          .split(",")
+          .map((tag: string) => translateTag(tag))
+          .filter(Boolean)
+          .join(", ")
+      : product.tags;
+
+  const getSpecKey = (spec: any) => {
+    if (language === "ar") return spec.key_ar || t(spec.key);
+    if (language === "hi") {
+      const trans = t(spec.key?.trim() || "");
+      if (trans && trans !== spec.key?.trim()) return trans;
+      if (spec.key_hi && spec.key_hi !== spec.key) return spec.key_hi;
+      return trans || spec.key;
+    }
+    if (language === "es") {
+      const trans = t(spec.key?.trim() || "");
+      if (trans && trans !== spec.key?.trim()) return trans;
+      if (spec.key_es && spec.key_es !== spec.key) return spec.key_es;
+      return trans || spec.key;
+    }
+    if (language === "pt") {
+      const trans = t(spec.key?.trim() || "");
+      if (trans && trans !== spec.key?.trim()) return trans;
+      if (spec.key_pt && spec.key_pt !== spec.key) return spec.key_pt;
+      return trans || spec.key;
+    }
+    if (language === "fr") {
+      const trans = t(spec.key?.trim() || "");
+      if (trans && trans !== spec.key?.trim()) return trans;
+      if (spec.key_fr && spec.key_fr !== spec.key) return spec.key_fr;
+      return trans || spec.key;
+    }
+    if (language === "ru") {
+      const trans = t(spec.key?.trim() || "");
+      if (trans && trans !== spec.key?.trim()) return trans;
+      if (spec.key_ru && spec.key_ru !== spec.key) return spec.key_ru;
+      return trans || spec.key_ru || spec.key;
+    }
+    return spec.key;
+  };
+
+  const getSpecValue = (spec: any) => {
+    if (language === "ar") return spec.value_ar || t(spec.value);
+    if (language === "hi") {
+      const trans = t(spec.value?.trim() || "");
+      if (trans && trans !== spec.value?.trim()) return trans;
+      if (spec.value_hi && spec.value_hi !== spec.value) return spec.value_hi;
+      return trans || spec.value;
+    }
+    if (language === "es") {
+      const trans = t(spec.value?.trim() || "");
+      if (trans && trans !== spec.value?.trim()) return trans;
+      if (spec.value_es && spec.value_es !== spec.value) return spec.value_es;
+      return trans || spec.value;
+    }
+    if (language === "pt") {
+      const trans = t(spec.value?.trim() || "");
+      if (trans && trans !== spec.value?.trim()) return trans;
+      if (spec.value_pt && spec.value_pt !== spec.value) return spec.value_pt;
+      return trans || spec.value;
+    }
+    if (language === "fr") {
+      const trans = t(spec.value?.trim() || "");
+      if (trans && trans !== spec.value?.trim()) return trans;
+      if (spec.value_fr && spec.value_fr !== spec.value) return spec.value_fr;
+      return trans || spec.value;
+    }
+    if (language === "ru") {
+      const trans = t(spec.value?.trim() || "");
+      if (trans && trans !== spec.value?.trim()) return trans;
+      if (spec.value_ru && spec.value_ru !== spec.value) return spec.value_ru;
+      return trans || spec.value_ru || spec.value;
+    }
+    return spec.value;
+  };
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(
     product.specifications?.length > 0 ? "overview" : "description",
@@ -236,7 +873,21 @@ export default function ProductDetailClient({
       if (response?.reference_number) {
         sessionStorage.setItem("thank_you_ref", response.reference_number);
       }
-      router.push(language === "ar" ? `/ar/product/thank-you` : `/product/thank-you`);
+      router.push(
+        language === "ar"
+          ? `/ar/product/thank-you`
+          : language === "hi"
+          ? `/hi/product/thank-you`
+          : language === "es"
+          ? `/es/product/thank-you`
+          : language === "pt"
+          ? `/pt/product/thank-you`
+          : language === "fr"
+          ? `/fr/product/thank-you`
+          : language === "ru"
+          ? `/ru/product/thank-you`
+          : `/product/thank-you`
+      );
       setTimeout(() => {
         setShowEnquiryModal(false);
         setEnquiryStatus("idle");
@@ -361,7 +1012,17 @@ export default function ProductDetailClient({
               <Link href={`/${product?.subcategory?.category?.slug}`} className="breadcrumb-link">
                 {language === "ar" && product?.subcategory?.category?.name_ar 
                   ? product.subcategory.category.name_ar 
-                  : (product?.subcategory?.category?.name || formatSlug(product?.subcategory?.category?.slug))}
+                  : (language === "hi" && product?.subcategory?.category?.name_hi
+                  ? product.subcategory.category.name_hi
+                  : (language === "es" && (product?.subcategory?.category as any)?.name_es
+                  ? (product.subcategory.category as any).name_es
+                  : (language === "pt" && (product?.subcategory?.category as any)?.name_pt
+                  ? (product.subcategory.category as any).name_pt
+                  : (language === "fr" && (product?.subcategory?.category as any)?.name_fr
+                  ? (product.subcategory.category as any).name_fr
+                  : (language === "ru" && (product?.subcategory?.category as any)?.name_ru
+                  ? (product.subcategory.category as any).name_ru
+                  : t(product?.subcategory?.category?.name || formatSlug(product?.subcategory?.category?.slug))))))) }
               </Link>
               <span>{language === "ar" ? " < " : " > "}</span>
             </>
@@ -371,7 +1032,17 @@ export default function ProductDetailClient({
               <Link href={`/${product?.subcategory?.category?.slug}/${product?.subcategory?.slug}`} className="breadcrumb-link">
                 {language === "ar" && product?.subcategory?.name_ar 
                   ? product.subcategory.name_ar 
-                  : (product?.subcategory?.name || formatSlug(product?.subcategory?.slug))}
+                  : (language === "hi" && product?.subcategory?.name_hi
+                  ? product.subcategory.name_hi
+                  : (language === "es" && (product?.subcategory as any)?.name_es
+                  ? (product.subcategory as any).name_es
+                  : (language === "pt" && (product?.subcategory as any)?.name_pt
+                  ? (product.subcategory as any).name_pt
+                  : (language === "fr" && (product?.subcategory as any)?.name_fr
+                  ? (product.subcategory as any).name_fr
+                  : (language === "ru" && (product?.subcategory as any)?.name_ru
+                  ? (product.subcategory as any).name_ru
+                  : t(product?.subcategory?.name || formatSlug(product?.subcategory?.slug))))))) }
               </Link>
               <span>{language === "ar" ? " < " : " > "}</span>
             </>
@@ -529,7 +1200,21 @@ export default function ProductDetailClient({
                           className="feature-icon"
                         />
                         <div>
-                          <span>{language === "ar" && item?.feature?.title_ar ? item.feature.title_ar : item?.feature?.title}</span>
+                          <span>
+                            {language === "ar" && item?.feature?.title_ar
+                              ? item.feature.title_ar
+                              : language === "hi" && (item?.feature as any)?.title_hi
+                              ? (item?.feature as any).title_hi
+                              : language === "es" && (item?.feature as any)?.title_es
+                              ? (item?.feature as any).title_es
+                              : language === "pt" && (item?.feature as any)?.title_pt
+                              ? (item?.feature as any).title_pt
+                              : language === "fr" && (item?.feature as any)?.title_fr
+                              ? (item?.feature as any).title_fr
+                              : language === "ru" && (item?.feature as any)?.title_ru
+                              ? (item?.feature as any).title_ru
+                              : t(item?.feature?.title || "")}
+                          </span>
                           <strong>{item?.value}</strong>
                         </div>
                       </div>
@@ -541,7 +1226,7 @@ export default function ProductDetailClient({
               {/* CATEGORY & TAGS */}
               <div className="meta-info">
                 <p>
-                  <strong>{t("Tags:")}</strong>
+                  <strong>{t("Tags:")}</strong>{" "}
                   {productTags}
                 </p>
               </div>
@@ -651,8 +1336,8 @@ export default function ProductDetailClient({
                           .slice(0, showFullOverview ? undefined : 5)
                           .map((spec: any, idx: number) => (
                             <tr key={idx}>
-                              <th>{language === "ar" && spec.key_ar ? spec.key_ar : spec.key}</th>
-                              <td>{language === "ar" && spec.value_ar ? spec.value_ar : spec.value}</td>
+                              <th>{getSpecKey(spec)}</th>
+                              <td>{getSpecValue(spec)}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -666,8 +1351,8 @@ export default function ProductDetailClient({
                           .slice(0, showFullOverview ? undefined : 5)
                           .map((spec: any, idx: number) => (
                             <tr key={idx}>
-                              <th>{language === "ar" && spec.key_ar ? spec.key_ar : spec.key}</th>
-                              <td>{language === "ar" && spec.value_ar ? spec.value_ar : spec.value}</td>
+                              <th>{getSpecKey(spec)}</th>
+                              <td>{getSpecValue(spec)}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -686,8 +1371,8 @@ export default function ProductDetailClient({
                           .slice(0, showFullOverview ? undefined : 5)
                           .map((spec: any, idx: number) => (
                             <tr key={idx}>
-                              <th>{language === "ar" && spec.key_ar ? spec.key_ar : spec.key}</th>
-                              <td>{language === "ar" && spec.value_ar ? spec.value_ar : spec.value}</td>
+                              <th>{getSpecKey(spec)}</th>
+                              <td>{getSpecValue(spec)}</td>
                             </tr>
                           ))}
                       </tbody>
@@ -734,43 +1419,47 @@ export default function ProductDetailClient({
                 className="features-list-tab"
                 style={{ listStyle: "none", padding: "0", color: "#000" }}
               >
-                {product.bullet_features.map((bf: any, idx: number) => (
-                  <li
-                    key={idx}
-                    style={{
-                      marginBottom: "12px",
-                      color: "#555",
-                      fontSize: "14px",
-                      display: "flex",
-                      flexWrap: "wrap",
-                      alignItems: "flex-start",
-                      lineHeight: "1.6",
-                      flexDirection: "column",
-                    }}
-                  >
-                    {(language === "ar" && bf.title_ar ? bf.title_ar : bf.title) && (
-                      <strong
-                        style={{
-                          marginRight: "5px",
-                          color: "#333",
-                          flexShrink: 0,
-                          maxWidth: "100%",
-                        }}
-                      >
-                        {language === "ar" && bf.title_ar ? bf.title_ar : bf.title}
-                      </strong>
-                    )}
-                    <span
+                {product.bullet_features.map((bf: any, idx: number) => {
+                  const bulletTitle = getBulletTitle(bf);
+                  const bulletText = getBulletText(bf);
+                  return (
+                    <li
+                      key={idx}
                       style={{
-                        flex: "1 0 0%",
-                        minWidth: "250px",
-                        margin: 0,
+                        marginBottom: "12px",
+                        color: "#555",
+                        fontSize: "14px",
+                        display: "flex",
+                        flexWrap: "wrap",
+                        alignItems: "flex-start",
+                        lineHeight: "1.6",
+                        flexDirection: "column",
                       }}
                     >
-                      {language === "ar" && bf.text_ar ? bf.text_ar : bf.text}
-                    </span>
-                  </li>
-                ))}
+                      {bulletTitle && (
+                        <strong
+                          style={{
+                            marginRight: "5px",
+                            color: "#333",
+                            flexShrink: 0,
+                            maxWidth: "100%",
+                          }}
+                        >
+                          {bulletTitle}
+                        </strong>
+                      )}
+                      <span
+                        style={{
+                          flex: "1 0 0%",
+                          minWidth: "250px",
+                          margin: 0,
+                        }}
+                      >
+                        {bulletText}
+                      </span>
+                    </li>
+                  );
+                })}
               </ul>
             ) : (
               <p>{t("No detailed features available.")}</p>

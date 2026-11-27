@@ -11,9 +11,14 @@ export const MEDIA_BASE_URL = IS_PRODUCTION
   : "http://127.0.0.1:8000/";
 
 export async function fetchMainCategories() {
-  const res = await fetch(`${API_BASE_URL}/maincategories/`, { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error("Failed to fetch main categories");
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/maincategories/`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.warn("fetchMainCategories error (backend may be offline):", error);
+    return [];
+  }
 }
 
 export async function fetchCategories(showInHome?: boolean, showInExploreHome?: boolean, showInFooter?: boolean) {
@@ -201,31 +206,59 @@ export async function fetchProductBySlug(slug: string) {
     if (res.ok) return res.json();
   }
 
+  // Fallback: try matching by the product's own slug (last segment)
+  const productOnlySlug = slug.split("/").pop();
+  if (productOnlySlug && productOnlySlug !== slug) {
+    res = await fetch(`${API_BASE_URL}/products/${productOnlySlug}/`, { next: { revalidate: 60 } });
+    if (res.ok) return res.json();
+  }
+
+  console.warn(`fetchProductBySlug not found for: ${slug} (${res.status} ${res.statusText})`);
   return null;
 }
 
 export async function fetchBanners() {
-  const res = await fetch(`${API_BASE_URL}/homepage-banners/`, { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error("Failed to fetch banners");
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/homepage-banners/`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("fetchBanners error:", error);
+    return [];
+  }
 }
 
 export async function fetchOffers() {
-  const res = await fetch(`${API_BASE_URL}/offers/`, { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error("Failed to fetch offers");
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/offers/`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("fetchOffers error:", error);
+    return [];
+  }
 }
 
 export async function fetchClients() {
-  const res = await fetch(`${API_BASE_URL}/clients/`, { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error("Failed to fetch clients");
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/clients/`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("fetchClients error:", error);
+    return [];
+  }
 }
 
 export async function fetchProjects() {
-  const res = await fetch(`${API_BASE_URL}/projects/`, { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error("Failed to fetch projects");
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/projects/`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.error("fetchProjects error:", error);
+    return [];
+  }
 }
 
 export async function fetchSEO(page: string) {
@@ -269,9 +302,17 @@ export async function fetchBlogPosts() {
 }
 
 export async function fetchBlogBySlug(slug: string) {
-  const res = await fetch(`${API_BASE_URL}/blogs/${slug}/`, { next: { revalidate: 60 } });
-  if (!res.ok) return null;
-  return res.json();
+  const cleanSlug = slug.replace(/^\/(ar|hi)\//, "").replace(/^(ar|hi)\//, "").split("/").filter(Boolean).pop() || slug;
+  let res = await fetch(`${API_BASE_URL}/blogs/${cleanSlug}/`, { next: { revalidate: 60 } });
+  if (res.ok) return res.json();
+
+  if (cleanSlug !== slug) {
+    res = await fetch(`${API_BASE_URL}/blogs/${slug}/`, { next: { revalidate: 60 } });
+    if (res.ok) return res.json();
+  }
+
+  console.warn(`fetchBlogBySlug not found for: ${slug} (${res.status} ${res.statusText})`);
+  return null;
 }
 
 
@@ -282,16 +323,26 @@ export async function fetchSiteSettings() {
 }
 
 export async function fetchServices() {
-  const res = await fetch(`${API_BASE_URL}/services/`, { next: { revalidate: 60 } });
-  if (!res.ok) throw new Error("Failed to fetch services");
-  return res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/services/`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    return res.json();
+  } catch (error) {
+    console.warn("fetchServices error (backend may be offline):", error);
+    return [];
+  }
 }
 
 export async function fetchServiceFaqs(serviceId?: number) {
+  try {
     const url = `${API_BASE_URL}/service-faqs/`;
     const res = await fetch(url, { next: { revalidate: 60 } });
-    if (!res.ok) throw new Error("Failed to fetch service FAQs");
+    if (!res.ok) return [];
     return res.json();
+  } catch (error) {
+    console.warn("fetchServiceFaqs error (backend may be offline):", error);
+    return [];
+  }
 }
 
 export async function submitCareerApplication(data: FormData) {
@@ -369,4 +420,15 @@ export async function fetchBranchLocations() {
   const res = await fetch(`${API_BASE_URL}/branch-locations/`, { next: { revalidate: 60 } });
   if (!res.ok) throw new Error("Failed to fetch branch locations");
   return res.json();
+}
+
+export async function fetchCountrySettings() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/country-settings/`, { next: { revalidate: 60 } });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data) ? data : data.results || [];
+  } catch {
+    return [];
+  }
 }

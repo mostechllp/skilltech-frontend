@@ -10,9 +10,27 @@ export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
   const locale = headersList.get("x-locale") || "en";
   const seo = await fetchSEO('news');
-  const canonical = locale === "ar" ? 'https://skilltechonline.com/ar/news-media' : 'https://skilltechonline.com/news-media';
+  const canonical = locale === "ar"
+    ? 'https://skilltechonline.com/ar/news-media'
+    : locale === "hi"
+    ? 'https://skilltechonline.com/hi/news-media'
+    : locale === "es"
+    ? 'https://skilltechonline.com/es/news-media'
+    : locale === "pt"
+    ? 'https://skilltechonline.com/pt/news-media'
+    : locale === "fr"
+    ? 'https://skilltechonline.com/fr/news-media'
+    : 'https://skilltechonline.com/news-media';
   const title = locale === "ar"
     ? "الأخبار ووسائل الإعلام | News & Media | Skill Tech Group Updates and Events UAE"
+    : locale === "hi"
+    ? "समाचार एवं मीडिया | News & Media | Skill Tech Group Updates and Events UAE"
+    : locale === "es"
+    ? "Noticias y Medios | News & Media | Skill Tech Group Updates and Events UAE"
+    : locale === "pt"
+    ? "Notícias e Mídia | News & Media | Skill Tech Group Updates and Events UAE"
+    : locale === "fr"
+    ? "Actualités & Médias | News & Media | Skill Tech Group Updates and Events UAE"
     : "News & Media | Skill Tech Group Updates and Events UAE";
   const description = "Stay updated with the latest news, media coverage, and company updates from Skill Tech, the UAE's leading TV mounting and AV installation specialists.";
 

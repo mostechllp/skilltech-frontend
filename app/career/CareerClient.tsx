@@ -108,7 +108,7 @@ export default function CareerClient() {
       });
       setCvFile(null);
       setIsCaptchaVerified(false);
-      router.push(language === "ar" ? "/ar/career/thank-you" : "/career/thank-you");
+      router.push(language === "ar" ? "/ar/career/thank-you" : language === "hi" ? "/hi/career/thank-you" : language === "es" ? "/es/career/thank-you" : language === "pt" ? "/pt/career/thank-you" : language === "fr" ? "/fr/career/thank-you" : "/career/thank-you");
     } catch (err: any) {
       let errorMessage = t("Failed to submit application");
       try {
@@ -221,7 +221,19 @@ export default function CareerClient() {
                       <option value="">{t("Select a position")}</option>
                       {positions.map((pos) => (
                         <option key={pos.id} value={pos.name}>
-                          {pos.name}
+                          {language === "ar" && (pos as any).name_ar
+                            ? (pos as any).name_ar
+                            : language === "hi" && (pos as any).name_hi
+                            ? (pos as any).name_hi
+                            : language === "es" && (pos as any).name_es
+                            ? (pos as any).name_es
+                            : language === "pt" && (pos as any).name_pt
+                            ? (pos as any).name_pt
+                            : language === "fr" && (pos as any).name_fr
+                            ? (pos as any).name_fr
+                            : language === "ru" && (pos as any).name_ru
+                            ? (pos as any).name_ru
+                            : t(pos.name)}
                         </option>
                       ))}
                     </select>

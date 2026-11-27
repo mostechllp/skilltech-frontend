@@ -64,7 +64,7 @@ export default function OldMegaMenu({
           {/* Sidebar 1: Main Categories */}
           <div className="tiered-sidebar main-sidebar">
             <div className="mobile-only-header d-lg-none">
-              <span>Products</span>
+              <span>{t("Products")}</span>
               <button
                 onClick={() => setIsMegamenuOpen(false)}
                 className="close-menu-btn ms-auto"
@@ -79,7 +79,7 @@ export default function OldMegaMenu({
                   className={activeMainCat?.id === main.id ? "active" : ""}
                   onClick={() => handleMainCatClick(main)}
                 >
-                  <span>{language === "ar" && main.name_ar ? main.name_ar : main.name}</span>
+                  <span>{language === "ar" && main.name_ar ? main.name_ar : (language === "hi" && (main as any).name_hi ? (main as any).name_hi : (language === "es" && (main as any).name_es ? (main as any).name_es : (language === "pt" && (main as any).name_pt ? (main as any).name_pt : (language === "fr" && (main as any).name_fr ? (main as any).name_fr : (language === "ru" && (main as any).name_ru ? (main as any).name_ru : t(main.name))))))}</span>
                   <i className="fa fa-chevron-right"></i>
                 </li>
               ))}
@@ -93,9 +93,9 @@ export default function OldMegaMenu({
                 onClick={() => setMobileTierLevel(0)}
                 className="back-btn"
               >
-                <i className="fa fa-chevron-left"></i> Back
+                <i className="fa fa-chevron-left"></i> {t("Back")}
               </button>
-              <span>{language === "ar" && activeMainCat?.name_ar ? activeMainCat.name_ar : activeMainCat?.name}</span>
+              <span>{language === "ar" && activeMainCat?.name_ar ? activeMainCat.name_ar : (language === "hi" && (activeMainCat as any)?.name_hi ? (activeMainCat as any).name_hi : (language === "es" && (activeMainCat as any)?.name_es ? (activeMainCat as any).name_es : (language === "pt" && (activeMainCat as any)?.name_pt ? (activeMainCat as any).name_pt : (language === "fr" && (activeMainCat as any)?.name_fr ? (activeMainCat as any).name_fr : (language === "ru" && (activeMainCat as any)?.name_ru ? (activeMainCat as any).name_ru : t(activeMainCat?.name || ""))))))}</span>
               <button
                 onClick={() => setIsMegamenuOpen(false)}
                 className="close-menu-btn ms-auto"
@@ -120,7 +120,21 @@ export default function OldMegaMenu({
                           alignItems: "center",
                         }}
                       >
-                        <span style={{ flex: 1 }}>{language === "ar" && sub.name_ar ? sub.name_ar : sub.name}</span>
+                        <span style={{ flex: 1 }}>
+                          {language === "ar" && sub.name_ar
+                            ? sub.name_ar
+                            : language === "hi" && (sub as any).name_hi
+                            ? (sub as any).name_hi
+                            : language === "es" && (sub as any).name_es
+                            ? (sub as any).name_es
+                            : language === "pt" && (sub as any).name_pt
+                            ? (sub as any).name_pt
+                            : language === "fr" && (sub as any).name_fr
+                            ? (sub as any).name_fr
+                            : language === "ru" && (sub as any).name_ru
+                            ? (sub as any).name_ru
+                            : t(sub.name)}
+                        </span>
                         <i className="fa fa-chevron-right"></i>
                       </li>
                     ))
@@ -135,7 +149,21 @@ export default function OldMegaMenu({
                         alignItems: "center",
                       }}
                     >
-                      <span style={{ flex: 1 }}>{language === "ar" && cat.name_ar ? cat.name_ar : cat.name}</span>
+                      <span style={{ flex: 1 }}>
+                        {language === "ar" && cat.name_ar
+                          ? cat.name_ar
+                          : language === "hi" && (cat as any).name_hi
+                          ? (cat as any).name_hi
+                          : language === "es" && (cat as any).name_es
+                          ? (cat as any).name_es
+                          : language === "pt" && (cat as any).name_pt
+                          ? (cat as any).name_pt
+                          : language === "fr" && (cat as any).name_fr
+                          ? (cat as any).name_fr
+                          : language === "ru" && (cat as any).name_ru
+                          ? (cat as any).name_ru
+                          : t(cat.name)}
+                      </span>
                       <i className="fa fa-chevron-right"></i>
                     </li>
                   )
@@ -151,9 +179,9 @@ export default function OldMegaMenu({
                 onClick={() => setMobileTierLevel(1)}
                 className="back-btn"
               >
-                <i className="fa fa-chevron-left"></i> Back
+                <i className="fa fa-chevron-left"></i> {t("Back")}
               </button>
-              <span>{language === "ar" && activeCat?.name_ar ? activeCat.name_ar : activeCat?.name}</span>
+              <span>{language === "ar" && activeCat?.name_ar ? activeCat.name_ar : (language === "hi" && (activeCat as any)?.name_hi ? (activeCat as any).name_hi : (language === "es" && (activeCat as any)?.name_es ? (activeCat as any).name_es : (language === "pt" && (activeCat as any)?.name_pt ? (activeCat as any).name_pt : (language === "fr" && (activeCat as any)?.name_fr ? (activeCat as any).name_fr : (language === "ru" && (activeCat as any)?.name_ru ? (activeCat as any).name_ru : t(activeCat?.name || ""))))))}</span>
               <button
                 onClick={() => setIsMegamenuOpen(false)}
                 className="close-menu-btn ms-auto"
@@ -165,7 +193,19 @@ export default function OldMegaMenu({
               <div className="sub-grid mt-3">
                 <div className="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2 px-3 px-lg-0">
                   <div className="sub-title mb-0 border-0 pb-0 d-none d-lg-block">
-                    {language === "ar" && activeCat.name_ar ? activeCat.name_ar : activeCat.name}
+                    {language === "ar" && activeCat.name_ar
+                      ? activeCat.name_ar
+                      : language === "hi" && (activeCat as any).name_hi
+                      ? (activeCat as any).name_hi
+                      : language === "es" && (activeCat as any).name_es
+                      ? (activeCat as any).name_es
+                      : language === "pt" && (activeCat as any).name_pt
+                      ? (activeCat as any).name_pt
+                      : language === "fr" && (activeCat as any).name_fr
+                      ? (activeCat as any).name_fr
+                      : language === "ru" && (activeCat as any).name_ru
+                      ? (activeCat as any).name_ru
+                      : t(activeCat.name)}
                   </div>
                   <Link
                     href={`/${activeCat.slug}`}
@@ -181,7 +221,7 @@ export default function OldMegaMenu({
                       borderRadius: "20px",
                     }}
                   >
-                    View All{" "}
+                    {t("View All")}{" "}
                     <i
                       className="fa fa-arrow-right ms-1"
                       style={{ fontSize: "10px" }}
@@ -209,7 +249,21 @@ export default function OldMegaMenu({
                         }}
                       >
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
-                          <span>{language === "ar" && sub.name_ar ? sub.name_ar : sub.name}</span>
+                          <span>
+                            {language === "ar" && sub.name_ar
+                              ? sub.name_ar
+                              : language === "hi" && (sub as any).name_hi
+                              ? (sub as any).name_hi
+                              : language === "es" && (sub as any).name_es
+                              ? (sub as any).name_es
+                              : language === "pt" && (sub as any).name_pt
+                              ? (sub as any).name_pt
+                              : language === "fr" && (sub as any).name_fr
+                              ? (sub as any).name_fr
+                              : language === "ru" && (sub as any).name_ru
+                              ? (sub as any).name_ru
+                              : t(sub.name)}
+                          </span>
                           {sub.multi_expand && (
                             <ul className="list-unstyled ps-0 mt-2 ms-2">
                               <li className="ps-2 mb-1" style={{ fontSize: "11px", color: "#666" }}>{t("Single Arm")}</li>

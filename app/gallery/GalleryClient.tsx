@@ -192,32 +192,59 @@ export default function GalleryClient() {
 
             {/* CATEGORY TABS - Matches Homepage Slider */}
             <div className="owl-carousel owl-theme category-slider">
-                {categories.map((cat) => (
-                    <div 
-                        key={cat.id}
-                        className={`item ${activeTab === cat.slug ? 'active' : ''}`}
-                        onClick={() => setActiveTab(cat.slug)}
-                        style={{ cursor: 'pointer' }}
-                    >
-                        <div className="category-img-wrapper" style={{ position: "relative" }}>
-                             <Image 
-                                 src={`${cat.image??"/images/default.png"}`}  
-                                 alt={language === "ar" && cat.name_ar ? cat.name_ar : cat.name} 
-                                 fill
-                                 sizes="(max-width: 768px) 50vw, 140px"
-                                 style={{ objectFit: "cover" }}
-                             />
+                {categories.map((cat) => {
+                      const catName =
+                        language === "ar" && cat.name_ar
+                          ? cat.name_ar
+                          : language === "hi" && (cat as any).name_hi
+                          ? (cat as any).name_hi
+                          : language === "es" && (cat as any).name_es
+                          ? (cat as any).name_es
+                          : language === "pt" && (cat as any).name_pt
+                          ? (cat as any).name_pt
+                          : language === "fr" && (cat as any).name_fr
+                          ? (cat as any).name_fr
+                          : language === "ru" && (cat as any).name_ru
+                          ? (cat as any).name_ru
+                          : t(cat.name);
+                      return (
+                        <div 
+                            key={cat.id}
+                            className={`item ${activeTab === cat.slug ? 'active' : ''}`}
+                            onClick={() => setActiveTab(cat.slug)}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <div className="category-img-wrapper" style={{ position: "relative" }}>
+                                 <Image 
+                                     src={`${cat.image??"/images/default.png"}`}  
+                                     alt={catName} 
+                                     fill
+                                     sizes="(max-width: 768px) 50vw, 140px"
+                                     style={{ objectFit: "cover" }}
+                                 />
+                            </div>
+                            <p>{catName}</p>
                         </div>
-                        <p>{language === "ar" && cat.name_ar ? cat.name_ar : cat.name}</p>
-                    </div>
-                ))}
+                      );
+                })}
             </div>
 
             {/* GALLERY GRID */}
             <div className="gallery-wrapper">
                 <div className="gallery-panel active">
                     {filteredImages.map((img, index) => {
-                        const imgTitle = language === "ar" && img.title_ar ? img.title_ar : img.title;
+                        const imgTitle =
+                          language === "ar" && img.title_ar
+                            ? img.title_ar
+                            : language === "hi" && (img as any).title_hi
+                            ? (img as any).title_hi
+                            : language === "es" && (img as any).title_es
+                            ? (img as any).title_es
+                            : language === "pt" && (img as any).title_pt
+                            ? (img as any).title_pt
+                            : language === "fr" && (img as any).title_fr
+                            ? (img as any).title_fr
+                            : (t(img.title) || img.title);
                         return (
                             <div key={img.id} className="img-box" onClick={() => openLightbox(index)}>
                                  <Image
@@ -252,17 +279,36 @@ export default function GalleryClient() {
             </button>
             
             <div className="lightbox-image-container">
-              <Image
-                src={filteredImages[selectedImageIndex].image}
-                alt={(language === "ar" && filteredImages[selectedImageIndex].title_ar ? filteredImages[selectedImageIndex].title_ar : filteredImages[selectedImageIndex].title) || "Gallery Image"}
-                width={1200}
-                height={800}
-                quality={100}
-                priority
-              />
-              <p className="lightbox-caption">
-                {language === "ar" && filteredImages[selectedImageIndex].title_ar ? filteredImages[selectedImageIndex].title_ar : filteredImages[selectedImageIndex].title}
-              </p>
+              {(() => {
+                const activeImg = filteredImages[selectedImageIndex];
+                const activeTitle =
+                  language === "ar" && activeImg.title_ar
+                    ? activeImg.title_ar
+                    : language === "hi" && (activeImg as any).title_hi
+                    ? (activeImg as any).title_hi
+                    : language === "es" && (activeImg as any).title_es
+                    ? (activeImg as any).title_es
+                    : language === "pt" && (activeImg as any).title_pt
+                    ? (activeImg as any).title_pt
+                    : language === "fr" && (activeImg as any).title_fr
+                    ? (activeImg as any).title_fr
+                    : language === "ru" && (activeImg as any).title_ru
+                    ? (activeImg as any).title_ru
+                    : (t(activeImg.title) || activeImg.title);
+                return (
+                  <>
+                    <Image
+                      src={activeImg.image}
+                      alt={activeTitle || "Gallery Image"}
+                      width={1200}
+                      height={800}
+                      quality={100}
+                      priority
+                    />
+                    <p className="lightbox-caption">{activeTitle}</p>
+                  </>
+                );
+              })()}
             </div>
             
             <button className="nav-btn next-btn" onClick={handleNext}>

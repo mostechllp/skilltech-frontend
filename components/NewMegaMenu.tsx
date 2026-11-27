@@ -6,6 +6,7 @@ interface SubCategory {
   id: number;
   name: string;
   name_ar?: string;
+  name_hi?: string;
   slug: string;
   multi_expand: boolean;
 }
@@ -14,6 +15,7 @@ interface Category {
   id: number;
   name: string;
   name_ar?: string;
+  name_hi?: string;
   slug: string;
   flatten_in_menu: boolean;
   subcategories: SubCategory[];
@@ -23,6 +25,7 @@ interface MainCategory {
   id: number;
   name: string;
   name_ar?: string;
+  name_hi?: string;
   slug: string;
   categories: Category[];
 }
@@ -51,14 +54,122 @@ export default function NewMegaMenu({
   handleLinkClick,
   Arms,
 }: NewMegaMenuProps) {
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
+
+  const getMainTitle = (main: MainCategory) => {
+    if (language === "ar") return main.name_ar || t(main.name?.trim() || "");
+    if (language === "hi") {
+      const trans = t(main.name?.trim() || "");
+      if (trans && trans !== main.name?.trim()) return trans;
+      if ((main as any).name_hi && (main as any).name_hi !== main.name) return (main as any).name_hi;
+      return trans || (main as any).name_hi || main.name;
+    }
+    if (language === "es") {
+      const trans = t(main.name?.trim() || "");
+      if (trans && trans !== main.name?.trim()) return trans;
+      if ((main as any).name_es && (main as any).name_es !== main.name) return (main as any).name_es;
+      return trans || (main as any).name_es || main.name;
+    }
+    if (language === "pt") {
+      const trans = t(main.name?.trim() || "");
+      if (trans && trans !== main.name?.trim()) return trans;
+      if ((main as any).name_pt && (main as any).name_pt !== main.name) return (main as any).name_pt;
+      return trans || (main as any).name_pt || main.name;
+    }
+    if (language === "fr") {
+      const trans = t(main.name?.trim() || "");
+      if (trans && trans !== main.name?.trim()) return trans;
+      if ((main as any).name_fr && (main as any).name_fr !== main.name) return (main as any).name_fr;
+      return trans || (main as any).name_fr || main.name;
+    }
+    if (language === "ru") {
+      const trans = t(main.name?.trim() || "");
+      if (trans && trans !== main.name?.trim()) return trans;
+      if ((main as any).name_ru && (main as any).name_ru !== main.name) return (main as any).name_ru;
+      return trans || (main as any).name_ru || main.name;
+    }
+    return main.name;
+  };
+
+  const getCategoryTitle = (cat: Category) => {
+    if (language === "ar") return cat.name_ar || t(cat.name?.trim() || "");
+    if (language === "hi") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if (cat.name_hi && cat.name_hi !== cat.name) return cat.name_hi;
+      return trans || cat.name_hi || cat.name;
+    }
+    if (language === "es") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if ((cat as any).name_es && (cat as any).name_es !== cat.name) return (cat as any).name_es;
+      return trans || (cat as any).name_es || cat.name;
+    }
+    if (language === "pt") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if ((cat as any).name_pt && (cat as any).name_pt !== cat.name) return (cat as any).name_pt;
+      return trans || (cat as any).name_pt || cat.name;
+    }
+    if (language === "fr") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if ((cat as any).name_fr && (cat as any).name_fr !== cat.name) return (cat as any).name_fr;
+      return trans || (cat as any).name_fr || cat.name;
+    }
+    if (language === "ru") {
+      const trans = t(cat.name?.trim() || "");
+      if (trans && trans !== cat.name?.trim()) return trans;
+      if ((cat as any).name_ru && (cat as any).name_ru !== cat.name) return (cat as any).name_ru;
+      return trans || (cat as any).name_ru || cat.name;
+    }
+    return cat.name;
+  };
+
+  const getSubTitle = (sub: SubCategory) => {
+    if (language === "ar") return sub.name_ar || t(sub.name?.trim() || "");
+    if (language === "hi") {
+      const trans = t(sub.name?.trim() || "");
+      if (trans && trans !== sub.name?.trim()) return trans;
+      if (sub.name_hi && sub.name_hi !== sub.name) return sub.name_hi;
+      return trans || sub.name_hi || sub.name;
+    }
+    if (language === "es") {
+      const trans = t(sub.name?.trim() || "");
+      if (trans && trans !== sub.name?.trim()) return trans;
+      if ((sub as any).name_es && (sub as any).name_es !== sub.name) return (sub as any).name_es;
+      return trans || (sub as any).name_es || sub.name;
+    }
+    if (language === "pt") {
+      const trans = t(sub.name?.trim() || "");
+      if (trans && trans !== sub.name?.trim()) return trans;
+      if ((sub as any).name_pt && (sub as any).name_pt !== sub.name) return (sub as any).name_pt;
+      return trans || (sub as any).name_pt || sub.name;
+    }
+    if (language === "fr") {
+      const trans = t(sub.name?.trim() || "");
+      if (trans && trans !== sub.name?.trim()) return trans;
+      if ((sub as any).name_fr && (sub as any).name_fr !== sub.name) return (sub as any).name_fr;
+      return trans || (sub as any).name_fr || sub.name;
+    }
+    if (language === "ru") {
+      const trans = t(sub.name?.trim() || "");
+      if (trans && trans !== sub.name?.trim()) return trans;
+      if ((sub as any).name_ru && (sub as any).name_ru !== sub.name) return (sub as any).name_ru;
+      return trans || (sub as any).name_ru || sub.name;
+    }
+    return sub.name;
+  };
+
   return (
     <div className={`megamenu new-megamenu ${isMegamenuOpen ? "active" : ""}`}>
       <div className="container">
         <div className="row py-2">
           {mainCategories.map((main) => (
             <div key={main.id} className="col-lg-3 col-md-6 mb-lg-0">
-              <div className="megamenu-title">{language === "ar" && main.name_ar ? main.name_ar : main.name}</div>
+              <div className="megamenu-title">
+                {getMainTitle(main)}
+              </div>
               <ul className="list-unstyled">
                 {main.categories?.map((cat) =>
                   cat.flatten_in_menu ? (
@@ -77,7 +188,9 @@ export default function NewMegaMenu({
                             textDecoration: "none",
                           }}
                         >
-                          <span className="me-2">{language === "ar" && sub.name_ar ? sub.name_ar : sub.name}</span>
+                          <span className="me-2">
+                            {getSubTitle(sub)}
+                          </span>
                         </Link>
                       </li>
                     ))
@@ -98,7 +211,9 @@ export default function NewMegaMenu({
                           transition: "all 0.2s ease",
                         }}
                       >
-                        <span className="me-2">{language === "ar" && cat.name_ar ? cat.name_ar : cat.name}</span>
+                        <span className="me-2">
+                          {getCategoryTitle(cat)}
+                        </span>
                         <i
                           className={`fa fa-chevron-${expandedCatId === cat.id ? "down" : "right"}`}
                           style={{ fontSize: "10px", color: "#999" }}
@@ -133,7 +248,7 @@ export default function NewMegaMenu({
                                   }}
                                   className="hover-link"
                                 >
-                                  {language === "ar" && sub.name_ar ? sub.name_ar : sub.name}
+                                  {getSubTitle(sub)}
                                 </Link>
                                 {sub.multi_expand && (
                                   <ul className="list-unstyled ps-0 mt-2 ms-2">
@@ -156,7 +271,7 @@ export default function NewMegaMenu({
                                                 display: "block",
                                               }}
                                             >
-                                              {language === "ar" && arm?.name_ar ? arm.name_ar : arm?.name}
+                                              {language === "ar" && arm?.name_ar ? arm.name_ar : t(arm?.name || "")}
                                             </Link>
                                           </li>
                                         )

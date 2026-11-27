@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useCountry } from "@/lib/CountryContext";
 
 interface Country {
   name: string;
@@ -80,6 +81,149 @@ const COUNTRIES: Country[] = [
   { name: "Singapore", nameAr: "سنغافورة", code: "SG", dialCode: "+65", flag: "🇸🇬" },
   { name: "Malaysia", nameAr: "ماليزيا", code: "MY", dialCode: "+60", flag: "🇲🇾" },
   { name: "Indonesia", nameAr: "إندونيسيا", code: "ID", dialCode: "+62", flag: "🇮🇩" },
+
+  // Asia (additional)
+  { name: "Armenia", nameAr: "أرمينيا", code: "AM", dialCode: "+374", flag: "🇦🇲" },
+  { name: "Bhutan", nameAr: "بوتان", code: "BT", dialCode: "+975", flag: "🇧🇹" },
+  { name: "Brunei", nameAr: "بروناي", code: "BN", dialCode: "+673", flag: "🇧🇳" },
+  { name: "Cambodia", nameAr: "كمبوديا", code: "KH", dialCode: "+855", flag: "🇰🇭" },
+  { name: "Georgia", nameAr: "جورجيا", code: "GE", dialCode: "+995", flag: "🇬🇪" },
+  { name: "Israel", nameAr: "إسرائيل", code: "IL", dialCode: "+972", flag: "🇮🇱" },
+  { name: "Kyrgyzstan", nameAr: "قيرغيزستان", code: "KG", dialCode: "+996", flag: "🇰🇬" },
+  { name: "Laos", nameAr: "لاوس", code: "LA", dialCode: "+856", flag: "🇱🇦" },
+  { name: "Maldives", nameAr: "المالديف", code: "MV", dialCode: "+960", flag: "🇲🇻" },
+  { name: "Mongolia", nameAr: "منغوليا", code: "MN", dialCode: "+976", flag: "🇲🇳" },
+  { name: "Myanmar", nameAr: "ميانمار", code: "MM", dialCode: "+95", flag: "🇲🇲" },
+  { name: "North Korea", nameAr: "كوريا الشمالية", code: "KP", dialCode: "+850", flag: "🇰🇵" },
+  { name: "Tajikistan", nameAr: "طاجيكستان", code: "TJ", dialCode: "+992", flag: "🇹🇯" },
+  { name: "Timor-Leste", nameAr: "تيمور الشرقية", code: "TL", dialCode: "+670", flag: "🇹🇱" },
+  { name: "Turkmenistan", nameAr: "تركمانستان", code: "TM", dialCode: "+993", flag: "🇹🇲" },
+
+  // Europe (additional)
+  { name: "Albania", nameAr: "ألبانيا", code: "AL", dialCode: "+355", flag: "🇦🇱" },
+  { name: "Andorra", nameAr: "أندورا", code: "AD", dialCode: "+376", flag: "🇦🇩" },
+  { name: "Belarus", nameAr: "بيلاروسيا", code: "BY", dialCode: "+375", flag: "🇧🇾" },
+  { name: "Bosnia and Herzegovina", nameAr: "البوسنة والهرسك", code: "BA", dialCode: "+387", flag: "🇧🇦" },
+  { name: "Bulgaria", nameAr: "بلغاريا", code: "BG", dialCode: "+359", flag: "🇧🇬" },
+  { name: "Croatia", nameAr: "كرواتيا", code: "HR", dialCode: "+385", flag: "🇭🇷" },
+  { name: "Czechia", nameAr: "التشيك", code: "CZ", dialCode: "+420", flag: "🇨🇿" },
+  { name: "Estonia", nameAr: "إستونيا", code: "EE", dialCode: "+372", flag: "🇪🇪" },
+  { name: "Hungary", nameAr: "المجر", code: "HU", dialCode: "+36", flag: "🇭🇺" },
+  { name: "Iceland", nameAr: "آيسلندا", code: "IS", dialCode: "+354", flag: "🇮🇸" },
+  { name: "Latvia", nameAr: "لاتفيا", code: "LV", dialCode: "+371", flag: "🇱🇻" },
+  { name: "Liechtenstein", nameAr: "ليختنشتاين", code: "LI", dialCode: "+423", flag: "🇱🇮" },
+  { name: "Lithuania", nameAr: "ليتوانيا", code: "LT", dialCode: "+370", flag: "🇱🇹" },
+  { name: "Luxembourg", nameAr: "لوكسمبورغ", code: "LU", dialCode: "+352", flag: "🇱🇺" },
+  { name: "Malta", nameAr: "مالطا", code: "MT", dialCode: "+356", flag: "🇲🇹" },
+  { name: "Moldova", nameAr: "مولدوفا", code: "MD", dialCode: "+373", flag: "🇲🇩" },
+  { name: "Monaco", nameAr: "موناكو", code: "MC", dialCode: "+377", flag: "🇲🇨" },
+  { name: "Montenegro", nameAr: "الجبل الأسود", code: "ME", dialCode: "+382", flag: "🇲🇪" },
+  { name: "North Macedonia", nameAr: "مقدونيا الشمالية", code: "MK", dialCode: "+389", flag: "🇲🇰" },
+  { name: "Romania", nameAr: "رومانيا", code: "RO", dialCode: "+40", flag: "🇷🇴" },
+  { name: "San Marino", nameAr: "سان مارينو", code: "SM", dialCode: "+378", flag: "🇸🇲" },
+  { name: "Serbia", nameAr: "صربيا", code: "RS", dialCode: "+381", flag: "🇷🇸" },
+  { name: "Slovakia", nameAr: "سلوفاكيا", code: "SK", dialCode: "+421", flag: "🇸🇰" },
+  { name: "Slovenia", nameAr: "سلوفينيا", code: "SI", dialCode: "+386", flag: "🇸🇮" },
+  { name: "Vatican City", nameAr: "الفاتيكان", code: "VA", dialCode: "+39", flag: "🇻🇦" },
+
+  // Africa (additional)
+  { name: "Angola", nameAr: "أنغولا", code: "AO", dialCode: "+244", flag: "🇦🇴" },
+  { name: "Benin", nameAr: "بنين", code: "BJ", dialCode: "+229", flag: "🇧🇯" },
+  { name: "Botswana", nameAr: "بوتسوانا", code: "BW", dialCode: "+267", flag: "🇧🇼" },
+  { name: "Burkina Faso", nameAr: "بوركينا فاسو", code: "BF", dialCode: "+226", flag: "🇧🇫" },
+  { name: "Burundi", nameAr: "بوروندي", code: "BI", dialCode: "+257", flag: "🇧🇮" },
+  { name: "Cabo Verde", nameAr: "الرأس الأخضر", code: "CV", dialCode: "+238", flag: "🇨🇻" },
+  { name: "Cameroon", nameAr: "الكاميرون", code: "CM", dialCode: "+237", flag: "🇨🇲" },
+  { name: "Central African Republic", nameAr: "جمهورية أفريقيا الوسطى", code: "CF", dialCode: "+236", flag: "🇨🇫" },
+  { name: "Chad", nameAr: "تشاد", code: "TD", dialCode: "+235", flag: "🇹🇩" },
+  { name: "Comoros", nameAr: "جزر القمر", code: "KM", dialCode: "+269", flag: "🇰🇲" },
+  { name: "Republic of the Congo", nameAr: "جمهورية الكونغو", code: "CG", dialCode: "+242", flag: "🇨🇬" },
+  { name: "Democratic Republic of the Congo", nameAr: "جمهورية الكونغو الديمقراطية", code: "CD", dialCode: "+243", flag: "🇨🇩" },
+  { name: "Cote d'Ivoire (Ivory Coast)", nameAr: "ساحل العاج", code: "CI", dialCode: "+225", flag: "🇨🇮" },
+  { name: "Djibouti", nameAr: "جيبوتي", code: "DJ", dialCode: "+253", flag: "🇩🇯" },
+  { name: "Equatorial Guinea", nameAr: "غينيا الاستوائية", code: "GQ", dialCode: "+240", flag: "🇬🇶" },
+  { name: "Eritrea", nameAr: "إريتريا", code: "ER", dialCode: "+291", flag: "🇪🇷" },
+  { name: "Eswatini", nameAr: "إسواتيني", code: "SZ", dialCode: "+268", flag: "🇸🇿" },
+  { name: "Ethiopia", nameAr: "إثيوبيا", code: "ET", dialCode: "+251", flag: "🇪🇹" },
+  { name: "Gabon", nameAr: "الغابون", code: "GA", dialCode: "+241", flag: "🇬🇦" },
+  { name: "Gambia", nameAr: "غامبيا", code: "GM", dialCode: "+220", flag: "🇬🇲" },
+  { name: "Ghana", nameAr: "غانا", code: "GH", dialCode: "+233", flag: "🇬🇭" },
+  { name: "Guinea", nameAr: "غينيا", code: "GN", dialCode: "+224", flag: "🇬🇳" },
+  { name: "Guinea-Bissau", nameAr: "غينيا بيساو", code: "GW", dialCode: "+245", flag: "🇬🇼" },
+  { name: "Lesotho", nameAr: "ليسوتو", code: "LS", dialCode: "+266", flag: "🇱🇸" },
+  { name: "Liberia", nameAr: "ليبيريا", code: "LR", dialCode: "+231", flag: "🇱🇷" },
+  { name: "Madagascar", nameAr: "مدغشقر", code: "MG", dialCode: "+261", flag: "🇲🇬" },
+  { name: "Malawi", nameAr: "مالاوي", code: "MW", dialCode: "+265", flag: "🇲🇼" },
+  { name: "Mali", nameAr: "مالي", code: "ML", dialCode: "+223", flag: "🇲🇱" },
+  { name: "Mauritania", nameAr: "موريتانيا", code: "MR", dialCode: "+222", flag: "🇲🇷" },
+  { name: "Mauritius", nameAr: "موريشيوس", code: "MU", dialCode: "+230", flag: "🇲🇺" },
+  { name: "Mozambique", nameAr: "موزمبيق", code: "MZ", dialCode: "+258", flag: "🇲🇿" },
+  { name: "Namibia", nameAr: "ناميبيا", code: "NA", dialCode: "+264", flag: "🇳🇦" },
+  { name: "Niger", nameAr: "النيجر", code: "NE", dialCode: "+227", flag: "🇳🇪" },
+  { name: "Rwanda", nameAr: "رواندا", code: "RW", dialCode: "+250", flag: "🇷🇼" },
+  { name: "Sao Tome and Principe", nameAr: "ساو تومي وبرينسيبي", code: "ST", dialCode: "+239", flag: "🇸🇹" },
+  { name: "Senegal", nameAr: "السنغال", code: "SN", dialCode: "+221", flag: "🇸🇳" },
+  { name: "Seychelles", nameAr: "سيشل", code: "SC", dialCode: "+248", flag: "🇸🇨" },
+  { name: "Sierra Leone", nameAr: "سيراليون", code: "SL", dialCode: "+232", flag: "🇸🇱" },
+  { name: "Somalia", nameAr: "الصومال", code: "SO", dialCode: "+252", flag: "🇸🇴" },
+  { name: "South Sudan", nameAr: "جنوب السودان", code: "SS", dialCode: "+211", flag: "🇸🇸" },
+  { name: "Tanzania", nameAr: "تنزانيا", code: "TZ", dialCode: "+255", flag: "🇹🇿" },
+  { name: "Togo", nameAr: "توغو", code: "TG", dialCode: "+228", flag: "🇹🇬" },
+  { name: "Uganda", nameAr: "أوغندا", code: "UG", dialCode: "+256", flag: "🇺🇬" },
+  { name: "Zambia", nameAr: "زامبيا", code: "ZM", dialCode: "+260", flag: "🇿🇲" },
+  { name: "Zimbabwe", nameAr: "زيمبابوي", code: "ZW", dialCode: "+263", flag: "🇿🇼" },
+
+  // Americas & Caribbean (additional)
+  { name: "Antigua and Barbuda", nameAr: "أنتيغوا وبربودا", code: "AG", dialCode: "+1268", flag: "🇦🇬" },
+  { name: "Bahamas", nameAr: "جزر البهاما", code: "BS", dialCode: "+1242", flag: "🇧🇸" },
+  { name: "Barbados", nameAr: "بربادوس", code: "BB", dialCode: "+1246", flag: "🇧🇧" },
+  { name: "Belize", nameAr: "بليز", code: "BZ", dialCode: "+501", flag: "🇧🇿" },
+  { name: "Bolivia", nameAr: "بوليفيا", code: "BO", dialCode: "+591", flag: "🇧🇴" },
+  { name: "Chile", nameAr: "تشيلي", code: "CL", dialCode: "+56", flag: "🇨🇱" },
+  { name: "Colombia", nameAr: "كولومبيا", code: "CO", dialCode: "+57", flag: "🇨🇴" },
+  { name: "Costa Rica", nameAr: "كوستاريكا", code: "CR", dialCode: "+506", flag: "🇨🇷" },
+  { name: "Cuba", nameAr: "كوبا", code: "CU", dialCode: "+53", flag: "🇨🇺" },
+  { name: "Dominica", nameAr: "دومينيكا", code: "DM", dialCode: "+1767", flag: "🇩🇲" },
+  { name: "Dominican Republic", nameAr: "جمهورية الدومينيكان", code: "DO", dialCode: "+1809", flag: "🇩🇴" },
+  { name: "Ecuador", nameAr: "الإكوادور", code: "EC", dialCode: "+593", flag: "🇪🇨" },
+  { name: "El Salvador", nameAr: "السلفادور", code: "SV", dialCode: "+503", flag: "🇸🇻" },
+  { name: "Grenada", nameAr: "غرينادا", code: "GD", dialCode: "+1473", flag: "🇬🇩" },
+  { name: "Guatemala", nameAr: "غواتيمالا", code: "GT", dialCode: "+502", flag: "🇬🇹" },
+  { name: "Guyana", nameAr: "غيانا", code: "GY", dialCode: "+592", flag: "🇬🇾" },
+  { name: "Haiti", nameAr: "هايتي", code: "HT", dialCode: "+509", flag: "🇭🇹" },
+  { name: "Honduras", nameAr: "هندوراس", code: "HN", dialCode: "+504", flag: "🇭🇳" },
+  { name: "Jamaica", nameAr: "جامايكا", code: "JM", dialCode: "+1876", flag: "🇯🇲" },
+  { name: "Nicaragua", nameAr: "نيكاراغوا", code: "NI", dialCode: "+505", flag: "🇳🇮" },
+  { name: "Panama", nameAr: "بنما", code: "PA", dialCode: "+507", flag: "🇵🇦" },
+  { name: "Paraguay", nameAr: "باراغواي", code: "PY", dialCode: "+595", flag: "🇵🇾" },
+  { name: "Peru", nameAr: "بيرو", code: "PE", dialCode: "+51", flag: "🇵🇪" },
+  { name: "Saint Kitts and Nevis", nameAr: "سانت كيتس ونيفيس", code: "KN", dialCode: "+1869", flag: "🇰🇳" },
+  { name: "Saint Lucia", nameAr: "سانت لوسيا", code: "LC", dialCode: "+1758", flag: "🇱🇨" },
+  { name: "Saint Vincent and the Grenadines", nameAr: "سانت فنسنت والغرينادين", code: "VC", dialCode: "+1784", flag: "🇻🇨" },
+  { name: "Suriname", nameAr: "سورينام", code: "SR", dialCode: "+597", flag: "🇸🇷" },
+  { name: "Trinidad and Tobago", nameAr: "ترينيداد وتوباغو", code: "TT", dialCode: "+1868", flag: "🇹🇹" },
+  { name: "Uruguay", nameAr: "أوروغواي", code: "UY", dialCode: "+598", flag: "🇺🇾" },
+  { name: "Venezuela", nameAr: "فنزويلا", code: "VE", dialCode: "+58", flag: "🇻🇪" },
+
+  // Oceania (additional)
+  { name: "Fiji", nameAr: "فيجي", code: "FJ", dialCode: "+679", flag: "🇫🇯" },
+  { name: "Kiribati", nameAr: "كيريباتي", code: "KI", dialCode: "+686", flag: "🇰🇮" },
+  { name: "Marshall Islands", nameAr: "جزر مارشال", code: "MH", dialCode: "+692", flag: "🇲🇭" },
+  { name: "Micronesia", nameAr: "ميكرونيسيا", code: "FM", dialCode: "+691", flag: "🇫🇲" },
+  { name: "Nauru", nameAr: "ناورو", code: "NR", dialCode: "+674", flag: "🇳🇷" },
+  { name: "Palau", nameAr: "بالاو", code: "PW", dialCode: "+680", flag: "🇵🇼" },
+  { name: "Papua New Guinea", nameAr: "بابوا غينيا الجديدة", code: "PG", dialCode: "+675", flag: "🇵🇬" },
+  { name: "Samoa", nameAr: "ساموا", code: "WS", dialCode: "+685", flag: "🇼🇸" },
+  { name: "Solomon Islands", nameAr: "جزر سليمان", code: "SB", dialCode: "+677", flag: "🇸🇧" },
+  { name: "Tonga", nameAr: "تونغا", code: "TO", dialCode: "+676", flag: "🇹🇴" },
+  { name: "Tuvalu", nameAr: "توفالو", code: "TV", dialCode: "+688", flag: "🇹🇻" },
+  { name: "Vanuatu", nameAr: "فانواتو", code: "VU", dialCode: "+678", flag: "🇻🇺" },
+
+  // Additional territories
+  { name: "Hong Kong", nameAr: "هونغ كونغ", code: "HK", dialCode: "+852", flag: "🇭🇰" },
+  { name: "Macau", nameAr: "ماكاو", code: "MO", dialCode: "+853", flag: "🇲🇴" },
+  { name: "Taiwan", nameAr: "تايوان", code: "TW", dialCode: "+886", flag: "🇹🇼" },
+  { name: "Kosovo", nameAr: "كوسوفو", code: "XK", dialCode: "+383", flag: "🇽🇰" },
 ];
 
 interface PhoneInputProps {
@@ -106,19 +250,34 @@ export default function PhoneInput({
   "aria-label": ariaLabel,
 }: PhoneInputProps) {
   const { language, dir } = useLanguage();
+  
+  let currentCountryCode = "ae";
+  try {
+    const countryContext = useCountry();
+    if (countryContext?.countryCode) {
+      currentCountryCode = countryContext.countryCode;
+    }
+  } catch {
+    currentCountryCode = "ae";
+  }
+
+  const defaultCountry =
+    COUNTRIES.find((c) => c.code.toLowerCase() === currentCountryCode.toLowerCase()) || COUNTRIES[0];
+
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState<Country>(COUNTRIES[0]); // default UAE +971
+  const [selectedCountry, setSelectedCountry] = useState<Country>(defaultCountry);
   const [localNumber, setLocalNumber] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   
   // Sort countries by dialCode length descending to ensure accurate dial code matching
   const sortedCountries = [...COUNTRIES].sort((a, b) => b.dialCode.length - a.dialCode.length);
 
-  // Parse external value on mount/change
+  // Parse external value on mount/change, or adopt active GCC country if empty
   useEffect(() => {
     if (!value) {
       setLocalNumber("");
+      setSelectedCountry(defaultCountry);
       return;
     }
     
@@ -128,11 +287,10 @@ export default function PhoneInput({
       setSelectedCountry(matched);
       setLocalNumber(value.slice(matched.dialCode.length).trim());
     } else {
-      // If it doesn't match any known country, default to UAE and set local number to the whole value
-      setSelectedCountry(COUNTRIES[0]);
+      setSelectedCountry(defaultCountry);
       setLocalNumber(value);
     }
-  }, [value]);
+  }, [value, currentCountryCode]);
 
   // Handle local text input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

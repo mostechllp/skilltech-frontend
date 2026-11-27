@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <rect width="600" height="400" fill="#006C35"/>
+  <!-- Simplified aesthetic representation of Saudi emblem (sword + calligraphy bar) -->
+  <g fill="#ffffff">
+    <!-- Calligraphic script stylized representation -->
+    <path d="M 160 160 Q 200 130 240 160 Q 280 130 320 160 Q 360 130 400 160 Q 430 140 440 160 Q 400 180 300 175 Q 200 180 160 160 Z" opacity="0.95"/>
+    <path d="M 180 135 H 220 V 155 H 180 Z" opacity="0.95"/>
+    <path d="M 245 130 H 265 V 155 H 245 Z" opacity="0.95"/>
+    <path d="M 285 125 H 315 V 155 H 285 Z" opacity="0.95"/>
+    <path d="M 335 130 H 360 V 155 H 335 Z" opacity="0.95"/>
+    <path d="M 380 135 H 410 V 155 H 380 Z" opacity="0.95"/>
+    <!-- Traditional Sword -->
+    <path d="M 160 220 L 420 220 Q 440 222 445 225 Q 440 228 420 230 L 160 230 Z"/>
+    <rect x="420" y="212" width="6" height="26" rx="2"/>
+    <path d="M 426 222 L 445 222 L 440 228 L 426 228 Z"/>
+  </g>
+</svg>

@@ -13,6 +13,7 @@ import {
 } from "@/lib/api";
 import Captcha from "@/components/Captcha";
 import StatsSection from "@/components/StatsSection";
+import CustomerReviews from "@/components/CustomerReviews";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ServiceClient() {
@@ -128,7 +129,7 @@ export default function ServiceClient() {
       if (response?.reference_number) {
         sessionStorage.setItem("thank_you_ref", response.reference_number);
       }
-      router.push(language === "ar" ? `/ar/service/thank-you` : `/service/thank-you`);
+      router.push(language === "ar" ? `/ar/service/thank-you` : language === "hi" ? `/hi/service/thank-you` : language === "es" ? `/es/service/thank-you` : language === "pt" ? `/pt/service/thank-you` : language === "fr" ? `/fr/service/thank-you` : `/service/thank-you`);
     } catch (err: any) {
       setStatus({
         loading: false,
@@ -295,7 +296,21 @@ export default function ServiceClient() {
               serviceOptions.available_times.length > 0 &&
               serviceOptions.available_times.map((item: any) => (
                 <option key={item.id} value={item.time_slot}>
-                  {language === "ar" && item.time_slot_ar ? item.time_slot_ar : item.time_slot}
+                  {language === "ar" && item.time_slot_ar
+                    ? item.time_slot_ar
+                    : language === "hi" && item.time_slot_hi
+                    ? item.time_slot_hi
+                    : language === "es" && item.time_slot_es
+                    ? item.time_slot_es
+                    : language === "pt" && item.time_slot_pt
+                    ? item.time_slot_pt
+                    : language === "fr" && (item as any).time_slot_fr
+                    ? (item as any).time_slot_fr
+                    : language === "ru" && (item as any).time_slot_ru
+                    ? (item as any).time_slot_ru
+                    : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                    ? t(item.time_slot)
+                    : item.time_slot}
                 </option>
               ))}
           </select>
@@ -569,6 +584,14 @@ export default function ServiceClient() {
 
       <ClientsSection clients={clients} />
 
+      {/* What Our Customers Say - Google Reviews Section */}
+      <CustomerReviews
+        reviewsUrl={
+          settings?.google_map_link ||
+          "https://www.google.com/search?q=Skill+Mount+Electronics+Trading+LLC+Reviews"
+        }
+      />
+
       {/* ===== FAQ SECTION ===== */}
 
       {faqs?.length > 0 && (
@@ -604,16 +627,46 @@ export default function ServiceClient() {
                         className="faq-question"
                         onClick={() => toggleFaq(index)}
                       >
-                        {language === "ar" && faq.question_ar ? faq.question_ar : faq.question}
+                        {language === "ar" && faq.question_ar
+                          ? faq.question_ar
+                          : language === "hi" && faq.question_hi
+                          ? faq.question_hi
+                          : language === "es" && faq.question_es
+                          ? faq.question_es
+                          : language === "pt" && faq.question_pt
+                          ? faq.question_pt
+                          : language === "fr" && (faq as any).question_fr
+                          ? (faq as any).question_fr
+                          : language === "ru" && (faq as any).question_ru
+                          ? (faq as any).question_ru
+                          : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                          ? t(faq.question)
+                          : faq.question}
                         <span className="arrowed">▼</span>
                       </button>
                       <div
                         className="faq-answer"
                         style={{
-                          maxHeight: activeFaq === index ? "200px" : "0",
+                          maxHeight: activeFaq === index ? "1000px" : "0",
                         }}
                       >
-                        <p>{language === "ar" && faq.answer_ar ? faq.answer_ar : faq.answer}</p>
+                        <p>
+                          {language === "ar" && faq.answer_ar
+                            ? faq.answer_ar
+                            : language === "hi" && faq.answer_hi
+                            ? faq.answer_hi
+                            : language === "es" && faq.answer_es
+                            ? faq.answer_es
+                            : language === "pt" && faq.answer_pt
+                            ? faq.answer_pt
+                            : language === "fr" && (faq as any).answer_fr
+                            ? (faq as any).answer_fr
+                            : language === "ru" && (faq as any).answer_ru
+                            ? (faq as any).answer_ru
+                            : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                            ? t(faq.answer)
+                            : faq.answer}
+                        </p>
                       </div>
                     </div>
                   ))

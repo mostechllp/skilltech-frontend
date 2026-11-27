@@ -9,8 +9,8 @@ import {
 import type { Metadata } from "next";
 import Pagination from "@/components/Pagination";
 import ProductCard from "@/components/ProductCard";
-import { headers } from "next/headers";
 import { translations } from "@/lib/translations";
+import { getServerLocale } from "@/lib/locale";
 import { ARM_NAMES } from "@/lib/armConstants";
 
 const subcategoryH1Names: Record<string, string> = {
@@ -43,6 +43,24 @@ const subcategoryH1Names: Record<string, string> = {
   "pos-stands": "POS Stands",
   "digital-signage-wall-mounts": "Digital Signage Wall Mounts",
   "video-wall-floor-stands": "Video Wall Floor Stands",
+  "non-smart-led-tv": "Non Smart LED TV",
+  "smart-led-tv": "Smart LED TV",
+  "cabinet-indoor": "Cabinet Indoor",
+  "cabinet-outdoor": "Cabinet Outdoor",
+  "module-indoor": "Module Indoor",
+  "module-outdoor": "Module Outdoor",
+  "k-shape-podium": "K-Shape Podium",
+  "l-shape-podium": "L-Shape Podium",
+  "2k-hdmi-cables": "2K HDMI Cables",
+  "4k-30-hz": "4K 30 HZ",
+  "4k-30-hz-copper": "4K 30 HZ Copper",
+  "4k-60-hz": "4K 60 HZ",
+  "8k-60hz": "8K 60HZ",
+  "8k-60-hz": "8K 60 HZ",
+  "4k-60-hz-copper": "4K 60 HZ Copper",
+  "8k-120-hz-copper": "8K 120 HZ Copper",
+  "4k-fiber": "4K Fiber",
+  "8k-fiber": "8K Fiber",
 };
 
 const ARM_BREADCRUMB_NAMES: Record<
@@ -311,18 +329,31 @@ export async function generateSubCategoryMetadata({
     };
   }
 
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
   const t = (key: string) => {
+    if (!key) return "";
     const langDict = (translations[locale] as Record<string, string>) || {};
-    return langDict[key] || key;
+    if (langDict[key]) return langDict[key];
+    const trimmed = key.trim();
+    if (langDict[trimmed]) return langDict[trimmed];
+    const lower = trimmed.toLowerCase();
+    for (const [k, v] of Object.entries(langDict)) {
+      if (k.toLowerCase() === lower) return v;
+    }
+    return key;
   };
 
+  const rawMetaName = subcategoryH1Names[subcategorySlug] || subCategory.name;
   const nameTrans =
-    (locale === "ar" && subCategory.name_ar
-      ? subCategory.name_ar
-      : subcategoryH1Names[subcategorySlug] || subCategory.name) ||
-    formatSlug(subcategorySlug);
+    (locale === "ar"
+      ? subCategory.name_ar || rawMetaName
+      : locale === "hi"
+      ? (t(rawMetaName) !== rawMetaName ? t(rawMetaName) : ((subCategory as any).name_hi || t(subCategory.name)))
+      : locale === "es"
+      ? (t(rawMetaName) !== rawMetaName ? t(rawMetaName) : ((subCategory as any).name_es || t(subCategory.name)))
+      : locale === "pt"
+      ? (t(rawMetaName) !== rawMetaName ? t(rawMetaName) : ((subCategory as any).name_pt || t(subCategory.name)))
+      : rawMetaName) || formatSlug(subcategorySlug);
 
   let title: string;
   let description: string;
@@ -335,18 +366,20 @@ export async function generateSubCategoryMetadata({
     const armDisplayName =
       locale === "ar"
         ? armBreadcrumb?.ar || armBreadcrumb?.en || formatSlug(armSlug)
-        : armBreadcrumb?.en || formatSlug(armSlug);
+        : t(armBreadcrumb?.en || formatSlug(armSlug));
+
+    const prefix = locale === "ar" ? "/ar" : locale === "hi" ? "/hi" : locale === "es" ? "/es" : locale === "pt" ? "/pt" : locale === "fr" ? "/fr" : locale === "ru" ? "/ru" : "";
 
     if (locale === "ar") {
       title = `${armDisplayName} | Skill Tech`;
       description = `تسوق ${armDisplayName} من Skill Tech. حامل شاشات مريح وعالي الجودة.`;
       canonical = `https://skilltechonline.com/ar/${categorySlug}/${subcategorySlug}/${armSlug}`;
     } else {
-      title = customArmSeo?.title || `${armDisplayName} - Skill Tech`;
+      title = customArmSeo?.title ? t(customArmSeo.title) : `${armDisplayName} - Skill Tech`;
       description =
-        customArmSeo?.description ||
-        `Shop ${armDisplayName.toLowerCase()} from Skill Tech. High quality, durable and ergonomic desk solutions. Order online today.`;
-      canonical = `https://skilltechonline.com/${categorySlug}/${subcategorySlug}/${armSlug}`;
+        customArmSeo?.description ? t(customArmSeo.description) :
+        `${t("Explore Our Products")} - ${armDisplayName}`;
+      canonical = `https://skilltechonline.com${prefix}/${categorySlug}/${subcategorySlug}/${armSlug}`;
     }
   } else {
     const customSeo = subcategorySeoData[subcategorySlug];
@@ -363,6 +396,16 @@ export async function generateSubCategoryMetadata({
     canonical =
       locale === "ar"
         ? `https://skilltechonline.com/ar/${categorySlug}/${subcategorySlug}`
+        : locale === "hi"
+        ? `https://skilltechonline.com/hi/${categorySlug}/${subcategorySlug}`
+        : locale === "es"
+        ? `https://skilltechonline.com/es/${categorySlug}/${subcategorySlug}`
+        : locale === "pt"
+        ? `https://skilltechonline.com/pt/${categorySlug}/${subcategorySlug}`
+        : locale === "fr"
+        ? `https://skilltechonline.com/fr/${categorySlug}/${subcategorySlug}`
+        : locale === "ru"
+        ? `https://skilltechonline.com/ru/${categorySlug}/${subcategorySlug}`
         : customSeo?.canonical || `https://skilltechonline.com/${categorySlug}/${subcategorySlug}`;
   }
 
@@ -417,11 +460,18 @@ export default async function SubCategoryView({
     notFound();
   }
 
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
   const t = (key: string) => {
+    if (!key) return "";
     const langDict = (translations[locale] as Record<string, string>) || {};
-    return langDict[key] || key;
+    if (langDict[key]) return langDict[key];
+    const trimmed = key.trim();
+    if (langDict[trimmed]) return langDict[trimmed];
+    const lower = trimmed.toLowerCase();
+    for (const [k, v] of Object.entries(langDict)) {
+      if (k.toLowerCase() === lower) return v;
+    }
+    return key;
   };
 
   let productsData;
@@ -435,10 +485,47 @@ export default async function SubCategoryView({
   const products = Array.isArray(productsData) ? productsData : productsData.results || [];
   const count = Array.isArray(productsData) ? productsData.length : productsData.count || 0;
 
-  const baseSubCategoryName =
-    subcategoryH1Names[subcategorySlug] ||
-    (locale === "ar" && subCategory.name_ar ? subCategory.name_ar : subCategory.name) ||
-    formatSlug(subcategorySlug);
+  const rawSubName = subcategoryH1Names[subcategorySlug] || subCategory.name;
+  const getSubName = () => {
+    if (locale === "ar") return subCategory.name_ar || rawSubName;
+    if (locale === "hi") {
+      const trans = t(rawSubName?.trim() || "");
+      if (trans && trans !== rawSubName?.trim()) return trans;
+      const dbHi = (subCategory as any).name_hi;
+      if (dbHi && dbHi !== subCategory.name) return dbHi;
+      return trans || (subCategory as any).name_hi || rawSubName;
+    }
+    if (locale === "es") {
+      const trans = t(rawSubName?.trim() || "");
+      if (trans && trans !== rawSubName?.trim()) return trans;
+      const dbEs = (subCategory as any).name_es;
+      if (dbEs && dbEs !== subCategory.name) return dbEs;
+      return trans || (subCategory as any).name_es || rawSubName;
+    }
+    if (locale === "pt") {
+      const trans = t(rawSubName?.trim() || "");
+      if (trans && trans !== rawSubName?.trim()) return trans;
+      const dbPt = (subCategory as any).name_pt;
+      if (dbPt && dbPt !== subCategory.name) return dbPt;
+      return trans || (subCategory as any).name_pt || rawSubName;
+    }
+    if (locale === "fr") {
+      const trans = t(rawSubName?.trim() || "");
+      if (trans && trans !== rawSubName?.trim()) return trans;
+      const dbFr = (subCategory as any).name_fr;
+      if (dbFr && dbFr !== subCategory.name) return dbFr;
+      return trans || (subCategory as any).name_fr || rawSubName;
+    }
+    if (locale === "ru") {
+      const trans = t(rawSubName?.trim() || "");
+      if (trans && trans !== rawSubName?.trim()) return trans;
+      const dbRu = (subCategory as any).name_ru;
+      if (dbRu && dbRu !== subCategory.name) return dbRu;
+      return trans || (subCategory as any).name_ru || rawSubName;
+    }
+    return rawSubName;
+  };
+  const baseSubCategoryName = getSubName() || formatSlug(subcategorySlug);
 
   const armBreadcrumb = armSlug
     ? ARM_BREADCRUMB_NAMES[subcategorySlug]?.[armSlug] || ARM_NAMES[armSlug]
@@ -446,6 +533,16 @@ export default async function SubCategoryView({
   const armDisplayName = armBreadcrumb
     ? locale === "ar"
       ? armBreadcrumb.ar || armBreadcrumb.en || formatSlug(armSlug)
+      : locale === "hi"
+      ? t(armBreadcrumb.en || formatSlug(armSlug))
+      : locale === "es"
+      ? t(armBreadcrumb.en || formatSlug(armSlug))
+      : locale === "pt"
+      ? t(armBreadcrumb.en || formatSlug(armSlug))
+      : locale === "fr"
+      ? t(armBreadcrumb.en || formatSlug(armSlug))
+      : locale === "ru"
+      ? t(armBreadcrumb.en || formatSlug(armSlug))
       : armBreadcrumb.en || formatSlug(armSlug)
     : null;
 
@@ -530,11 +627,35 @@ export default async function SubCategoryView({
           <span>{locale === "ar" ? " < " : " > "}</span>
           <Link
             href={`/${categorySlug}`}
-            aria-label={locale === "ar" && subCategory.category?.name_ar ? subCategory.category.name_ar : subCategory.category?.name || formatSlug(categorySlug)}
+            aria-label={
+              locale === "ar" && subCategory.category?.name_ar
+                ? subCategory.category.name_ar
+                : locale === "hi"
+                ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_hi || t(subCategory.category?.name || formatSlug(categorySlug))))
+                : locale === "es"
+                ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_es || t(subCategory.category?.name || formatSlug(categorySlug))))
+                : locale === "pt"
+                ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_pt || t(subCategory.category?.name || formatSlug(categorySlug))))
+                : locale === "fr"
+                ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_fr || t(subCategory.category?.name || formatSlug(categorySlug))))
+                : locale === "ru"
+                ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_ru || t(subCategory.category?.name || formatSlug(categorySlug))))
+                : subCategory.category?.name || formatSlug(categorySlug)
+            }
             className="breadcrumb-link"
           >
             {locale === "ar" && subCategory.category?.name_ar
               ? subCategory.category.name_ar
+              : locale === "hi"
+              ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_hi || t(subCategory.category?.name || formatSlug(categorySlug))))
+              : locale === "es"
+              ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_es || t(subCategory.category?.name || formatSlug(categorySlug))))
+              : locale === "pt"
+              ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_pt || t(subCategory.category?.name || formatSlug(categorySlug))))
+              : locale === "fr"
+              ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_fr || t(subCategory.category?.name || formatSlug(categorySlug))))
+              : locale === "ru"
+              ? (t(subCategory.category?.name?.trim() || "") !== subCategory.category?.name?.trim() ? t(subCategory.category?.name?.trim() || "") : ((subCategory.category as any)?.name_ru || t(subCategory.category?.name || formatSlug(categorySlug))))
               : subCategory.category?.name || formatSlug(categorySlug)}
           </Link>
           <span>{locale === "ar" ? " < " : " > "}</span>

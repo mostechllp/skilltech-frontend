@@ -6,16 +6,37 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { translations } from "@/lib/translations";
 
+import { getServerLocale } from "@/lib/locale";
+
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const headersList = await headers();
-  const locale = headersList.get("x-locale") || "en";
+  const locale = await getServerLocale();
   const seo = await fetchSEO("about");
-  const canonical = locale === "ar" ? "https://skilltechonline.com/ar/about" : "https://skilltechonline.com/about";
-  const title = locale === "ar" 
-    ? "من نحن | About Skill Tech | TV Mounting Experts Since 2011 UAE" 
-    : "About Skill Tech | TV Mounting Experts Since 2011 UAE";
+  const canonical =
+    locale === "ar"
+      ? "https://skilltechonline.com/ar/about"
+      : locale === "hi"
+      ? "https://skilltechonline.com/hi/about"
+      : locale === "es"
+      ? "https://skilltechonline.com/es/about"
+      : locale === "pt"
+      ? "https://skilltechonline.com/pt/about"
+      : locale === "fr"
+      ? "https://skilltechonline.com/fr/about"
+      : "https://skilltechonline.com/about";
+  const title =
+    locale === "ar"
+      ? "من نحن | About Skill Tech | TV Mounting Experts Since 2011 UAE"
+      : locale === "hi"
+      ? "हमारे बारे में | About Skill Tech | TV Mounting Experts Since 2011 UAE"
+      : locale === "es"
+      ? "Sobre Nosotros | About Skill Tech | TV Mounting Experts Since 2011 UAE"
+      : locale === "pt"
+      ? "Sobre Nós | About Skill Tech | TV Mounting Experts Since 2011 UAE"
+      : locale === "fr"
+      ? "À Propos de Nous | About Skill Tech | Experts en Fixation TV aux EAU"
+      : "About Skill Tech | TV Mounting Experts Since 2011 UAE";
   const description = "Discover Skill Tech - UAE's trusted TV mounting experts since 2011, delivering professional AV mounting and installation services with reliability.";
 
   const imageUrl = seo?.meta_image
@@ -46,12 +67,19 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 const About = async () => {
-  const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = await getServerLocale();
 
   const t = (key: string) => {
+    if (!key) return "";
     const langDict = (translations[locale] as Record<string, string>) || {};
-    return langDict[key] || key;
+    if (langDict[key]) return langDict[key];
+    const trimmed = key.trim();
+    if (langDict[trimmed]) return langDict[trimmed];
+    const lower = trimmed.toLowerCase();
+    for (const [k, v] of Object.entries(langDict)) {
+      if (k.toLowerCase() === lower) return v;
+    }
+    return key;
   };
 
   const breadcrumbJsonLd = {

@@ -4,7 +4,7 @@ import { translations } from "@/lib/translations";
 
 export default async function ContactThankYou() {
   const headersList = await headers();
-  const locale = (headersList.get("x-locale") as "en" | "ar") || "en";
+  const locale = (headersList.get("x-locale") as "en" | "ar" | "hi" | "es" | "pt") || "en";
 
   const t = (key: string) => {
     const langDict = (translations[locale] as Record<string, string>) || {};

@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { translations } from "./translations";
 
-type Language = "en" | "ar";
+type Language = "en" | "ar" | "hi" | "es" | "pt" | "fr" | "ru";
 
 interface LanguageContextProps {
   language: Language;
@@ -22,8 +22,20 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLang
 
   // Sync state with URL pathname changes (handles back/forward navigation and direct links)
   useEffect(() => {
-    if (pathname === "/ar" || pathname.startsWith("/ar/")) {
+    const browserPath = typeof window !== "undefined" ? window.location.pathname : pathname;
+
+    if (browserPath === "/ar" || browserPath.startsWith("/ar/") || pathname === "/ar" || pathname.startsWith("/ar/")) {
       setLanguageState("ar");
+    } else if (browserPath === "/hi" || browserPath.startsWith("/hi/") || pathname === "/hi" || pathname.startsWith("/hi/")) {
+      setLanguageState("hi");
+    } else if (browserPath === "/es" || browserPath.startsWith("/es/") || pathname === "/es" || pathname.startsWith("/es/")) {
+      setLanguageState("es");
+    } else if (browserPath === "/pt" || browserPath.startsWith("/pt/") || pathname === "/pt" || pathname.startsWith("/pt/")) {
+      setLanguageState("pt");
+    } else if (browserPath === "/fr" || browserPath.startsWith("/fr/") || pathname === "/fr" || pathname.startsWith("/fr/")) {
+      setLanguageState("fr");
+    } else if (browserPath === "/ru" || browserPath.startsWith("/ru/") || pathname === "/ru" || pathname.startsWith("/ru/")) {
+      setLanguageState("ru");
     } else {
       setLanguageState("en");
     }
@@ -32,23 +44,36 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLang
   const setLanguage = (lang: Language) => {
     if (lang === language) return;
 
-    let newUrl = pathname;
+    setLanguageState(lang);
+
+    // Use current browser pathname if available, otherwise fall back to pathname
+    const currentPath = typeof window !== "undefined" ? window.location.pathname : pathname;
+
+    // Strip existing language prefix (/ar, /hi, /es, /pt, /fr or /ru)
+    let cleanPath = currentPath.replace(/^\/(ar|hi|es|pt|fr|ru)(\/|$)/, "/");
+    if (!cleanPath.startsWith("/")) {
+      cleanPath = "/" + cleanPath;
+    }
+
+    let newUrl = cleanPath;
     if (lang === "ar") {
-      if (pathname === "/") {
-        newUrl = "/ar";
-      } else if (!pathname.startsWith("/ar") && pathname !== "/ar") {
-        newUrl = `/ar${pathname}`;
-      }
+      newUrl = cleanPath === "/" ? "/ar" : `/ar${cleanPath}`;
+    } else if (lang === "hi") {
+      newUrl = cleanPath === "/" ? "/hi" : `/hi${cleanPath}`;
+    } else if (lang === "es") {
+      newUrl = cleanPath === "/" ? "/es" : `/es${cleanPath}`;
+    } else if (lang === "pt") {
+      newUrl = cleanPath === "/" ? "/pt" : `/pt${cleanPath}`;
+    } else if (lang === "fr") {
+      newUrl = cleanPath === "/" ? "/fr" : `/fr${cleanPath}`;
+    } else if (lang === "ru") {
+      newUrl = cleanPath === "/" ? "/ru" : `/ru${cleanPath}`;
     } else {
-      if (pathname === "/ar") {
-        newUrl = "/";
-      } else if (pathname.startsWith("/ar/")) {
-        newUrl = pathname.replace(/^\/ar/, "");
-      }
+      newUrl = cleanPath;
     }
 
     // Set cookie and navigate
-    document.cookie = `language=${lang}; path=/; max-age=31536000`;
+    document.cookie = `language=${lang}; path=/; max-age=31536000; SameSite=Lax`;
     localStorage.setItem("language", lang);
 
     const suffix = typeof window !== "undefined" ? window.location.search : "";
@@ -63,7 +88,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLang
       document.documentElement.lang = language;
       document.documentElement.dir = dir;
 
-      // Update Bootstrap stylesheet dynamically
+      // Update Bootstrap stylesheet dynamically (only Arabic uses RTL stylesheet)
       const bootstrapLink = document.getElementById("bootstrap-theme") as HTMLLinkElement;
       if (bootstrapLink) {
         bootstrapLink.href =
@@ -74,16 +99,57 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode; initialLang
     }
   }, [language, dir]);
 
+  const normalizeStr = (s: string) =>
+    (s || "")
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/[\u201C\u201D]/g, '"')
+      .replace(/[\u00a0\s]+/g, " ")
+      .trim();
+
   const t = (key: string): string => {
-    const langDict = translations[language] as Record<string, string>;
-    if (langDict && key in langDict) {
-      return langDict[key];
+    if (!key || typeof key !== "string") return "";
+
+    const clean = normalizeStr(key);
+    if (!clean) return "";
+
+    const lower = clean.toLowerCase();
+    const langDict = ((translations as any)?.[language] || {}) as Record<string, string>;
+
+    if (langDict) {
+      if (key in langDict) return langDict[key];
+      if (clean in langDict) return langDict[clean];
+      for (const [k, v] of Object.entries(langDict)) {
+        if (normalizeStr(k).toLowerCase() === lower) return v;
+      }
     }
-    // Fallback to English dictionary if key not found in Arabic
-    const enDict = translations["en"] as Record<string, string>;
-    if (enDict && key in enDict) {
-      return enDict[key];
+
+    // Comma-separated multi-value fallback (e.g. "Wall Mounted,Under Desk")
+    if (language !== "en" && clean.includes(",")) {
+      const parts = clean.split(",");
+      const translatedParts = parts.map((p) => {
+        const trimmedPart = p.trim();
+        if (!trimmedPart) return "";
+        const transPart = t(trimmedPart);
+        return transPart || trimmedPart;
+      });
+      const hasAnyTranslation = translatedParts.some(
+        (tp, idx) => tp && tp.toLowerCase() !== parts[idx].trim().toLowerCase()
+      );
+      if (hasAnyTranslation) {
+        return translatedParts.join(", ");
+      }
     }
+
+    // Fallback to English dictionary if key not found
+    const enDict = ((translations as any)?.["en"] || {}) as Record<string, string>;
+    if (enDict) {
+      if (key in enDict) return enDict[key];
+      if (clean in enDict) return enDict[clean];
+      for (const [k, v] of Object.entries(enDict)) {
+        if (normalizeStr(k).toLowerCase() === lower) return v;
+      }
+    }
+
     return key;
   };
 

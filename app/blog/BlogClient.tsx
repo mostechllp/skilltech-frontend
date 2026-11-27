@@ -29,8 +29,38 @@ export default function BlogClient({ posts, banner }: BlogClientProps) {
           </div>
           <div className="row g-4">
              {posts.map((post) => {
-                const title = language === "ar" && post.title_ar ? post.title_ar : post.title;
-                const shortDesc = language === "ar" && post.short_description_ar ? post.short_description_ar : post.short_description;
+                const title =
+                  language === "ar" && post.title_ar
+                    ? post.title_ar
+                    : language === "hi" && post.title_hi
+                    ? post.title_hi
+                    : language === "es" && post.title_es
+                    ? post.title_es
+                    : language === "pt" && post.title_pt
+                    ? post.title_pt
+                    : language === "fr" && (post as any).title_fr
+                    ? (post as any).title_fr
+                    : language === "ru" && (post as any).title_ru
+                    ? (post as any).title_ru
+                    : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                    ? t(post.title)
+                    : post.title;
+                const shortDesc =
+                  language === "ar" && post.short_description_ar
+                    ? post.short_description_ar
+                    : language === "hi" && post.short_description_hi
+                    ? post.short_description_hi
+                    : language === "es" && post.short_description_es
+                    ? post.short_description_es
+                    : language === "pt" && post.short_description_pt
+                    ? post.short_description_pt
+                    : language === "fr" && (post as any).short_description_fr
+                    ? (post as any).short_description_fr
+                    : language === "ru" && (post as any).short_description_ru
+                    ? (post as any).short_description_ru
+                    : (language === "hi" || language === "es" || language === "pt" || language === "fr" || language === "ru")
+                    ? t(post.short_description)
+                    : post.short_description;
                 const image = language === "ar" && post.image_ar ? post.image_ar : post.image;
 
                 return (
