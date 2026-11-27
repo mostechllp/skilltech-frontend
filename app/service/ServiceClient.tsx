@@ -13,6 +13,7 @@ import {
 } from "@/lib/api";
 import Captcha from "@/components/Captcha";
 import StatsSection from "@/components/StatsSection";
+import CustomerReviews from "@/components/CustomerReviews";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ServiceClient() {
@@ -582,6 +583,14 @@ export default function ServiceClient() {
       </section>
 
       <ClientsSection clients={clients} />
+
+      {/* What Our Customers Say - Google Reviews Section */}
+      <CustomerReviews
+        reviewsUrl={
+          settings?.google_map_link ||
+          "https://www.google.com/search?q=Skill+Mount+Electronics+Trading+LLC+Reviews"
+        }
+      />
 
       {/* ===== FAQ SECTION ===== */}
 
