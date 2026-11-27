@@ -110,16 +110,15 @@ export const CountryProvider: React.FC<{ children: React.ReactNode }> = ({ child
       .then((adminSettings) => {
         const list = Array.isArray(adminSettings) ? adminSettings : adminSettings?.results || [];
         if (list && list.length > 0) {
-          setCountriesList((prev) =>
-            prev.map((gcc) => {
-              const remote = list.find(
-                (item: any) => item.country_code?.toLowerCase() === gcc.code.toLowerCase()
-              );
-              if (!remote) return gcc;
+          const activeCountries: CountryConfig[] = list
+            .map((remote: any) => {
+              const code = remote.country_code?.toLowerCase();
+              const gcc = GCC_COUNTRIES.find((item) => item.code === code);
+              if (!gcc) return null;
               return {
                 ...gcc,
-                country_name: remote.country_name || gcc.name,
-                country_name_ar: remote.country_name_ar || gcc.name_ar,
+                name: remote.country_name || gcc.name,
+                name_ar: remote.country_name_ar || gcc.name_ar,
                 company_name: remote.company_name !== undefined && remote.company_name !== null ? remote.company_name : gcc.company_name,
                 copyright_text: remote.copyright_text !== undefined && remote.copyright_text !== null ? remote.copyright_text : gcc.copyright_text,
                 phone: remote.phone !== undefined && remote.phone !== null ? remote.phone : gcc.phone,
@@ -132,7 +131,16 @@ export const CountryProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 address_ar: remote.address_ar !== undefined && remote.address_ar !== null ? remote.address_ar : gcc.address_ar,
               };
             })
-          );
+            .filter((item: CountryConfig | null): item is CountryConfig => item !== null);
+
+          if (activeCountries.length > 0) {
+            setCountriesList(activeCountries);
+            setCountryCode((curr) =>
+              activeCountries.some((c) => c.code === curr)
+                ? curr
+                : activeCountries.find((c) => c.code === DEFAULT_COUNTRY_CODE)?.code || activeCountries[0].code
+            );
+          }
         }
       })
       .catch(() => {
@@ -201,7 +209,9 @@ export const CountryProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const currentCountry =
     countriesList.find((c) => c.code === countryCode) ||
-    countriesList.find((c) => c.code === DEFAULT_COUNTRY_CODE)!;
+    countriesList.find((c) => c.code === DEFAULT_COUNTRY_CODE) ||
+    countriesList[0] ||
+    GCC_COUNTRIES[0];
 
   return (
     <CountryContext.Provider
