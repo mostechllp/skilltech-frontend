@@ -3536,7 +3536,7 @@ textarea {
   .connect-right h2,
   .connect-right h3 {
     font-size: 18px;
-    text-align: center;
+    text-align: left;
   }
 
   .connect-left p {
@@ -3551,25 +3551,12 @@ textarea {
     text-align: center;
   }
 
-  .contact-text {
-    width: 100%;
-    text-align: center;
-  }
-
-  .contact-text h3,
-  .contact-text h4,
-  .contact-text h5 {
-    text-align: center;
-    margin-bottom: 4px;
-  }
-
   .icon-circle {
     margin-bottom: 5px;
   }
 
   .social-icons {
     justify-content: center;
-    flex-wrap: wrap;
   }
 
   .contact-form {
