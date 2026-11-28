@@ -526,20 +526,33 @@ const rightCategories = categories ? categories.slice(8) : [];
                           : t("Head Office"))}
                     </h3>
                     {country.address ? (
-                      <p style={{ whiteSpace: "pre-line" }}>
-                        {language === "ar" && country.address_ar ? country.address_ar : country.address}
-                      </p>
+                      (country.google_map_link || settings?.google_map_link) ? (
+                        <p style={{ whiteSpace: "pre-line" }}>
+                          <Link
+                            href={country.google_map_link || settings?.google_map_link || "#"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: "inherit", textDecoration: "none" }}
+                          >
+                            {language === "ar" && country.address_ar ? country.address_ar : country.address}
+                          </Link>
+                        </p>
+                      ) : (
+                        <p style={{ whiteSpace: "pre-line" }}>
+                          {language === "ar" && country.address_ar ? country.address_ar : country.address}
+                        </p>
+                      )
                     ) : (
                       <>
-                        {(language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address) && !settings?.google_map_link && (
+                        {(language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address) && !(country.google_map_link || settings?.google_map_link) && (
                           <p style={{ whiteSpace: "pre-line" }}>
                             {language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address}
                           </p>
                         )}
-                        {(language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address) && settings?.google_map_link && (
+                        {(language === "ar" && settings?.address_ar ? settings.address_ar : settings?.address) && (country.google_map_link || settings?.google_map_link) && (
                           <p style={{ whiteSpace: "pre-line" }}>
                             <Link
-                              href={settings.google_map_link}
+                              href={country.google_map_link || settings?.google_map_link || "#"}
                               target="_blank"
                               rel="noopener noreferrer"
                               style={{ color: "inherit", textDecoration: "none" }}
@@ -833,9 +846,9 @@ const rightCategories = categories ? categories.slice(8) : [];
           </>
             <div className={`support-menu ${isMenuOpen ? "open" : ""}`}>
               <a
-                href={settings?.google_map_link || "#"}
-                target={settings?.google_map_link ? "_blank" : "_self"}
-                rel={settings?.google_map_link ? "noopener noreferrer" : undefined}
+                href={country.google_map_link || settings?.google_map_link || "#"}
+                target={(country.google_map_link || settings?.google_map_link) ? "_blank" : "_self"}
+                rel={(country.google_map_link || settings?.google_map_link) ? "noopener noreferrer" : undefined}
                 className="icon-btn"
                 aria-label="Location Map"
               >
@@ -856,14 +869,14 @@ const rightCategories = categories ? categories.slice(8) : [];
               </a>
 
               <a
-                href={`tel:${settings?.phone}`}
+                href={`tel:${phoneNumber || ""}`}
                 className="icon-btn"
                 aria-label="Call Us"
               >
                 <i className="fa fa-phone"></i>
               </a>
               <a
-                href={`mailto:${settings?.email}`}
+                href={`mailto:${country.email || settings?.email || ""}`}
                 className="icon-btn"
                 aria-label="Send Email"
               >

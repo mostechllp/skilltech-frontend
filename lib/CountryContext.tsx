@@ -21,6 +21,7 @@ export interface CountryConfig {
   address_heading_ar?: string;
   address?: string;
   address_ar?: string;
+  google_map_link?: string;
   whatsapp?: string;
   ctaLink?: string;
 }
@@ -130,6 +131,7 @@ export const CountryProvider: React.FC<{ children: React.ReactNode }> = ({ child
                 address_heading_ar: remote.address_heading_ar !== undefined && remote.address_heading_ar !== null ? remote.address_heading_ar : gcc.address_heading_ar,
                 address: remote.address !== undefined && remote.address !== null ? remote.address : gcc.address,
                 address_ar: remote.address_ar !== undefined && remote.address_ar !== null ? remote.address_ar : gcc.address_ar,
+                google_map_link: remote.google_map_link !== undefined && remote.google_map_link !== null ? remote.google_map_link : gcc.google_map_link,
               };
             })
           );
