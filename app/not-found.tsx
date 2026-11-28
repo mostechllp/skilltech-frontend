@@ -5,16 +5,56 @@ import { useRouter } from "next/navigation";
 import Link from "@/components/Link";
 import { useLanguage } from "@/lib/LanguageContext";
 
+const NOT_FOUND_TEXT = {
+  en: {
+    title: "Page Not Found",
+    back: "Go Back",
+    home: "Return to Homepage",
+  },
+  ar: {
+    title: "الصفحة غير موجودة",
+    back: "رجوع للخلف",
+    home: "العودة إلى الصفحة الرئيسية",
+  },
+  hi: {
+    title: "पेज नहीं मिला",
+    back: "वापस जाएं",
+    home: "होमपेज पर लौटें",
+  },
+  es: {
+    title: "Página no encontrada",
+    back: "Volver",
+    home: "Volver a la página principal",
+  },
+  pt: {
+    title: "Página não encontrada",
+    back: "Voltar",
+    home: "Voltar para a página inicial",
+  },
+  fr: {
+    title: "Page introuvable",
+    back: "Retour",
+    home: "Retour à l'accueil",
+  },
+  ru: {
+    title: "Страница не найдена",
+    back: "Назад",
+    home: "На главную",
+  },
+} as const;
+
 export default function NotFound() {
   const router = useRouter();
   const { language } = useLanguage();
   const isAr = language === "ar";
+  const copy = NOT_FOUND_TEXT[language] || NOT_FOUND_TEXT.en;
+  const homePath = language === "en" ? "/" : `/${language}`;
 
   const handleBack = () => {
     if (typeof window !== "undefined" && window.history.length > 1) {
       router.back();
     } else {
-      router.push(isAr ? "/ar" : "/");
+      router.push(homePath);
     }
   };
 
@@ -65,9 +105,8 @@ export default function NotFound() {
             marginBottom: "28px",
           }}
         >
-          {isAr ? "الصفحة غير موجودة" : "Page Not Found"}
+          {copy.title}
         </h1>
-
 
         <div
           style={{
@@ -106,7 +145,7 @@ export default function NotFound() {
             }}
           >
             <i className={`fas fa-arrow-${isAr ? "right" : "left"}`}></i>
-            <span>{isAr ? "رجوع للخلف" : "Go Back"}</span>
+            <span>{copy.back}</span>
           </button>
 
           <Link
@@ -140,7 +179,7 @@ export default function NotFound() {
             }}
           >
             <i className="fas fa-home"></i>
-            <span>{isAr ? "العودة إلى الصفحة الرئيسية" : "Return to Homepage"}</span>
+            <span>{copy.home}</span>
           </Link>
         </div>
       </div>

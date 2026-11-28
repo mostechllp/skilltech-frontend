@@ -1072,7 +1072,8 @@ body {
   border-radius: 16px;
   text-align: center;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  height: 200px;
+  min-height: 222px;
+  height: auto;
   width: 100%;
   max-width: 140px;
   display: flex;
@@ -1131,18 +1132,18 @@ body {
 
 /* Text area - bottom space */
 .category-slider .item p {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 10px;
-  margin: 0;
+  flex: none;
+  padding: 0 8px;
+  margin: 8px 0 10px;
   font-weight: 600;
   color: #1e3b7a;
-  font-size: 13px;
+  font-size: 12.5px;
   text-decoration: none;
-  line-height: 1.2;
+  line-height: 1.25;
+  max-height: 3.75em;
   text-align: center;
+  overflow-wrap: break-word;
+  word-break: normal;
   /* Multi-line clamp */
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -7265,14 +7266,17 @@ button[type="submit"].read-more-btn:active {
 
   .category-slider .item p {
     font-size: 11px;
-    line-height: 1.2;
-    padding: 8px 6px;
-    height: 40px;
-    /* Fixed height for text area to keep cards aligned */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    line-height: 1.25;
+    padding: 0 6px;
+    margin: 6px 0 8px;
+    min-height: 3.75em;
+    max-height: 3.75em;
+    overflow-wrap: break-word;
+    display: -webkit-box;
     -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
     flex: none;
   }
 }
